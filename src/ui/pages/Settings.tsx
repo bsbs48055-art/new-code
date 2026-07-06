@@ -8,6 +8,7 @@ import { downloadBackup, importBackup, type BackupPayload } from '@shared/utils/
 import { useSettings } from '@ui/hooks/useSettings';
 import { useAuthStates } from '@ui/hooks/useAuthStates';
 import { ThemeToggle } from '@ui/components/ThemeToggle';
+import { PlatformSetupGuide } from '@ui/components/PlatformSetupGuide';
 import { useToastStore } from '@ui/state/toastStore';
 
 const ALL_PLATFORMS: PlatformId[] = ['youtube', 'facebook', 'tiktok'];
@@ -104,22 +105,25 @@ export function Settings() {
           {ALL_PLATFORMS.map((platform) => {
             const state = authStates.find((s) => s.platform === platform);
             return (
-              <div key={platform} className="flex items-center justify-between" style={{ padding: '10px 0', borderBottom: '1px solid var(--color-border)' }}>
-                <div>
-                  <div style={{ fontWeight: 700, fontSize: 13 }}>{PLATFORM_LABELS[platform]}</div>
-                  <div className="text-muted" style={{ fontSize: 12 }}>
-                    {state?.connected ? `Connected as ${state.accountLabel ?? state.accountId}` : 'Not connected'}
+              <div key={platform} style={{ padding: '10px 0', borderBottom: '1px solid var(--color-border)' }}>
+                <div className="flex items-center justify-between">
+                  <div>
+                    <div style={{ fontWeight: 700, fontSize: 13 }}>{PLATFORM_LABELS[platform]}</div>
+                    <div className="text-muted" style={{ fontSize: 12 }}>
+                      {state?.connected ? `Connected as ${state.accountLabel ?? state.accountId}` : 'Not connected'}
+                    </div>
                   </div>
+                  {state?.connected ? (
+                    <button className="btn btn-danger" onClick={() => disconnect(platform)}>
+                      <Unlink size={14} /> Disconnect
+                    </button>
+                  ) : (
+                    <button className="btn btn-primary" onClick={() => connect(platform)} disabled={connecting === platform}>
+                      <Link2 size={14} /> {connecting === platform ? 'Connecting…' : 'Connect'}
+                    </button>
+                  )}
                 </div>
-                {state?.connected ? (
-                  <button className="btn btn-danger" onClick={() => disconnect(platform)}>
-                    <Unlink size={14} /> Disconnect
-                  </button>
-                ) : (
-                  <button className="btn btn-primary" onClick={() => connect(platform)} disabled={connecting === platform}>
-                    <Link2 size={14} /> {connecting === platform ? 'Connecting…' : 'Connect'}
-                  </button>
-                )}
+                <PlatformSetupGuide platform={platform} />
               </div>
             );
           })}

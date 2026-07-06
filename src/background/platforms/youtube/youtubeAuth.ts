@@ -8,11 +8,26 @@
 import { YOUTUBE_DATA_API_BASE } from '@shared/constants';
 import type { PlatformAuthState } from '@shared/types/index';
 import { tokenVault } from '@shared/security/tokenVault';
+import { isYouTubeClientIdConfigured } from '@shared/utils/manifestChecks';
 import { getGoogleAuthToken, revokeGoogleAuthToken } from '@background/platforms/oauth';
 import type { YouTubeChannelResource } from './types';
 
 export async function connectYouTube(): Promise<PlatformAuthState> {
-  const token = await getGoogleAuthToken(true);
+  if (!isYouTubeClientIdConfigured()) {
+    throw new Error(
+      'YouTube is not set up yet: add your Google OAuth Client ID to manifest.json and rebuild the extension. See Settings → Platform Apps → YouTube Setup for step-by-step instructions.',
+    );
+  }
+
+  let token: string;
+  try {
+    token = await getGoogleAuthToken(true);
+  } catch (error) {
+    const message = error instanceof Error ? error.message : String(error);
+    throw new Error(
+      `Google sign-in failed: ${message}. Double-check your OAuth Client ID (type "Chrome Extension") and that this extension's ID is registered with it — see Settings → Platform Apps → YouTube Setup.`,
+    );
+  }
   const response = await fetch(`${YOUTUBE_DATA_API_BASE}/channels?part=snippet&mine=true`, {
     headers: { Authorization: `Bearer ${token}` },
   });
