@@ -20,9 +20,10 @@ export const useToastStore = create<ToastState>((set) => ({
   push: (message, variant = 'info') => {
     const toast: Toast = { id: generateId('toast'), message, variant };
     set((state) => ({ toasts: [...state.toasts, toast] }));
+    const duration = variant === 'error' ? 9000 : 4500;
     setTimeout(() => {
       set((state) => ({ toasts: state.toasts.filter((t) => t.id !== toast.id) }));
-    }, 4500);
+    }, duration);
   },
   dismiss: (id) => set((state) => ({ toasts: state.toasts.filter((t) => t.id !== id) })),
 }));
