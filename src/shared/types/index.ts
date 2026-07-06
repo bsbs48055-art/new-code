@@ -124,6 +124,8 @@ export interface UploadTask {
   platformContentUrl?: string;
   /** Platform-issued resumable upload session URL/ID, persisted so pause/resume survives a service worker restart. */
   resumableSessionUrl?: string;
+  /** True for sample/demo tasks inserted for UI exploration — the queue engine and scheduler must never process these. */
+  isDemo?: boolean;
   createdAt: number;
   updatedAt: number;
   completedAt?: number;

@@ -43,7 +43,9 @@ class UploadQueueEngine {
       const capacity = Math.max(settings.uploadConcurrency, 1) - uploading.length;
       if (capacity <= 0) return;
 
-      const sorted = queued.sort((a, b) => b.priority - a.priority || a.createdAt - b.createdAt);
+      // Sample/demo tasks (see shared/utils/demoData.ts) are for UI exploration only and
+      // must never be picked up by the real upload engine.
+      const sorted = queued.filter((t) => !t.isDemo).sort((a, b) => b.priority - a.priority || a.createdAt - b.createdAt);
       const toStart = sorted.slice(0, capacity);
 
       await Promise.all(toStart.map((task) => this.runTask(task)));
