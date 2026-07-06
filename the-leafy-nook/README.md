@@ -24,6 +24,24 @@ npm run serve      # preview it locally at http://localhost:8080
 
 The `site/` folder is the entire, ready-to-deploy website. You can drag-and-drop it into Netlify, Vercel, GitHub Pages, Cloudflare Pages, or any static host / cPanel `public_html` folder.
 
+## Deploying (three ways, easiest first)
+
+### Option A: GitHub Pages (already wired up, zero config)
+This repo includes a ready-to-go GitHub Actions workflow at `.github/workflows/deploy-leafy-nook.yml`. Once this branch is merged into `main`:
+1. In the repo, go to **Settings → Pages**.
+2. Under "Build and deployment", set **Source** to **GitHub Actions**.
+3. Push any change under `the-leafy-nook/` to `main` (or manually run the "Deploy The Leafy Nook to GitHub Pages" workflow from the **Actions** tab) — it builds the site and publishes it automatically.
+4. Your live URL will appear in the workflow run summary and under **Settings → Pages** (typically `https://<your-username>.github.io/<repo-name>/`). For a real custom domain, add it under **Settings → Pages → Custom domain** and update `siteUrl` in `src/config.mjs` to match, then rebuild.
+
+### Option B: Netlify (one click, best for a custom domain)
+A `netlify.toml` is already included at the repo root, pre-configured with `base = "the-leafy-nook"`, `command = "npm run build"`, `publish = "site"`. Just:
+1. Go to [app.netlify.com](https://app.netlify.com) → "Add new site" → "Import an existing project" → connect this GitHub repo.
+2. Netlify will detect `netlify.toml` automatically — no manual build settings needed.
+3. Deploy, then connect your own domain under **Site settings → Domain management**.
+
+### Option C: Vercel / Cloudflare Pages / any static host
+Set the **root directory** to `the-leafy-nook`, **build command** to `npm run build`, and **output directory** to `site`. Or just run `npm run build` locally/in CI and upload the resulting `the-leafy-nook/site` folder anywhere that serves static files.
+
 ## Before you go live — checklist
 
 1. **Buy a real domain** and point it at your hosting. AdSense requires the site to live on your own domain, not a subdomain of a free host in most cases, and content should be publicly accessible without login.
