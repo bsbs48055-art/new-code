@@ -1,0 +1,53 @@
+{
+  "name": "social-media-studio-pro",
+  "version": "1.0.0",
+  "description": "Production-ready Chrome Extension (Manifest V3) that provides a unified content publishing, scheduling, and analytics workflow for Facebook, YouTube, and TikTok using each platform's official APIs.",
+  "private": true,
+  "type": "module",
+  "author": "Social Media Studio Pro Contributors",
+  "license": "MIT",
+  "scripts": {
+    "dev": "vite build --watch --mode development",
+    "build": "tsc -p tsconfig.json --noEmit && vite build && node scripts/build-content-script.mjs",
+    "build:content-script": "node scripts/build-content-script.mjs",
+    "typecheck": "tsc -p tsconfig.json --noEmit",
+    "lint": "eslint . --ext .ts,.tsx",
+    "lint:fix": "eslint . --ext .ts,.tsx --fix",
+    "format": "prettier --write \"src/**/*.{ts,tsx,css}\"",
+    "clean": "rimraf dist",
+    "package": "npm run clean && npm run build && node scripts/zip-extension.mjs",
+    "server": "npm --prefix server start",
+    "server:install": "npm --prefix server install"
+  },
+  "dependencies": {
+    "clsx": "^2.1.1",
+    "dexie": "^4.0.10",
+    "dexie-react-hooks": "^1.1.7",
+    "lucide-react": "^0.469.0",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
+    "react-router-dom": "^6.28.1",
+    "recharts": "^2.15.0",
+    "zustand": "^5.0.2"
+  },
+  "devDependencies": {
+    "@types/chrome": "^0.0.287",
+    "@types/react": "^18.3.17",
+    "@types/react-dom": "^18.3.5",
+    "@typescript-eslint/eslint-plugin": "^8.18.1",
+    "@typescript-eslint/parser": "^8.18.1",
+    "@vitejs/plugin-react": "^4.3.4",
+    "esbuild": "^0.24.2",
+    "eslint": "^8.57.1",
+    "eslint-plugin-react-hooks": "^5.1.0",
+    "eslint-plugin-react-refresh": "^0.4.16",
+    "prettier": "^3.4.2",
+    "rimraf": "^6.0.1",
+    "typescript": "^5.7.2",
+    "vite": "^6.0.5",
+    "vite-plugin-static-copy": "^2.2.0"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  }
+}
