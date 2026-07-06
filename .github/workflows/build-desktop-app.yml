@@ -1,0 +1,55 @@
+name: Build desktop app (Windows)
+
+# Builds the TikTok Multi Uploader desktop app (desktop-app/) into a Windows
+# installer + portable .exe using electron-builder, and uploads them as a
+# downloadable workflow artifact. Runs on windows-latest because
+# electron-builder's NSIS installer target needs to run on (or emulate)
+# Windows to produce a fully native installer.
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'desktop-app/**'
+      - '.github/workflows/build-desktop-app.yml'
+  pull_request:
+    paths:
+      - 'desktop-app/**'
+      - '.github/workflows/build-desktop-app.yml'
+  workflow_dispatch: {}
+
+jobs:
+  build-windows:
+    runs-on: windows-latest
+    defaults:
+      run:
+        working-directory: desktop-app
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+          cache-dependency-path: desktop-app/package-lock.json
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Type-check
+        run: npm run typecheck
+
+      - name: Lint
+        run: npm run lint
+
+      - name: Build Windows installer + portable exe
+        run: npm run dist:win
+
+      - name: Upload build artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: tiktok-multi-uploader-windows
+          path: |
+            desktop-app/release/*.exe
+            desktop-app/release/*.blockmap
+          if-no-files-found: error

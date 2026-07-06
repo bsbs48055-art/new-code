@@ -1,0 +1,32 @@
+appId: com.faizan.tiktokmultiuploader
+productName: TikTok Multi Uploader
+copyright: Copyright © Faizan
+directories:
+  output: release
+  buildResources: build
+files:
+  - dist/**/*
+  - dist-electron/**/*
+  - package.json
+asarUnpack:
+  - "**/*.node"
+win:
+  target:
+    - target: nsis
+      arch: [x64]
+    - target: portable
+      arch: [x64]
+  icon: build/icon.ico
+  artifactName: ${productName}-Setup-${version}.${ext}
+nsis:
+  oneClick: false
+  perMachine: false
+  allowToChangeInstallationDirectory: true
+  createDesktopShortcut: true
+  createStartMenuShortcut: true
+  shortcutName: TikTok Multi Uploader
+linux:
+  target:
+    - AppImage
+  category: Utility
+  icon: build/icon.png

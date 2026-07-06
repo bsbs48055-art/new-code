@@ -26,6 +26,10 @@ Creators managing the same content across Facebook, YouTube, and TikTok end up r
 
 Manifest V3 · TypeScript · React 18 · Vite 6 · Dexie (IndexedDB) · Zustand · Recharts · Chrome Tabs/Identity/Downloads/Notifications/Alarms/Side Panel APIs · Node.js/Express (optional local helper server for OAuth exchanges that require a confidential client secret).
 
+## Related project: desktop app
+
+Prefer a standalone Windows/macOS/Linux desktop app over a Chrome extension? See [`desktop-app/`](desktop-app/README.md) — an Electron dashboard focused specifically on posting one video to multiple TikTok accounts you own, built the same compliant way (TikTok's official Content Posting API, OAuth per account, no bundled credentials). It ships with a GitHub Actions workflow that builds a Windows installer/portable `.exe` (see [`.github/workflows/build-desktop-app.yml`](.github/workflows/build-desktop-app.yml)).
+
 ## Quick start
 
 ```bash
