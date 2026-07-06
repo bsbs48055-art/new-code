@@ -1,0 +1,21 @@
+{
+  "name": "The Leafy Nook",
+  "short_name": "The Leafy Nook",
+  "description": "The Leafy Nook is a friendly, no-fluff guide to keeping houseplants alive and thriving in apartments, small bedrooms, and low-light spaces — real advice for real small-space plant parents.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#faf7f0",
+  "theme_color": "#2d6a4f",
+  "icons": [
+    {
+      "src": "/images/android-chrome-192x192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "/images/android-chrome-512x512.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}
