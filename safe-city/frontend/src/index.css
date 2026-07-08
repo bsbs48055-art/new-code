@@ -1,0 +1,40 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;600&display=swap');
+
+* { box-sizing: border-box; }
+
+html, body, #root {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  font-family: 'Inter', system-ui, sans-serif;
+  background: #030712;
+  color: #f1f5f9;
+}
+
+::-webkit-scrollbar { width: 6px; height: 6px; }
+::-webkit-scrollbar-track { background: #0f172a; }
+::-webkit-scrollbar-thumb { background: #334155; border-radius: 3px; }
+
+.violation-flash {
+  animation: flash-red 0.5s ease-in-out 3;
+}
+
+@keyframes flash-red {
+  0%, 100% { border-color: #ef4444; box-shadow: 0 0 0 0 rgba(239,68,68,0); }
+  50% { border-color: #ff0000; box-shadow: 0 0 20px 6px rgba(239,68,68,0.6); }
+}
+
+.speed-badge {
+  font-family: 'JetBrains Mono', monospace;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+}
+
+/* Leaflet overrides */
+.leaflet-container { background: #1e293b; }
+.leaflet-popup-content-wrapper { background: #1e293b; color: #f1f5f9; border: 1px solid #334155; }
+.leaflet-popup-tip { background: #1e293b; }
