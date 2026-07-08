@@ -1,0 +1,91 @@
+version: "3.9"
+
+services:
+  # ── PostgreSQL ────────────────────────────────────────────────────────────
+  db:
+    image: timescale/timescaledb:latest-pg16
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER: safecity
+      POSTGRES_PASSWORD: safecity123
+      POSTGRES_DB: safecity
+    volumes:
+      - pg_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U safecity -d safecity"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  # ── Redis ─────────────────────────────────────────────────────────────────
+  redis:
+    image: redis:7-alpine
+    restart: unless-stopped
+    volumes:
+      - redis_data:/data
+
+  # ── MinIO (object storage for snapshots) ─────────────────────────────────
+  minio:
+    image: minio/minio:latest
+    restart: unless-stopped
+    command: server /data --console-address ":9001"
+    environment:
+      MINIO_ROOT_USER: minioadmin
+      MINIO_ROOT_PASSWORD: minioadmin
+    volumes:
+      - minio_data:/data
+    ports:
+      - "9001:9001"   # MinIO console
+
+  # ── Backend ───────────────────────────────────────────────────────────────
+  backend:
+    build: ./backend
+    restart: unless-stopped
+    depends_on:
+      db:
+        condition: service_healthy
+      redis:
+        condition: service_started
+      minio:
+        condition: service_started
+    environment:
+      DATABASE_URL: postgresql+asyncpg://safecity:safecity123@db:5432/safecity
+      DATABASE_URL_SYNC: postgresql://safecity:safecity123@db:5432/safecity
+      REDIS_URL: redis://redis:6379/0
+      MINIO_ENDPOINT: minio:9000
+      YOLO_MODEL: yolov8n.pt
+      YOLO_DEVICE: cpu
+      SNAPSHOT_DIR: /app/data/snapshots
+      CALIBRATION_DIR: /app/data/calibrations
+    volumes:
+      - ./data/snapshots:/app/data/snapshots
+      - ./data/calibrations:/app/data/calibrations
+      - ./data/logs:/app/data/logs
+      # Uncomment to forward video devices (for USB cameras)
+      # - /dev/video0:/dev/video0
+    ports:
+      - "8000:8000"
+    # For GPU inference uncomment:
+    # deploy:
+    #   resources:
+    #     reservations:
+    #       devices:
+    #         - capabilities: [gpu]
+
+  # ── Frontend ──────────────────────────────────────────────────────────────
+  frontend:
+    build:
+      context: ./frontend
+      args:
+        VITE_API_URL: http://localhost:8000/api/v1
+        VITE_WS_URL: ws://localhost:8000/api/v1/ws
+    restart: unless-stopped
+    depends_on:
+      - backend
+    ports:
+      - "3000:80"
+
+volumes:
+  pg_data:
+  redis_data:
+  minio_data:
