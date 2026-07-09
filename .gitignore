@@ -12,3 +12,10 @@ npm-debug.log*
 .env
 .env.*
 !.env.example
+mobile/node_modules/
+mt5-bridge/.venv/
+mt5-bridge/__pycache__/
+**/__pycache__/
+*.pyc
+.expo/
+__pycache__/
