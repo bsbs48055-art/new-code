@@ -1,0 +1,44 @@
+{
+  "expo": {
+    "name": "SMC Signal",
+    "slug": "smc-signal",
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "icon": "./assets/icon.png",
+    "userInterfaceStyle": "automatic",
+    "scheme": "smcsignal",
+    "ios": {
+      "supportsTablet": true,
+      "bundleIdentifier": "com.smcsignal.app",
+      "infoPlist": {
+        "NSUserNotificationsUsageDescription": "Notify when new trade signals fire or SL/TP is hit."
+      }
+    },
+    "android": {
+      "adaptiveIcon": {
+        "backgroundColor": "#0B0F14",
+        "foregroundImage": "./assets/android-icon-foreground.png",
+        "backgroundImage": "./assets/android-icon-background.png",
+        "monochromeImage": "./assets/android-icon-monochrome.png"
+      },
+      "package": "com.smcsignal.app",
+      "predictiveBackGestureEnabled": false,
+      "permissions": [
+        "RECEIVE_BOOT_COMPLETED",
+        "VIBRATE"
+      ]
+    },
+    "web": {
+      "favicon": "./assets/favicon.png"
+    },
+    "plugins": [
+      "expo-font",
+      [
+        "expo-notifications",
+        {
+          "color": "#3D9CF0"
+        }
+      ]
+    ]
+  }
+}
