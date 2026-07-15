@@ -1,0 +1,160 @@
+{
+  "sections": {
+    "hero_slider": {
+      "type": "hero-slider",
+      "blocks": {
+        "slide_1": {
+          "type": "slide",
+          "settings": {
+            "eyebrow": "Small-Batch & Sustainable",
+            "heading": "Crafted Flavor, From Farm to Jar",
+            "subheading": "Discover artisan sauces, spice blends and pantry staples made in small batches with ingredients you can pronounce.",
+            "button_label": "Shop Now",
+            "button_link": "/collections/all",
+            "button_label_2": "Explore Recipes",
+            "button_link_2": "/blogs/recipes"
+          }
+        },
+        "slide_2": {
+          "type": "slide",
+          "settings": {
+            "eyebrow": "New This Season",
+            "heading": "Harvest Chili Crunch Is Back",
+            "subheading": "A smoky, crunchy, small-batch condiment that turns any weeknight meal into something worth savoring.",
+            "button_label": "Shop the Collection",
+            "button_link": "/collections/all"
+          }
+        }
+      },
+      "block_order": ["slide_1", "slide_2"],
+      "settings": {
+        "autoplay_speed": 6
+      }
+    },
+    "collection_list": {
+      "type": "collection-list",
+      "settings": {
+        "eyebrow": "Shop by Category",
+        "heading": "Explore Our Pantry",
+        "subheading": "From smoky condiments to global spice blends — find your next favorite.",
+        "center_heading": true,
+        "columns_desktop": "5",
+        "show_count": true
+      }
+    },
+    "featured_collection": {
+      "type": "featured-collection",
+      "settings": {
+        "eyebrow": "Customer Favorites",
+        "heading": "Featured Products",
+        "subheading": "Small-batch pantry staples our community keeps coming back for.",
+        "center_heading": true,
+        "layout": "carousel",
+        "products_to_show": 8,
+        "columns_desktop": "4",
+        "show_view_all": true,
+        "view_all_label": "View All Products"
+      }
+    },
+    "image_with_text": {
+      "type": "image-with-text",
+      "settings": {
+        "image_ratio": "portrait",
+        "layout": "image_first",
+        "eyebrow": "Our Kitchen",
+        "heading": "Small Batches, Big Flavor",
+        "text": "<p>Every jar is cooked in small batches of no more than 40 at a time, so we can taste-test as we go and never cut corners. It's slower — but it's worth it.</p>",
+        "button_label": "Our Story",
+        "button_link": "/pages/about"
+      }
+    },
+    "featured_recipes": {
+      "type": "featured-recipes",
+      "settings": {
+        "eyebrow": "From the Recipe Box",
+        "heading": "Featured Recipes",
+        "subheading": "Chef-tested ideas to help you get the most out of every jar.",
+        "center_heading": true,
+        "recipes_to_show": 3,
+        "columns_desktop": "3",
+        "show_view_all": true,
+        "view_all_label": "View All Recipes"
+      }
+    },
+    "testimonials": {
+      "type": "testimonials",
+      "settings": {
+        "eyebrow": "Loved By Home Cooks",
+        "heading": "What Our Customers Say",
+        "autoplay_speed": 0
+      },
+      "blocks": {
+        "t1": {
+          "type": "testimonial",
+          "settings": {
+            "rating": 5,
+            "text": "The chili crunch changed my weeknight dinners forever. Every product tastes like it was made by someone who actually cares.",
+            "name": "Jordan M.",
+            "location": "Austin, TX"
+          }
+        },
+        "t2": {
+          "type": "testimonial",
+          "settings": {
+            "rating": 5,
+            "text": "I've bought the same hot honey four times now. The quality is consistent and the packaging feels premium every time.",
+            "name": "Priya S.",
+            "location": "Chicago, IL"
+          }
+        },
+        "t3": {
+          "type": "testimonial",
+          "settings": {
+            "rating": 4,
+            "text": "Fast shipping, thoughtful packaging, and the recipes on the blog are genuinely useful. My go-to pantry shop now.",
+            "name": "Marcus T.",
+            "location": "Denver, CO"
+          }
+        }
+      },
+      "block_order": ["t1", "t2", "t3"]
+    },
+    "instagram_feed": {
+      "type": "instagram-feed",
+      "settings": {
+        "eyebrow": "Follow Along",
+        "heading": "Tag Us in Your Kitchen Wins",
+        "handle": "@foodcraftpro"
+      },
+      "blocks": {
+        "ig1": { "type": "image", "settings": {} },
+        "ig2": { "type": "image", "settings": {} },
+        "ig3": { "type": "image", "settings": {} },
+        "ig4": { "type": "image", "settings": {} },
+        "ig5": { "type": "image", "settings": {} },
+        "ig6": { "type": "image", "settings": {} }
+      },
+      "block_order": ["ig1", "ig2", "ig3", "ig4", "ig5", "ig6"]
+    },
+    "google_map": {
+      "type": "google-map",
+      "settings": {
+        "heading": "Visit Our Flagship Kitchen",
+        "address": "148 Harvest Lane, Portland, OR 97201",
+        "phone": "+1 (503) 555-0142",
+        "hours": "Mon–Sat, 9am–6pm",
+        "button_label": "Get Directions"
+      }
+    }
+  },
+  "order": [
+    "hero_slider",
+    "collection_list",
+    "featured_collection",
+    "image_with_text",
+    "featured_recipes",
+    "testimonials",
+    "instagram_feed",
+    "google_map"
+  ]
+}

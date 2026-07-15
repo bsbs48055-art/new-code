@@ -1,0 +1,205 @@
+/* FoodCraft Pro — Product page layout */
+
+.product-layout {
+  display: grid;
+  gap: 4rem;
+  grid-template-columns: 1fr;
+}
+
+@media screen and (min-width: 990px) {
+  .product-layout {
+    grid-template-columns: 1.1fr 1fr;
+    gap: 6rem;
+  }
+}
+
+/* Media gallery */
+.product-gallery__track {
+  gap: 0;
+}
+
+.product-gallery__slide {
+  width: 100%;
+  background: rgb(var(--color-background-secondary));
+}
+
+.product-gallery__video,
+.product-gallery__external-video video,
+.product-gallery__external-video iframe {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.product-gallery__thumbnails {
+  display: flex;
+  gap: 1rem;
+  margin-top: 1.2rem;
+  overflow-x: auto;
+  padding-bottom: 0.4rem;
+}
+
+.product-gallery__thumbnail {
+  position: relative;
+  flex-shrink: 0;
+  width: 7.2rem;
+  height: 7.2rem;
+  border-radius: calc(var(--corner-radius) * 0.5);
+  overflow: hidden;
+  border: 2px solid transparent;
+  background: rgb(var(--color-background-secondary));
+  padding: 0;
+}
+
+.product-gallery__thumbnail img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.product-gallery__thumbnail.is-active {
+  border-color: rgb(var(--color-primary));
+}
+
+.product-gallery__thumbnail-icon {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(20, 12, 4, 0.35);
+  color: #fff;
+}
+
+.product-gallery__thumbnail-icon svg {
+  width: 1.6rem;
+  height: 1.6rem;
+}
+
+/* Product info column */
+.product-info {
+  display: flex;
+  flex-direction: column;
+}
+
+.product-block {
+  margin-bottom: 2rem;
+}
+
+.product-block--title {
+  margin-bottom: 0.8rem;
+}
+
+.product-info__vendor {
+  margin: 0 0 0.6rem;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  font-size: 1.3rem;
+  color: rgb(var(--color-text-light));
+  font-weight: 600;
+}
+
+.product-info__title {
+  font-size: clamp(2.8rem, 3.4vw, 3.8rem);
+  margin: 0;
+}
+
+.product-info__rating-link {
+  display: inline-block;
+  text-decoration: none;
+}
+
+.product-info .price {
+  font-size: 2.4rem;
+}
+
+.product-info__tax-note {
+  font-size: 1.25rem;
+  color: rgb(var(--color-text-light));
+  margin-top: 0.6rem;
+  margin-bottom: 0;
+}
+
+.variant-picker__option {
+  margin-bottom: 1.6rem;
+}
+
+.variant-picker__selected-value {
+  font-weight: 400;
+  color: rgb(var(--color-text-light));
+}
+
+.product-form__buy-row {
+  display: flex;
+  align-items: stretch;
+  gap: 1.2rem;
+  flex-wrap: wrap;
+}
+
+.product-form__submit {
+  flex: 1;
+  min-width: 20rem;
+  position: relative;
+}
+
+.payment-button {
+  margin-top: 1.2rem;
+}
+
+.product-info__secondary-actions {
+  display: flex;
+  gap: 2rem;
+  flex-wrap: wrap;
+}
+
+.product-info__description.rte {
+  color: rgb(var(--color-text-light));
+  font-size: 1.5rem;
+  line-height: 1.7;
+}
+
+.product-info__description.rte p:last-child {
+  margin-bottom: 0;
+}
+
+.accordion__summary-label {
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+}
+
+.trust-badge {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 1rem 0;
+  border-top: 1px solid rgb(var(--color-border));
+  font-size: 1.35rem;
+  color: rgb(var(--color-text-light));
+}
+
+.trust-badge svg {
+  width: 2rem;
+  height: 2rem;
+  color: rgb(var(--color-secondary));
+  flex-shrink: 0;
+}
+
+.product-block--trust_badge:first-of-type .trust-badge {
+  border-top: none;
+}
+
+.product-info__share {
+  display: flex;
+  align-items: center;
+  gap: 1.2rem;
+  padding-top: 1.6rem;
+  border-top: 1px solid rgb(var(--color-border));
+}
+
+.product-info__share-label {
+  font-size: 1.3rem;
+  font-weight: 600;
+  color: rgb(var(--color-text-light));
+}

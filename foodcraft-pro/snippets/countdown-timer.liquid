@@ -1,0 +1,37 @@
+{%- comment -%}
+  Renders a live countdown timer. Accepts an ISO-ish date string and counts
+  down client-side via countdown.js; hides itself automatically once expired.
+  Accepts:
+    end_date: {String} required — e.g. "2026-12-31 23:59"
+    label: {String} optional — heading shown above the timer
+    style: {String} optional — 'dark' (default, for use over images) or 'light'
+{%- endcomment -%}
+{%- if end_date != blank -%}
+  <countdown-timer
+    class="countdown-timer-wrapper"
+    data-end-date="{{ end_date }}"
+    data-expired-message="{{ 'general.countdown.expired' | t }}"
+  >
+    {%- if label != blank -%}
+      <p class="countdown-timer__label-heading">{{ label }}</p>
+    {%- endif -%}
+    <div class="countdown-timer {% if style == 'light' %}countdown-timer--light{% endif %}" role="timer" aria-live="off">
+      <div class="countdown-timer__unit">
+        <span class="countdown-timer__value" data-countdown-days>00</span>
+        <span class="countdown-timer__label">{{ 'general.countdown.days' | t }}</span>
+      </div>
+      <div class="countdown-timer__unit">
+        <span class="countdown-timer__value" data-countdown-hours>00</span>
+        <span class="countdown-timer__label">{{ 'general.countdown.hours' | t }}</span>
+      </div>
+      <div class="countdown-timer__unit">
+        <span class="countdown-timer__value" data-countdown-minutes>00</span>
+        <span class="countdown-timer__label">{{ 'general.countdown.minutes' | t }}</span>
+      </div>
+      <div class="countdown-timer__unit">
+        <span class="countdown-timer__value" data-countdown-seconds>00</span>
+        <span class="countdown-timer__label">{{ 'general.countdown.seconds' | t }}</span>
+      </div>
+    </div>
+  </countdown-timer>
+{%- endif -%}

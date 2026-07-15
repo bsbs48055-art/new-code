@@ -1,0 +1,114 @@
+/* FoodCraft Pro — Scroll reveal & micro-interaction animations */
+
+.animations-enabled [data-animate] {
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity 0.7s cubic-bezier(0.22, 1, 0.36, 1), transform 0.7s cubic-bezier(0.22, 1, 0.36, 1);
+  transition-delay: var(--animate-delay, 0ms);
+}
+
+.animations-enabled [data-animate].is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.animations-enabled [data-animate='fade'] {
+  transform: none;
+}
+
+.animations-enabled [data-animate='zoom'] {
+  transform: scale(0.94);
+}
+
+.animations-enabled [data-animate='zoom'].is-visible {
+  transform: scale(1);
+}
+
+.animations-enabled [data-animate='slide-left'] {
+  transform: translateX(32px);
+}
+
+.animations-enabled [data-animate='slide-right'] {
+  transform: translateX(-32px);
+}
+
+.animations-enabled [data-animate='slide-left'].is-visible,
+.animations-enabled [data-animate='slide-right'].is-visible {
+  transform: translateX(0);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .animations-enabled [data-animate] {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+}
+
+.marquee {
+  overflow: hidden;
+  white-space: nowrap;
+}
+
+.marquee__track {
+  display: inline-flex;
+  animation: marquee 28s linear infinite;
+}
+
+.marquee:hover .marquee__track {
+  animation-play-state: paused;
+}
+
+@keyframes marquee {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.fade-in {
+  animation: fadeIn 0.3s ease both;
+}
+
+.hover-lift {
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.hover-lift:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 16px 32px rgba(20, 12, 4, 0.12);
+}
+
+.skeleton {
+  position: relative;
+  overflow: hidden;
+  background: rgb(var(--color-background-secondary));
+}
+
+.skeleton::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.5), transparent);
+  animation: skeletonShimmer 1.4s ease-in-out infinite;
+}
+
+@keyframes skeletonShimmer {
+  from {
+    transform: translateX(-100%);
+  }
+  to {
+    transform: translateX(100%);
+  }
+}

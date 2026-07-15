@@ -1,0 +1,111 @@
+<section class="section-padding team-members bg-secondary">
+  <div class="page-width">
+    <div class="section-heading" data-animate="fade">
+      {%- if section.settings.eyebrow != blank -%}
+        <span class="eyebrow">{{ section.settings.eyebrow }}</span>
+      {%- endif -%}
+      {%- if section.settings.heading != blank -%}
+        <h2>{{ section.settings.heading }}</h2>
+      {%- endif -%}
+      {%- if section.settings.subheading != blank -%}
+        <p class="section-heading__subtitle">{{ section.settings.subheading }}</p>
+      {%- endif -%}
+    </div>
+
+    <div class="grid grid--{{ section.settings.columns_desktop }}-col grid--mobile-1-col">
+      {%- for block in section.blocks -%}
+        <div class="team-member" data-animate="fade" data-animate-index="{{ forloop.index0 }}" {{ block.shopify_attributes }}>
+          <div class="team-member__media aspect-ratio aspect-ratio--square rounded">
+            {%- if block.settings.image != blank -%}
+              <img
+                src="{{ block.settings.image | image_url: width: 400 }}"
+                alt="{{ block.settings.image.alt | default: block.settings.name | escape }}"
+                width="{{ block.settings.image.width }}"
+                height="{{ block.settings.image.height }}"
+                loading="lazy"
+              >
+            {%- else -%}
+              {{ 'lifestyle-3' | placeholder_svg_tag: 'placeholder-svg' }}
+            {%- endif -%}
+          </div>
+          <h3 class="team-member__name">{{ block.settings.name }}</h3>
+          <p class="team-member__role">{{ block.settings.role }}</p>
+          {%- if block.settings.bio != blank -%}
+            <p class="team-member__bio">{{ block.settings.bio }}</p>
+          {%- endif -%}
+        </div>
+      {%- endfor -%}
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "t:sections.team_members.name",
+  "settings": [
+    {
+      "type": "text",
+      "id": "eyebrow",
+      "label": "t:sections.team_members.settings.eyebrow.label",
+      "default": "Meet the Team"
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "t:sections.team_members.settings.heading.label",
+      "default": "The People Behind the Pantry"
+    },
+    {
+      "type": "textarea",
+      "id": "subheading",
+      "label": "t:sections.team_members.settings.subheading.label"
+    },
+    {
+      "type": "select",
+      "id": "columns_desktop",
+      "label": "t:sections.team_members.settings.columns_desktop.label",
+      "options": [
+        { "value": "3", "label": "3" },
+        { "value": "4", "label": "4" }
+      ],
+      "default": "4"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "member",
+      "name": "t:sections.team_members.blocks.member.name",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "t:sections.team_members.blocks.member.settings.image.label"
+        },
+        {
+          "type": "text",
+          "id": "name",
+          "label": "t:sections.team_members.blocks.member.settings.name.label",
+          "default": "Alex Rivera"
+        },
+        {
+          "type": "text",
+          "id": "role",
+          "label": "t:sections.team_members.blocks.member.settings.role.label",
+          "default": "Founder & Head Chef"
+        },
+        {
+          "type": "textarea",
+          "id": "bio",
+          "label": "t:sections.team_members.blocks.member.settings.bio.label"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "t:sections.team_members.presets.name",
+      "blocks": [{ "type": "member" }, { "type": "member" }, { "type": "member" }]
+    }
+  ]
+}
+{% endschema %}

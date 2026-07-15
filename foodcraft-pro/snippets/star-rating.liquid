@@ -1,0 +1,35 @@
+{%- comment -%}
+  Renders a star rating with optional review count.
+  Accepts:
+    rating: {Number} required — e.g. 4.5
+    count: {Number} optional — number of reviews
+    show_count: {Boolean} optional, default true
+{%- endcomment -%}
+{%- liquid
+  assign full_stars = rating | floor
+  assign has_half = false
+  assign decimal = rating | minus: full_stars
+  if decimal >= 0.25 and decimal < 0.75
+    assign has_half = true
+  elsif decimal >= 0.75
+    assign full_stars = full_stars | plus: 1
+  endif
+  assign empty_stars = 5 | minus: full_stars
+  if has_half
+    assign empty_stars = empty_stars | minus: 1
+  endif
+-%}
+<div class="rating-stars" role="img" aria-label="{{ 'products.product.rating_label' | t: rating: rating, max: 5 }}">
+  {%- for i in (1..full_stars) -%}
+    {% render 'icon', name: 'star-filled' %}
+  {%- endfor -%}
+  {%- if has_half -%}
+    {% render 'icon', name: 'star-half' %}
+  {%- endif -%}
+  {%- for i in (1..empty_stars) -%}
+    {% render 'icon', name: 'star' %}
+  {%- endfor -%}
+  {%- if count and show_count != false -%}
+    <span class="rating-stars__count">({{ count }})</span>
+  {%- endif -%}
+</div>

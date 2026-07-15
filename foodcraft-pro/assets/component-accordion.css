@@ -1,0 +1,45 @@
+/* FoodCraft Pro — Accordions (FAQ, product info tabs) */
+
+.accordion {
+  border-top: 1px solid rgb(var(--color-border));
+}
+
+.accordion__item {
+  border-bottom: 1px solid rgb(var(--color-border));
+}
+
+.accordion__summary {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1.2rem;
+  padding: 1.8rem 0.4rem;
+  cursor: pointer;
+  font-weight: 600;
+  font-size: 1.6rem;
+  list-style: none;
+}
+
+.accordion__summary::-webkit-details-marker {
+  display: none;
+}
+
+.accordion__summary .icon--chevron {
+  flex-shrink: 0;
+  transition: transform 0.25s ease;
+}
+
+details[open] > .accordion__summary .icon--chevron {
+  transform: rotate(180deg);
+}
+
+.accordion__content {
+  padding: 0 0.4rem 2rem;
+  color: rgb(var(--color-text-light));
+  font-size: 1.45rem;
+  line-height: 1.7;
+}
+
+.accordion__content > *:last-child {
+  margin-bottom: 0;
+}

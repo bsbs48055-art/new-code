@@ -1,0 +1,16 @@
+{
+  "sections": {
+    "main": {
+      "type": "main-article",
+      "settings": {}
+    },
+    "related_recipes": {
+      "type": "related-recipes",
+      "settings": {
+        "heading": "More Recipes to Try",
+        "recipes_to_show": 3
+      }
+    }
+  },
+  "order": ["main", "related_recipes"]
+}

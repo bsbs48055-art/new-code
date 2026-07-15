@@ -1,0 +1,159 @@
+<section class="hero-slider" data-section-id="{{ section.id }}">
+  <slider-component data-autoplay="{{ section.settings.autoplay_speed }}">
+    <div class="slider__track" data-slider-track role="list">
+      {%- for block in section.blocks -%}
+        <div class="hero-slide" role="listitem" {{ block.shopify_attributes }}>
+          <div class="hero-slide__media">
+            {%- if block.settings.video != blank -%}
+              <video autoplay muted loop playsinline poster="{{ block.settings.image | image_url: width: 1600 }}">
+                <source src="{{ block.settings.video.sources.last.url }}" type="video/mp4">
+              </video>
+            {%- elsif block.settings.image != blank -%}
+              <img
+                src="{{ block.settings.image | image_url: width: 1600 }}"
+                srcset="
+                  {{ block.settings.image | image_url: width: 768 }} 768w,
+                  {{ block.settings.image | image_url: width: 1200 }} 1200w,
+                  {{ block.settings.image | image_url: width: 1600 }} 1600w,
+                  {{ block.settings.image | image_url: width: 2000 }} 2000w
+                "
+                sizes="100vw"
+                alt="{{ block.settings.image.alt | default: block.settings.heading | escape }}"
+                width="{{ block.settings.image.width }}"
+                height="{{ block.settings.image.height }}"
+                loading="{% if forloop.index == 1 %}eager{% else %}lazy{% endif %}"
+                fetchpriority="{% if forloop.index == 1 %}high{% else %}auto{% endif %}"
+              >
+            {%- else -%}
+              {{ 'lifestyle-1' | placeholder_svg_tag: 'placeholder-svg' }}
+            {%- endif -%}
+            <div class="hero-slide__overlay"></div>
+          </div>
+
+          <div class="page-width">
+            <div class="hero-slide__content" data-animate="slide-right">
+              {%- if block.settings.eyebrow != blank -%}
+                <span class="hero-slide__eyebrow">{% render 'icon', name: 'leaf', class: 'icon--small' %} {{ block.settings.eyebrow }}</span>
+              {%- endif -%}
+              {%- if block.settings.heading != blank -%}
+                <h2 class="hero-slide__heading">{{ block.settings.heading }}</h2>
+              {%- endif -%}
+              {%- if block.settings.subheading != blank -%}
+                <p class="hero-slide__subheading">{{ block.settings.subheading }}</p>
+              {%- endif -%}
+              <div class="hero-slide__actions">
+                {%- if block.settings.button_label != blank -%}
+                  <a href="{{ block.settings.button_link | default: '#' }}" class="button button--primary button--large">
+                    {{ block.settings.button_label }}
+                  </a>
+                {%- endif -%}
+                {%- if block.settings.button_label_2 != blank -%}
+                  <a href="{{ block.settings.button_link_2 | default: '#' }}" class="button button--secondary button--large hero-slide__secondary-button">
+                    {{ block.settings.button_label_2 }}
+                  </a>
+                {%- endif -%}
+              </div>
+            </div>
+          </div>
+        </div>
+      {%- endfor -%}
+    </div>
+
+    {%- if section.blocks.size > 1 -%}
+      <div class="hero-slider__nav">
+        <button type="button" class="slider__nav slider__nav--prev" data-slider-prev aria-label="{{ 'general.slider.previous' | t }}">
+          {% render 'icon', name: 'arrow-left' %}
+        </button>
+        <button type="button" class="slider__nav slider__nav--next" data-slider-next aria-label="{{ 'general.slider.next' | t }}">
+          {% render 'icon', name: 'arrow-right' %}
+        </button>
+      </div>
+      <div class="slider__dots" data-slider-dots></div>
+    {%- endif -%}
+  </slider-component>
+</section>
+
+{% schema %}
+{
+  "name": "t:sections.hero_slider.name",
+  "tag": "section",
+  "class": "shopify-section--hero-slider",
+  "settings": [
+    {
+      "type": "range",
+      "id": "autoplay_speed",
+      "min": 0,
+      "max": 12,
+      "step": 1,
+      "unit": "s",
+      "label": "t:sections.hero_slider.settings.autoplay_speed.label",
+      "info": "t:sections.hero_slider.settings.autoplay_speed.info",
+      "default": 6
+    }
+  ],
+  "blocks": [
+    {
+      "type": "slide",
+      "name": "t:sections.hero_slider.blocks.slide.name",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "t:sections.hero_slider.blocks.slide.settings.image.label"
+        },
+        {
+          "type": "video",
+          "id": "video",
+          "label": "t:sections.hero_slider.blocks.slide.settings.video.label"
+        },
+        {
+          "type": "text",
+          "id": "eyebrow",
+          "label": "t:sections.hero_slider.blocks.slide.settings.eyebrow.label",
+          "default": "Small-Batch & Sustainable"
+        },
+        {
+          "type": "text",
+          "id": "heading",
+          "label": "t:sections.hero_slider.blocks.slide.settings.heading.label",
+          "default": "Crafted Flavor, From Farm to Jar"
+        },
+        {
+          "type": "textarea",
+          "id": "subheading",
+          "label": "t:sections.hero_slider.blocks.slide.settings.subheading.label",
+          "default": "Discover artisan sauces, spice blends and pantry staples made in small batches with ingredients you can pronounce."
+        },
+        {
+          "type": "text",
+          "id": "button_label",
+          "label": "t:sections.hero_slider.blocks.slide.settings.button_label.label",
+          "default": "Shop Now"
+        },
+        {
+          "type": "url",
+          "id": "button_link",
+          "label": "t:sections.hero_slider.blocks.slide.settings.button_link.label"
+        },
+        {
+          "type": "text",
+          "id": "button_label_2",
+          "label": "t:sections.hero_slider.blocks.slide.settings.button_label_2.label",
+          "default": "Explore Recipes"
+        },
+        {
+          "type": "url",
+          "id": "button_link_2",
+          "label": "t:sections.hero_slider.blocks.slide.settings.button_link_2.label"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "t:sections.hero_slider.presets.name",
+      "blocks": [{ "type": "slide" }, { "type": "slide" }]
+    }
+  ]
+}
+{% endschema %}

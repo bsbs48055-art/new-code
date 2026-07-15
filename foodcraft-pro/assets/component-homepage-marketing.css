@@ -1,0 +1,267 @@
+/* FoodCraft Pro — Category cards, testimonials, newsletter, Instagram feed, map */
+
+/* Category cards */
+.category-card {
+  display: flex;
+  flex-direction: column;
+  gap: 1.2rem;
+  text-decoration: none;
+  color: rgb(var(--color-text));
+  text-align: center;
+}
+
+.category-card__media {
+  position: relative;
+  background: rgb(var(--color-background-secondary));
+  overflow: hidden;
+}
+
+.category-card__media img {
+  transition: transform 0.5s ease;
+}
+
+.category-card:hover .category-card__media img {
+  transform: scale(1.08);
+}
+
+.category-card__overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top, rgba(20, 12, 4, 0.25), transparent 60%);
+}
+
+.category-card__title {
+  font-size: 1.6rem;
+  margin: 0;
+}
+
+.category-card__count {
+  font-size: 1.25rem;
+  color: rgb(var(--color-text-light));
+}
+
+/* Testimonials */
+.testimonials__track {
+  padding: 0.4rem 0.2rem;
+}
+
+.testimonial-card {
+  width: 34rem;
+  flex-shrink: 0;
+  background: rgb(var(--color-background-secondary));
+  border-radius: var(--corner-radius);
+  padding: 3.2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.2rem;
+}
+
+@media screen and (max-width: 749px) {
+  .testimonial-card {
+    width: 28rem;
+    padding: 2.4rem;
+  }
+}
+
+.testimonial-card__quote-icon {
+  width: 2.8rem;
+  height: 2.8rem;
+  color: rgb(var(--color-accent));
+}
+
+.testimonial-card__text {
+  font-size: 1.6rem;
+  font-style: italic;
+  color: rgb(var(--color-text));
+  margin: 0;
+}
+
+.testimonial-card__author {
+  display: flex;
+  align-items: center;
+  gap: 1.2rem;
+  margin-top: auto;
+}
+
+.testimonial-card__avatar {
+  width: 4.8rem;
+  height: 4.8rem;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.testimonial-card__name {
+  font-weight: 700;
+  margin: 0;
+  font-size: 1.4rem;
+}
+
+.testimonial-card__location {
+  color: rgb(var(--color-text-light));
+  margin: 0;
+  font-size: 1.25rem;
+}
+
+/* Newsletter */
+.newsletter__inner {
+  display: grid;
+  gap: 3.2rem;
+  align-items: center;
+}
+
+@media screen and (min-width: 750px) {
+  .newsletter__inner {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+.newsletter__media {
+  background: rgba(255, 255, 255, 0.1);
+}
+
+.newsletter .eyebrow {
+  color: rgb(var(--color-accent));
+}
+
+.newsletter h2 {
+  color: inherit;
+}
+
+.newsletter__subheading {
+  font-size: 1.6rem;
+  opacity: 0.9;
+}
+
+.newsletter__form-row {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.newsletter__input {
+  flex: 1;
+  min-width: 20rem;
+  background: rgba(255, 255, 255, 0.95);
+  color: rgb(var(--color-text));
+  border: none;
+}
+
+.newsletter__submit {
+  flex-shrink: 0;
+}
+
+.newsletter__disclaimer {
+  font-size: 1.2rem;
+  opacity: 0.75;
+  margin-top: 1.2rem;
+  margin-bottom: 0;
+}
+
+/* Instagram feed */
+.instagram-feed__grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0.8rem;
+}
+
+@media screen and (min-width: 750px) {
+  .instagram-feed__grid {
+    grid-template-columns: repeat(6, 1fr);
+  }
+}
+
+.instagram-feed__item {
+  position: relative;
+  display: block;
+  background: rgb(var(--color-background-secondary));
+  overflow: hidden;
+}
+
+.instagram-feed__item img {
+  transition: transform 0.4s ease;
+}
+
+.instagram-feed__overlay {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(20, 12, 4, 0.4);
+  color: #fff;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.instagram-feed__overlay svg {
+  width: 2.4rem;
+  height: 2.4rem;
+}
+
+.instagram-feed__item:hover .instagram-feed__overlay {
+  opacity: 1;
+}
+
+.instagram-feed__item:hover img {
+  transform: scale(1.08);
+}
+
+/* Google map */
+.google-map__inner {
+  display: grid;
+  overflow: hidden;
+  background: rgb(var(--color-background));
+}
+
+@media screen and (min-width: 850px) {
+  .google-map__inner {
+    grid-template-columns: 1.4fr 1fr;
+  }
+}
+
+.google-map__frame {
+  position: relative;
+  min-height: 32rem;
+}
+
+.google-map__frame iframe {
+  position: absolute;
+  inset: 0;
+}
+
+.google-map__placeholder {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  color: rgb(var(--color-text-light));
+  background: rgb(var(--color-background-secondary));
+}
+
+.google-map__details {
+  padding: 3.2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.google-map__detail-item {
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+  margin: 0;
+  color: rgb(var(--color-text-light));
+}
+
+.google-map__detail-item a {
+  color: inherit;
+  text-decoration: none;
+}
+
+.google-map__details .button {
+  margin-top: 1.2rem;
+  align-self: flex-start;
+}

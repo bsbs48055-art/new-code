@@ -1,0 +1,39 @@
+<section class="section-padding list-collections">
+  <div class="page-width">
+    <div class="section-heading" data-animate="fade">
+      <h1>{{ 'sections.list_collections.title' | t }}</h1>
+    </div>
+
+    <div class="grid grid--4-col grid--mobile-1-col">
+      {%- for collection in collections -%}
+        {%- unless collection.handle == 'frontpage' -%}
+          <a href="{{ collection.url }}" class="category-card" data-animate="fade" data-animate-index="{{ forloop.index0 | modulo: 8 }}">
+            <div class="category-card__media aspect-ratio aspect-ratio--square rounded">
+              {%- if collection.image -%}
+                <img
+                  src="{{ collection.image | image_url: width: 500 }}"
+                  alt="{{ collection.title | escape }}"
+                  width="500"
+                  height="500"
+                  loading="lazy"
+                >
+              {%- else -%}
+                {{ 'collection-1' | placeholder_svg_tag: 'placeholder-svg' }}
+              {%- endif -%}
+              <span class="category-card__overlay"></span>
+            </div>
+            <h3 class="category-card__title">{{ collection.title }}</h3>
+            <span class="category-card__count">{{ 'sections.collection_list.products_count' | t: count: collection.products_count }}</span>
+          </a>
+        {%- endunless -%}
+      {%- endfor -%}
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "t:sections.main_list_collections.name",
+  "settings": []
+}
+{% endschema %}

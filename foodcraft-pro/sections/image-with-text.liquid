@@ -1,0 +1,103 @@
+<section class="section-padding image-with-text">
+  <div class="page-width">
+    <div class="image-with-text__grid image-with-text__grid--{{ section.settings.layout }}">
+      <div class="image-with-text__media aspect-ratio aspect-ratio--{{ section.settings.image_ratio }} rounded" data-animate="{% if section.settings.layout == 'image_first' %}slide-right{% else %}slide-left{% endif %}">
+        {%- if section.settings.image != blank -%}
+          <img
+            src="{{ section.settings.image | image_url: width: 1000 }}"
+            srcset="{{ section.settings.image | image_url: width: 500 }} 500w, {{ section.settings.image | image_url: width: 1000 }} 1000w"
+            sizes="(min-width: 750px) 45vw, 90vw"
+            alt="{{ section.settings.image.alt | default: section.settings.heading | escape }}"
+            width="{{ section.settings.image.width }}"
+            height="{{ section.settings.image.height }}"
+            loading="lazy"
+          >
+        {%- else -%}
+          {{ 'lifestyle-1' | placeholder_svg_tag: 'placeholder-svg' }}
+        {%- endif -%}
+      </div>
+      <div class="image-with-text__content" data-animate="fade">
+        {%- if section.settings.eyebrow != blank -%}
+          <span class="eyebrow">{{ section.settings.eyebrow }}</span>
+        {%- endif -%}
+        {%- if section.settings.heading != blank -%}
+          <h2>{{ section.settings.heading }}</h2>
+        {%- endif -%}
+        {%- if section.settings.text != blank -%}
+          <div class="image-with-text__text rte">{{ section.settings.text }}</div>
+        {%- endif -%}
+        {%- if section.settings.button_label != blank -%}
+          <a href="{{ section.settings.button_link | default: '#' }}" class="button button--primary">{{ section.settings.button_label }}</a>
+        {%- endif -%}
+      </div>
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "t:sections.image_with_text.name",
+  "settings": [
+    {
+      "type": "image_picker",
+      "id": "image",
+      "label": "t:sections.image_with_text.settings.image.label"
+    },
+    {
+      "type": "select",
+      "id": "image_ratio",
+      "label": "t:sections.image_with_text.settings.image_ratio.label",
+      "options": [
+        { "value": "square", "label": "t:sections.image_with_text.settings.image_ratio.options.square" },
+        { "value": "portrait", "label": "t:sections.image_with_text.settings.image_ratio.options.portrait" },
+        { "value": "landscape", "label": "t:sections.image_with_text.settings.image_ratio.options.landscape" }
+      ],
+      "default": "portrait"
+    },
+    {
+      "type": "select",
+      "id": "layout",
+      "label": "t:sections.image_with_text.settings.layout.label",
+      "options": [
+        { "value": "image_first", "label": "t:sections.image_with_text.settings.layout.options.image_first" },
+        { "value": "text_first", "label": "t:sections.image_with_text.settings.layout.options.text_first" }
+      ],
+      "default": "image_first"
+    },
+    {
+      "type": "text",
+      "id": "eyebrow",
+      "label": "t:sections.image_with_text.settings.eyebrow.label",
+      "default": "Our Kitchen"
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "t:sections.image_with_text.settings.heading.label",
+      "default": "Small Batches, Big Flavor"
+    },
+    {
+      "type": "richtext",
+      "id": "text",
+      "label": "t:sections.image_with_text.settings.text.label",
+      "default": "<p>Every jar is cooked in small batches of no more than 40 at a time, so we can taste-test as we go and never cut corners.</p>"
+    },
+    {
+      "type": "text",
+      "id": "button_label",
+      "label": "t:sections.image_with_text.settings.button_label.label",
+      "default": "Learn More"
+    },
+    {
+      "type": "url",
+      "id": "button_link",
+      "label": "t:sections.image_with_text.settings.button_link.label"
+    }
+  ],
+  "presets": [
+    {
+      "name": "t:sections.image_with_text.presets.name"
+    }
+  ]
+}
+{% endschema %}

@@ -1,0 +1,84 @@
+{%- comment -%}
+  Renders variant selectors (color swatches for "Color"/"Colour" options,
+  pill buttons for everything else) plus a JSON payload consumed by
+  product-form.js to keep price, availability, media and the URL in sync.
+  Accepts:
+    product: {Product} required
+    section_id: {String} required — unique id, used to scope form fields
+{%- endcomment -%}
+<variant-picker class="variant-picker" data-section="{{ section_id }}" data-url="{{ product.url }}">
+  {%- for option in product.options_with_values -%}
+    {%- liquid
+      assign is_color = false
+      if option.name == 'Color' or option.name == 'Colour'
+        assign is_color = true
+      endif
+    -%}
+    <div class="variant-picker__option" data-option-index="{{ forloop.index0 }}">
+      <label class="field__label" id="VariantLabel-{{ section_id }}-{{ forloop.index0 }}">
+        {{ option.name }}:
+        <span class="variant-picker__selected-value" data-selected-value>{{ option.selected_value }}</span>
+      </label>
+
+      {%- if is_color -%}
+        <ul class="swatch-list" role="listbox" aria-labelledby="VariantLabel-{{ section_id }}-{{ forloop.index0 }}">
+          {%- for value in option.values -%}
+            <li class="swatch swatch--color">
+              <input
+                type="radio"
+                class="swatch__input"
+                id="VariantOption-{{ section_id }}-{{ forloop.parentloop.index0 }}-{{ forloop.index0 }}"
+                name="option-{{ forloop.parentloop.index0 }}"
+                value="{{ value | escape }}"
+                {% if option.selected_value == value %}checked{% endif %}
+                data-option-index="{{ forloop.parentloop.index0 }}"
+              >
+              <label
+                class="swatch__label"
+                for="VariantOption-{{ section_id }}-{{ forloop.parentloop.index0 }}-{{ forloop.index0 }}"
+                title="{{ value | escape }}"
+              >
+                <span class="swatch__color" style="background-color: {{ value | handle | replace: '-', '' }};"></span>
+                <span class="visually-hidden">{{ value }}</span>
+              </label>
+            </li>
+          {%- endfor -%}
+        </ul>
+      {%- else -%}
+        <ul class="swatch-list" role="listbox" aria-labelledby="VariantLabel-{{ section_id }}-{{ forloop.index0 }}">
+          {%- for value in option.values -%}
+            <li class="swatch swatch--text">
+              <input
+                type="radio"
+                class="swatch__input"
+                id="VariantOption-{{ section_id }}-{{ forloop.parentloop.index0 }}-{{ forloop.index0 }}"
+                name="option-{{ forloop.parentloop.index0 }}"
+                value="{{ value | escape }}"
+                {% if option.selected_value == value %}checked{% endif %}
+                data-option-index="{{ forloop.parentloop.index0 }}"
+              >
+              <label
+                class="swatch__label"
+                for="VariantOption-{{ section_id }}-{{ forloop.parentloop.index0 }}-{{ forloop.index0 }}"
+              >
+                {{ value }}
+              </label>
+            </li>
+          {%- endfor -%}
+        </ul>
+      {%- endif -%}
+    </div>
+  {%- endfor -%}
+
+  <select name="id" class="visually-hidden variant-picker__select" aria-hidden="true" tabindex="-1" data-variant-select>
+    {%- for variant in product.variants -%}
+      <option value="{{ variant.id }}" {% if variant == product.selected_or_first_available_variant %}selected{% endif %}>
+        {{ variant.title }}
+      </option>
+    {%- endfor -%}
+  </select>
+
+  <script type="application/json" data-variant-data>
+    {{ product.variants | json }}
+  </script>
+</variant-picker>

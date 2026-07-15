@@ -1,0 +1,54 @@
+{%- liquid
+  assign recommendations_limit = section.settings.products_to_show
+-%}
+<section class="section-padding related-products" id="RelatedProducts-{{ section.id }}" hidden>
+  <div class="page-width">
+    <div class="section-heading" data-animate="fade">
+      {%- if section.settings.heading != blank -%}
+        <h2>{{ section.settings.heading }}</h2>
+      {%- endif -%}
+    </div>
+
+    <product-recommendations
+      class="related-products__recommendations"
+      data-url="{{ routes.product_recommendations_url }}?section_id={{ section.id }}&limit={{ recommendations_limit }}&product_id={{ product.id }}&intent=related"
+    >
+      {%- if recommendations.performed and recommendations.products_count > 0 -%}
+        <slider-component>
+          <div class="slider__track related-products__track" data-slider-track style="--slider-gap: 2.4rem;" role="list">
+            {%- for product in recommendations.products -%}
+              <div class="featured-collection__slide" role="listitem" data-animate="fade" data-animate-index="{{ forloop.index0 }}">
+                {% render 'product-card', product: product %}
+              </div>
+            {%- endfor -%}
+          </div>
+          <div class="slider__dots" data-slider-dots></div>
+        </slider-component>
+      {%- endif -%}
+    </product-recommendations>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "t:sections.related_products.name",
+  "tag": "section",
+  "settings": [
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "t:sections.related_products.settings.heading.label",
+      "default": "You May Also Like"
+    },
+    {
+      "type": "range",
+      "id": "products_to_show",
+      "min": 2,
+      "max": 12,
+      "step": 1,
+      "label": "t:sections.related_products.settings.products_to_show.label",
+      "default": 8
+    }
+  ]
+}
+{% endschema %}

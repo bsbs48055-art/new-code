@@ -1,0 +1,60 @@
+/* FoodCraft Pro — Product grid/carousel rails shared by featured collections,
+   related products, and recently-viewed sections. */
+
+.featured-collection__track {
+  padding: 0 1.6rem;
+}
+
+@media screen and (min-width: 750px) {
+  .featured-collection__track {
+    padding: 0 5rem;
+  }
+}
+
+.featured-collection__slide {
+  width: 26rem;
+}
+
+@media screen and (max-width: 749px) {
+  .featured-collection__slide {
+    width: 22rem;
+  }
+}
+
+.featured-collection__nav {
+  position: relative;
+  max-width: var(--page-width);
+  margin: 0 auto;
+}
+
+.featured-collection__footer {
+  margin-top: 4rem;
+}
+
+.related-products,
+.recently-viewed {
+  padding-top: var(--spacing-sections-mobile);
+}
+
+@media screen and (min-width: 750px) {
+  .related-products,
+  .recently-viewed {
+    padding-top: var(--spacing-sections);
+  }
+}
+
+.related-products__track,
+.recently-viewed__track {
+  padding: 0 0.2rem;
+}
+
+.recently-viewed__item {
+  width: 20rem;
+  flex-shrink: 0;
+}
+
+@media screen and (max-width: 749px) {
+  .recently-viewed__item {
+    width: 17rem;
+  }
+}

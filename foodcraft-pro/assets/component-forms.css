@@ -1,0 +1,174 @@
+/* FoodCraft Pro — Forms */
+
+.field {
+  position: relative;
+  margin-bottom: 1.6rem;
+}
+
+.field__label {
+  display: block;
+  margin-bottom: 0.6rem;
+  font-size: 1.4rem;
+  font-weight: 600;
+}
+
+.field__label--required::after {
+  content: ' *';
+  color: rgb(var(--color-error));
+}
+
+.field__input,
+.field__textarea,
+select.field__input {
+  width: 100%;
+  min-height: 5rem;
+  padding: 1.2rem 1.6rem;
+  font-family: inherit;
+  font-size: 1.5rem;
+  color: rgb(var(--color-text));
+  background-color: rgb(var(--color-background));
+  border: 1px solid rgb(var(--color-border));
+  border-radius: calc(var(--corner-radius) * 0.5);
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.field__textarea {
+  min-height: 12rem;
+  resize: vertical;
+}
+
+.field__input:focus,
+.field__textarea:focus {
+  border-color: rgb(var(--color-primary));
+  box-shadow: 0 0 0 3px rgba(var(--color-primary), 0.15);
+  outline: none;
+}
+
+.field__input::placeholder,
+.field__textarea::placeholder {
+  color: rgb(var(--color-text-light));
+}
+
+.field--error .field__input,
+.field--error .field__textarea {
+  border-color: rgb(var(--color-error));
+}
+
+.field__error-message {
+  display: block;
+  margin-top: 0.6rem;
+  font-size: 1.3rem;
+  color: rgb(var(--color-error));
+}
+
+select.field__input {
+  appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%2326201B' stroke-width='2'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 1.4rem center;
+  background-size: 1.6rem;
+  padding-right: 4rem;
+}
+
+.checkbox-field,
+.radio-field {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.8rem;
+  font-size: 1.4rem;
+  cursor: pointer;
+}
+
+.checkbox-field input,
+.radio-field input {
+  width: 1.9rem;
+  height: 1.9rem;
+  margin-top: 0.1rem;
+  accent-color: rgb(var(--color-primary));
+  flex-shrink: 0;
+}
+
+fieldset {
+  border: none;
+  padding: 0;
+  margin: 0;
+}
+
+.form-message {
+  padding: 1.2rem 1.6rem;
+  border-radius: calc(var(--corner-radius) * 0.5);
+  font-size: 1.4rem;
+  margin-bottom: 1.6rem;
+}
+
+.form-message--error {
+  background: rgba(var(--color-error), 0.08);
+  color: rgb(var(--color-error));
+  border: 1px solid rgba(var(--color-error), 0.25);
+}
+
+.form-message--success {
+  background: rgba(var(--color-success), 0.08);
+  color: rgb(var(--color-success));
+  border: 1px solid rgba(var(--color-success), 0.25);
+}
+
+.form-row {
+  display: grid;
+  gap: 1.6rem;
+}
+
+@media screen and (min-width: 600px) {
+  .form-row--2-col {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+.quantity-selector {
+  display: inline-flex;
+  align-items: center;
+  border: 1px solid rgb(var(--color-border));
+  border-radius: calc(var(--corner-radius) * 0.5);
+  overflow: hidden;
+}
+
+.quantity-selector__button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 4rem;
+  height: 4.6rem;
+  background: transparent;
+  border: none;
+  color: rgb(var(--color-text));
+  font-size: 1.8rem;
+}
+
+.quantity-selector__button:hover {
+  background: rgb(var(--color-background-secondary));
+}
+
+.quantity-selector__button:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+.quantity-selector__input {
+  width: 4.4rem;
+  height: 4.6rem;
+  border: none;
+  border-left: 1px solid rgb(var(--color-border));
+  border-right: 1px solid rgb(var(--color-border));
+  text-align: center;
+  font-size: 1.5rem;
+  font-weight: 600;
+  background: transparent;
+  color: rgb(var(--color-text));
+  -moz-appearance: textfield;
+}
+
+.quantity-selector__input::-webkit-outer-spin-button,
+.quantity-selector__input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}

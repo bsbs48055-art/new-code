@@ -1,0 +1,53 @@
+{
+  "sections": {
+    "contact": {
+      "type": "contact-form",
+      "settings": {
+        "eyebrow": "Get in Touch",
+        "heading": "We'd Love to Hear From You",
+        "text": "<p>Questions about an order, a recipe, or a wholesale partnership? Send us a message and our team will reply within one business day.</p>",
+        "address": "148 Harvest Lane, Portland, OR 97201",
+        "phone": "+1 (503) 555-0142",
+        "email": "hello@foodcraftpro.com",
+        "hours": "Mon–Sat, 9am–6pm"
+      }
+    },
+    "map": {
+      "type": "google-map",
+      "settings": {
+        "heading": "Visit Our Flagship Kitchen",
+        "address": "148 Harvest Lane, Portland, OR 97201",
+        "phone": "+1 (503) 555-0142",
+        "hours": "Mon–Sat, 9am–6pm",
+        "button_label": "Get Directions"
+      }
+    },
+    "faq_teaser": {
+      "type": "faq",
+      "settings": {
+        "eyebrow": "Support",
+        "heading": "Common Questions",
+        "enable_search": false,
+        "show_contact_cta": false
+      },
+      "blocks": {
+        "q1": {
+          "type": "question",
+          "settings": {
+            "question": "How long does shipping take?",
+            "answer": "<p>Orders ship within 1-2 business days and arrive within 3-7 business days depending on your location.</p>"
+          }
+        },
+        "q2": {
+          "type": "question",
+          "settings": {
+            "question": "Do you offer wholesale pricing?",
+            "answer": "<p>Yes — select \"Wholesale inquiry\" in the contact form above and our team will follow up with pricing and minimums.</p>"
+          }
+        }
+      },
+      "block_order": ["q1", "q2"]
+    }
+  },
+  "order": ["contact", "map", "faq_teaser"]
+}

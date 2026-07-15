@@ -1,0 +1,40 @@
+<section class="section-padding wishlist-page" data-wishlist-page>
+  <div class="page-width">
+    <div class="section-heading">
+      {%- if section.settings.heading != blank -%}
+        <h1>{{ section.settings.heading }}</h1>
+      {%- endif -%}
+      {%- if section.settings.subheading != blank -%}
+        <p class="section-heading__subtitle">{{ section.settings.subheading }}</p>
+      {%- endif -%}
+    </div>
+
+    <div class="wishlist-page__empty" data-wishlist-empty hidden>
+      {% render 'icon', name: 'heart' %}
+      <p>{{ 'general.wishlist.empty' | t }}</p>
+      <a href="{{ routes.all_products_collection_url }}" class="button button--primary">{{ 'general.wishlist.continue_shopping' | t }}</a>
+    </div>
+
+    <div class="wishlist-page__grid grid grid--4-col grid--mobile-1-col" data-wishlist-grid hidden></div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "t:sections.wishlist_page.name",
+  "settings": [
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "t:sections.wishlist_page.settings.heading.label",
+      "default": "Your Wishlist"
+    },
+    {
+      "type": "textarea",
+      "id": "subheading",
+      "label": "t:sections.wishlist_page.settings.subheading.label",
+      "default": "Saved items are stored on this device."
+    }
+  ]
+}
+{% endschema %}

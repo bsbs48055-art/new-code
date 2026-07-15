@@ -1,0 +1,47 @@
+{%- liquid
+  assign recipe_blog = article.blog | default: blog
+-%}
+<section class="section-padding related-recipes bg-secondary">
+  <div class="page-width container-narrow">
+    <div class="section-heading" data-animate="fade">
+      {%- if section.settings.heading != blank -%}
+        <h2>{{ section.settings.heading }}</h2>
+      {%- endif -%}
+    </div>
+
+    <div class="grid grid--3-col grid--mobile-1-col">
+      {%- assign shown = 0 -%}
+      {%- for related_article in recipe_blog.articles -%}
+        {%- if related_article.id != article.id and shown < section.settings.recipes_to_show -%}
+          <div data-animate="fade" data-animate-index="{{ shown }}">
+            {% render 'recipe-card', article: related_article %}
+          </div>
+          {%- assign shown = shown | plus: 1 -%}
+        {%- endif -%}
+      {%- endfor -%}
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "t:sections.related_recipes.name",
+  "settings": [
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "t:sections.related_recipes.settings.heading.label",
+      "default": "More Recipes to Try"
+    },
+    {
+      "type": "range",
+      "id": "recipes_to_show",
+      "min": 2,
+      "max": 6,
+      "step": 1,
+      "label": "t:sections.related_recipes.settings.recipes_to_show.label",
+      "default": 3
+    }
+  ]
+}
+{% endschema %}

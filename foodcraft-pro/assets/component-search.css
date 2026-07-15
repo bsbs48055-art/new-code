@@ -1,0 +1,216 @@
+/* FoodCraft Pro — Predictive search drawer & search results page */
+
+.search-drawer {
+  position: fixed;
+  inset: 0;
+  z-index: 85;
+  visibility: hidden;
+  pointer-events: none;
+}
+
+.search-drawer.is-open {
+  visibility: visible;
+  pointer-events: auto;
+}
+
+.search-drawer__overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(20, 14, 8, 0.5);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.search-drawer.is-open .search-drawer__overlay {
+  opacity: 1;
+}
+
+.search-drawer__panel {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  background: rgb(var(--color-background));
+  transform: translateY(-100%);
+  transition: transform 0.35s cubic-bezier(0.22, 1, 0.36, 1);
+  max-height: 90vh;
+  overflow-y: auto;
+  box-shadow: 0 20px 40px rgba(20, 12, 4, 0.15);
+}
+
+.search-drawer.is-open .search-drawer__panel {
+  transform: translateY(0);
+}
+
+.search-drawer__inner {
+  padding: 2.4rem 0 4rem;
+}
+
+.search-drawer__form {
+  display: flex;
+  align-items: center;
+  gap: 1.2rem;
+  border-bottom: 1px solid rgb(var(--color-border));
+  padding-bottom: 1.6rem;
+}
+
+.search-drawer__icon {
+  width: 2.2rem;
+  height: 2.2rem;
+  color: rgb(var(--color-text-light));
+  flex-shrink: 0;
+}
+
+.search-drawer__input {
+  flex: 1;
+  border: none;
+  background: transparent;
+  font-size: 2rem;
+  font-family: var(--font-heading-family);
+  color: rgb(var(--color-text));
+  min-width: 0;
+}
+
+.search-drawer__input:focus {
+  outline: none;
+}
+
+.search-drawer__clear,
+.search-drawer__close {
+  background: none;
+  border: none;
+  color: rgb(var(--color-text-light));
+  padding: 0.6rem;
+  flex-shrink: 0;
+}
+
+.search-drawer__clear svg,
+.search-drawer__close svg {
+  width: 1.8rem;
+  height: 1.8rem;
+}
+
+.search-drawer__results {
+  margin-top: 2rem;
+}
+
+.search-drawer__hint {
+  color: rgb(var(--color-text-light));
+  font-size: 1.4rem;
+}
+
+.search-drawer__section-title {
+  font-size: 1.3rem;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: rgb(var(--color-text-light));
+  margin-bottom: 1.2rem;
+}
+
+.search-drawer__products {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1.6rem;
+  margin-bottom: 2.4rem;
+}
+
+@media screen and (min-width: 750px) {
+  .search-drawer__products {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+.search-drawer__result-item {
+  display: flex;
+  flex-direction: column;
+  text-decoration: none;
+  color: rgb(var(--color-text));
+}
+
+.search-drawer__result-image {
+  border-radius: calc(var(--corner-radius) * 0.6);
+  margin-bottom: 0.8rem;
+  background: rgb(var(--color-background-secondary));
+}
+
+.search-drawer__result-title {
+  font-size: 1.35rem;
+  font-weight: 600;
+  margin-bottom: 0.3rem;
+}
+
+.search-drawer__pages-list,
+.search-drawer__articles-list {
+  list-style: none;
+  margin: 0 0 2.4rem;
+  padding: 0;
+}
+
+.search-drawer__pages-list li,
+.search-drawer__articles-list li {
+  padding: 0.9rem 0;
+  border-bottom: 1px solid rgb(var(--color-border));
+}
+
+.search-drawer__pages-list a,
+.search-drawer__articles-list a {
+  text-decoration: none;
+  font-size: 1.4rem;
+  font-weight: 500;
+}
+
+.search-drawer__view-all {
+  display: inline-block;
+  margin-top: 0.6rem;
+}
+
+.search-drawer__no-results {
+  padding: 2rem 0;
+  color: rgb(var(--color-text-light));
+}
+
+/* Full search results page */
+.search-page__form {
+  max-width: 56rem;
+  margin: 0 auto 3.2rem;
+  position: relative;
+}
+
+.search-page__form .search-drawer__icon {
+  position: absolute;
+  left: 1.6rem;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.search-page__input {
+  width: 100%;
+  padding: 1.6rem 1.6rem 1.6rem 5rem;
+  font-size: 1.7rem;
+  border: 1px solid rgb(var(--color-border));
+  border-radius: 100px;
+}
+
+.search-page__tabs {
+  display: flex;
+  justify-content: center;
+  gap: 0.8rem;
+  margin-bottom: 3.2rem;
+  flex-wrap: wrap;
+}
+
+.search-page__tab {
+  padding: 0.8rem 1.8rem;
+  border-radius: 100px;
+  border: 1px solid rgb(var(--color-border));
+  text-decoration: none;
+  font-size: 1.4rem;
+  font-weight: 600;
+  color: rgb(var(--color-text));
+}
+
+.search-page__tab.is-active {
+  background: rgb(var(--color-primary));
+  border-color: rgb(var(--color-primary));
+  color: #fff;
+}

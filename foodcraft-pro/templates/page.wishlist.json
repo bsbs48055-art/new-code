@@ -1,0 +1,12 @@
+{
+  "sections": {
+    "wishlist": {
+      "type": "wishlist-page",
+      "settings": {
+        "heading": "Your Wishlist",
+        "subheading": "Saved items are stored on this device."
+      }
+    }
+  },
+  "order": ["wishlist"]
+}

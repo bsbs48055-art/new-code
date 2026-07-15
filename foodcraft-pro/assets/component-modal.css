@@ -1,0 +1,104 @@
+/* FoodCraft Pro — Generic modal (used by Quick View and video popups) */
+
+.modal {
+  position: fixed;
+  inset: 0;
+  z-index: 90;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem;
+  background: rgba(20, 14, 8, 0.6);
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.25s ease, visibility 0.25s ease;
+}
+
+.modal.is-open {
+  opacity: 1;
+  visibility: visible;
+}
+
+.modal__content {
+  position: relative;
+  background: rgb(var(--color-background));
+  border-radius: var(--corner-radius);
+  max-width: 100rem;
+  width: 100%;
+  max-height: 88vh;
+  overflow-y: auto;
+  transform: scale(0.96) translateY(10px);
+  transition: transform 0.3s ease;
+}
+
+.modal.is-open .modal__content {
+  transform: scale(1) translateY(0);
+}
+
+.modal__close {
+  position: absolute;
+  top: 1.4rem;
+  right: 1.4rem;
+  z-index: 5;
+  background: rgb(var(--color-background));
+}
+
+.quick-view-modal__body {
+  padding: 3.2rem;
+}
+
+.quick-view-modal__loading {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 2.4rem;
+}
+
+@media screen and (min-width: 750px) {
+  .quick-view-modal__loading {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+.quick-view-modal__loading-lines {
+  display: flex;
+  flex-direction: column;
+  gap: 1.4rem;
+  justify-content: center;
+}
+
+.quick-view-modal__content {
+  display: grid;
+  gap: 3.2rem;
+  grid-template-columns: 1fr;
+}
+
+@media screen and (min-width: 750px) {
+  .quick-view-modal__content {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+.quick-view-modal__media img {
+  border-radius: var(--corner-radius);
+}
+
+.quick-view-modal__view-full {
+  margin-top: 1.6rem;
+  display: inline-block;
+}
+
+.video-modal .modal__content {
+  background: #000;
+  aspect-ratio: 16 / 9;
+  max-width: 120rem;
+}
+
+.video-modal iframe,
+.video-modal video {
+  width: 100%;
+  height: 100%;
+}
+
+body.overflow-hidden {
+  overflow: hidden;
+}

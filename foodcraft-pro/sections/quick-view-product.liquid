@@ -1,0 +1,88 @@
+{%- comment -%}
+  Lightweight product markup rendered only via the `?view=quick-view`
+  alternate template and injected into the Quick View modal by quick-view.js.
+  Intentionally excludes the full media gallery, reviews and upsell sections.
+{%- endcomment -%}
+{%- liquid
+  assign current_variant = product.selected_or_first_available_variant
+-%}
+<div id="QuickViewContent" class="quick-view-modal__content">
+  <div class="quick-view-modal__media">
+    <div class="aspect-ratio aspect-ratio--square rounded">
+      {%- if current_variant.featured_image -%}
+        <img
+          src="{{ current_variant.featured_image | image_url: width: 700 }}"
+          srcset="{{ current_variant.featured_image | image_url: width: 400 }} 400w, {{ current_variant.featured_image | image_url: width: 700 }} 700w"
+          sizes="(min-width: 750px) 45vw, 90vw"
+          alt="{{ current_variant.featured_image.alt | escape }}"
+          width="{{ current_variant.featured_image.width }}"
+          height="{{ current_variant.featured_image.height }}"
+          loading="eager"
+        >
+      {%- elsif product.featured_image -%}
+        <img
+          src="{{ product.featured_image | image_url: width: 700 }}"
+          alt="{{ product.featured_image.alt | escape }}"
+          width="700"
+          height="700"
+          loading="eager"
+        >
+      {%- else -%}
+        {{ 'product-1' | placeholder_svg_tag: 'placeholder-svg' }}
+      {%- endif -%}
+    </div>
+  </div>
+
+  <div class="quick-view-modal__info product-info">
+    {%- if product.vendor != blank -%}
+      <p class="product-info__vendor">{{ product.vendor }}</p>
+    {%- endif -%}
+    <h2 class="product-info__title">{{ product.title }}</h2>
+
+    {%- if product.metafields.reviews.rating.value -%}
+      {% render 'star-rating', rating: product.metafields.reviews.rating.value.rating, count: product.metafields.reviews.rating_count.value %}
+    {%- endif -%}
+
+    <div data-product-price="quick-view">
+      {% render 'product-price', price: current_variant.price, compare_at_price: current_variant.compare_at_price, show_badge: true, available: current_variant.available %}
+    </div>
+
+    {%- form 'product', product, id: 'QuickViewForm', class: 'product-form' -%}
+      <input type="hidden" name="id" value="{{ current_variant.id }}">
+      {% render 'variant-picker', product: product, section_id: 'quick-view' %}
+
+      <div class="product-form__buy-row">
+        {% render 'quantity-selector', id: 'quick-view', value: 1, min: 1, name: 'quantity' %}
+        <button
+          type="submit"
+          name="add"
+          class="button button--primary button--large product-form__submit"
+          data-add-to-cart-button
+          {% unless current_variant.available %}disabled{% endunless %}
+        >
+          <span data-add-to-cart-text>
+            {%- if current_variant.available -%}
+              {{ 'products.product.add_to_cart' | t }}
+            {%- else -%}
+              {{ 'products.product.sold_out' | t }}
+            {%- endif -%}
+          </span>
+          <span class="button__spinner" aria-hidden="true"></span>
+        </button>
+      </div>
+      <p class="field__error-message" data-form-error hidden></p>
+    {%- endform -%}
+
+    <a href="{{ product.url }}" class="link quick-view-modal__view-full">
+      {{ 'products.product.view_full_details' | t }}
+      {% render 'icon', name: 'arrow-right' %}
+    </a>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Quick view",
+  "settings": []
+}
+{% endschema %}

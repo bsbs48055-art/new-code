@@ -1,0 +1,96 @@
+{
+  "sections": {
+    "main": {
+      "type": "main-product",
+      "blocks": {
+        "vendor": { "type": "vendor", "settings": {} },
+        "title": { "type": "title", "settings": {} },
+        "rating": { "type": "rating", "settings": {} },
+        "price": { "type": "price", "settings": { "show_tax_note": true } },
+        "countdown": {
+          "type": "countdown_timer",
+          "settings": {
+            "label": "Limited-time offer ends in:",
+            "end_date": "2026-12-31 23:59"
+          },
+          "disabled": true
+        },
+        "variant_picker": { "type": "variant_picker", "settings": {} },
+        "buy_buttons": { "type": "buy_buttons", "settings": { "show_dynamic_checkout": true } },
+        "wishlist_compare": { "type": "wishlist_compare", "settings": {} },
+        "badge_shipping": {
+          "type": "trust_badge",
+          "settings": { "icon": "truck", "text": "Free shipping over $75" }
+        },
+        "badge_secure": {
+          "type": "trust_badge",
+          "settings": { "icon": "shield", "text": "Secure checkout" }
+        },
+        "badge_sustainable": {
+          "type": "trust_badge",
+          "settings": { "icon": "leaf", "text": "Sustainably sourced" }
+        },
+        "description": { "type": "description", "settings": {} },
+        "ingredients": {
+          "type": "collapsible_row",
+          "settings": {
+            "icon": "leaf",
+            "heading": "Ingredients",
+            "content": "<p>Add this product's ingredient list from the theme editor.</p>",
+            "default_open": false
+          }
+        },
+        "shipping": {
+          "type": "collapsible_row",
+          "settings": {
+            "icon": "truck",
+            "heading": "Shipping & Returns",
+            "content": "<p>Orders ship within 1-2 business days. Free shipping on orders over $75.</p>",
+            "default_open": false
+          }
+        },
+        "share": { "type": "share", "settings": {} }
+      },
+      "block_order": [
+        "vendor",
+        "title",
+        "rating",
+        "price",
+        "countdown",
+        "variant_picker",
+        "buy_buttons",
+        "wishlist_compare",
+        "badge_shipping",
+        "badge_secure",
+        "badge_sustainable",
+        "description",
+        "ingredients",
+        "shipping",
+        "share"
+      ],
+      "settings": {}
+    },
+    "reviews": {
+      "type": "product-reviews",
+      "settings": {
+        "heading": "Customer Reviews",
+        "reviews_to_show": 6
+      }
+    },
+    "related": {
+      "type": "related-products",
+      "settings": {
+        "heading": "You May Also Like",
+        "products_to_show": 8
+      }
+    },
+    "recently_viewed": {
+      "type": "recently-viewed",
+      "settings": {
+        "heading": "Recently Viewed",
+        "products_to_show": 8
+      }
+    }
+  },
+  "order": ["main", "reviews", "related", "recently_viewed"]
+}

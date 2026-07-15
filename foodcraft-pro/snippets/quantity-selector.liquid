@@ -1,0 +1,34 @@
+{%- comment -%}
+  Reusable quantity stepper. Wrapped in the <quantity-input> custom element
+  (registered in product-form.js) so +/- buttons work anywhere it's rendered
+  and always dispatch a native `change` event on the input.
+  Accepts:
+    id: {String} required — unique DOM id suffix
+    value: {Number} optional, default 1
+    min: {Number} optional, default 0
+    max: {Number} optional
+    name: {String} optional — form field name, default "quantity"
+    small: {Boolean} optional — compact sizing (used in cart rows)
+    line_item_key: {String} optional — cart line item key, read by cart.js
+{%- endcomment -%}
+<quantity-input class="quantity-selector{% if small %} quantity-selector--small{% endif %}">
+  <button type="button" class="quantity-selector__button" data-quantity-decrease aria-label="{{ 'products.product.decrease_quantity' | t }}">
+    {% render 'icon', name: 'minus' %}
+  </button>
+  <input
+    type="number"
+    class="quantity-selector__input"
+    id="Quantity-{{ id }}"
+    name="{{ name | default: 'quantity' }}"
+    value="{{ value | default: 1 }}"
+    min="{{ min | default: 0 }}"
+    {% if max %}max="{{ max }}"{% endif %}
+    inputmode="numeric"
+    aria-label="{{ 'products.product.quantity' | t }}"
+    data-quantity-input
+    {% if line_item_key %}data-line-item-key="{{ line_item_key }}"{% endif %}
+  >
+  <button type="button" class="quantity-selector__button" data-quantity-increase aria-label="{{ 'products.product.increase_quantity' | t }}">
+    {% render 'icon', name: 'plus' %}
+  </button>
+</quantity-input>
