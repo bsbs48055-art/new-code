@@ -14,6 +14,15 @@
   <meta expr:content='data:blog.metaDescription' name='description'/>
 </b:if>
 
+<!-- SEO: keywords (label pages use the label; posts use the title; site-wide default elsewhere) -->
+<b:if cond='data:blog.searchLabel'>
+  <meta expr:content='data:blog.searchLabel' name='keywords'/>
+<b:elseif cond='data:blog.pageType == &quot;item&quot;'/>
+  <meta expr:content='data:blog.pageName' name='keywords'/>
+<b:else/>
+  <meta content='beauty tips, skincare routine, skin care, hair care, makeup tips, best skincare products, beauty product reviews, anti aging, natural beauty remedies, glowing skin, skincare for beginners, beauty blog' name='keywords'/>
+</b:if>
+
 <!-- Open Graph / Twitter -->
 <meta expr:content='data:blog.title' property='og:site_name'/>
 <meta expr:content='data:blog.canonicalUrl' property='og:url'/>
