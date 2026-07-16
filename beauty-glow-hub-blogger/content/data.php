@@ -6,7 +6,7 @@
  * Consumed by build.php to produce a Blogger import XML and paste-ready HTML.
  */
 
-$IMG = 'https://raw.githubusercontent.com/bsbs48055-art/new-code/02a2b4fafe5a0f474f0bea572487a95ba087998d/beauty-glow-hub-blogger/images/';
+$IMG = 'https://raw.githubusercontent.com/bsbs48055-art/new-code/accda42e79c8f470cc65ef83fa637b690175e25e/beauty-glow-hub-blogger/images/';
 
 /* Small helper to render a styled image */
 function img($src, $alt, $cap = '') {
@@ -47,6 +47,7 @@ $posts[] = array(
 	'title' => 'The 7 Best Vitamin C Serums for Brighter Skin (Tested for 8 Weeks)',
 	'labels' => array('Skin Care', 'Product Reviews'),
 	'author' => 'Sophia Laurent', 'date' => '2026-07-14',
+	'desc' => 'The 7 best vitamin C serums for brighter skin, tested for 8 weeks. Reviews, how to use vitamin C, and the top picks for every budget.',
 	'html' => disclosure()
 		. img($IMG.'post-vitamin-c.jpg', 'Vitamin C serum bottles on a marble surface')
 		. '<p>I have been using vitamin C almost every morning for the better part of a decade, and if there is one "active" I would tell a friend to start with, it is this one. Used consistently, a good vitamin C serum brightens dull skin, softens the look of dark spots and gives you that lit-from-within glow. But not every serum is worth your money, so I spent eight weeks testing the popular ones on my own combination skin.</p>'
@@ -87,6 +88,7 @@ $posts[] = array(
 	'title' => 'The Best Affordable Moisturizers That Actually Work (Every Skin Type)',
 	'labels' => array('Skin Care', 'Product Reviews'),
 	'author' => 'Maya Chen', 'date' => '2026-07-12',
+	'desc' => 'The best affordable moisturizers that actually work for dry, oily and sensitive skin. Honest, tested drugstore picks.',
 	'html' => disclosure()
 		. img($IMG.'post-moisturizer.jpg', 'Affordable moisturizer jars on a marble surface')
 		. '<p>A great moisturiser is the quiet hero of every routine. It keeps your skin barrier happy, stops that tight, flaky feeling, and helps everything you layer on top work better. The good news? You really do not need to spend a lot. After testing dozens over the years, here are the affordable ones I keep repurchasing.</p>'
@@ -119,6 +121,7 @@ $posts[] = array(
 	'title' => 'The Best Sunscreens for Every Skin Type (No White Cast, No Grease)',
 	'labels' => array('Skin Care', 'Product Reviews', 'Anti Aging'),
 	'author' => 'Sophia Laurent', 'date' => '2026-07-10',
+	'desc' => 'The best sunscreens for every skin type with no white cast or grease. Tested SPF picks for oily, dry and sensitive skin.',
 	'html' => disclosure()
 		. img($IMG.'post-sunscreen.jpg', 'Sunscreen bottles on a pastel background')
 		. '<p>If I could get everyone to do one thing for their skin, it would be to wear sunscreen every single day. It is the most effective anti-ageing step there is — full stop. The problem is that a lot of people gave up on SPF because of greasy textures and that dreaded white cast. Good news: modern sunscreens are genuinely lovely to wear. Here are my favourites.</p>'
@@ -151,6 +154,7 @@ $posts[] = array(
 	'title' => 'Retinol for Beginners: How to Start (Plus the Best Products to Try)',
 	'labels' => array('Anti Aging', 'Skin Care', 'Product Reviews'),
 	'author' => 'Sophia Laurent', 'date' => '2026-07-08',
+	'desc' => 'Retinol for beginners: how to start without irritation, plus the best beginner retinol products to try for smoother skin.',
 	'html' => disclosure()
 		. img($IMG.'post-retinol.jpg', 'Retinol serum bottle on a pink surface')
 		. '<p>Retinol has more solid research behind it than almost any other skincare ingredient — it smooths fine lines, refines texture and helps with breakouts. It also has a reputation for causing flaky, irritated skin, which scares a lot of beginners off. The secret is simple: go low and slow. Here is exactly how I introduce retinol to anyone starting out, plus the products I trust.</p>'
@@ -184,6 +188,7 @@ $posts[] = array(
 	'title' => 'The Best Hair Growth Oils and How to Actually Use Them',
 	'labels' => array('Hair Care', 'Product Reviews', 'Natural Remedies'),
 	'author' => 'Maya Chen', 'date' => '2026-07-06',
+	'desc' => 'The best hair growth oils and how to use them, including rosemary, argan and coconut oil for a healthy scalp and stronger hair.',
 	'html' => disclosure()
 		. img($IMG.'post-hair-oil.jpg', 'Hair growth oil in an amber bottle with rosemary')
 		. '<p>Hair oils will not magically double your hair overnight — no product will. But the right oil, used the right way, can support a healthy scalp, reduce breakage and make your hair look shinier and feel stronger. After a lot of trial and error (and a few greasy mistakes), these are the oils I actually rate and exactly how to use them.</p>'
@@ -215,6 +220,7 @@ $posts[] = array(
 	'title' => 'Niacinamide 101: Benefits, How to Use It, and the Best Serums',
 	'labels' => array('Skin Care', 'Product Reviews'),
 	'author' => 'Olivia Reed', 'date' => '2026-07-04',
+	'desc' => 'Niacinamide benefits, how to use it, and the best niacinamide serums for oily, sensitive and blemish-prone skin.',
 	'html' => disclosure()
 		. img($IMG.'post-niacinamide.jpg', 'Niacinamide serum on a marble surface')
 		. '<p>If vitamin C is the show-off of skincare, niacinamide is the quiet all-rounder that just makes everything better. It calms redness, helps control oil, strengthens your skin barrier and gradually evens out tone. It is gentle, affordable and plays well with almost everything. Here is how to use it and the serums I recommend.</p>'
@@ -236,6 +242,225 @@ $posts[] = array(
 		. faq_block(array(
 			'Can I use niacinamide with vitamin C?' => 'Yes. The old myth that they cancel out has been debunked; modern formulas use them together happily.',
 			'What percentage of niacinamide is best?' => 'For most people 5–10% is the sweet spot. Higher is not necessarily better and can cause flushing.',
+		)),
+);
+
+/* ---------- 7. Skincare routine for beginners ---------- */
+$posts[] = array(
+	'type' => 'post', 'slug' => 'skincare-routine-for-beginners',
+	'title' => 'Skincare Routine for Beginners: The Simple 3-Step Guide',
+	'labels' => array('Skin Care', 'Beauty Tips'),
+	'author' => 'Sophia Laurent', 'date' => '2026-07-16',
+	'desc' => 'A simple 3-step skincare routine for beginners. Learn the easy morning and night routine that gives you clear, healthy, glowing skin.',
+	'html' => img($IMG.'post-routine.jpg', 'Skincare routine products laid out in order')
+		. '<p>Starting a <strong>skincare routine for beginners</strong> should not feel like a science exam. The truth is you only need three steps to see real results: cleanse, moisturise and protect. Everything else is optional. In this guide I will show you the exact simple routine I recommend to anyone starting out.</p>'
+		. '<h2>The Only 3 Steps You Actually Need</h2>'
+		. '<h3>Step 1: Cleanser</h3><p>Wash your face with a gentle cleanser morning and night to remove dirt, oil and pollution. If it leaves your skin tight, it is too harsh.</p>'
+		. '<h3>Step 2: Moisturizer</h3><p>Even oily skin needs moisture. A good moisturiser keeps your skin barrier healthy and balanced.</p>'
+		. '<h3>Step 3: Sunscreen (mornings)</h3><p>Sunscreen SPF 30+ is the most important anti-ageing step there is. Never skip it, even on cloudy days.</p>'
+		. img($IMG.'post-clear-skin.jpg', 'Clear healthy skin from a simple routine')
+		. '<h2>Know Your Skin Type First</h2>'
+		. '<ul><li><strong>Oily:</strong> choose lightweight, gel textures.</li><li><strong>Dry:</strong> choose rich creams.</li><li><strong>Combination:</strong> mix and match.</li><li><strong>Sensitive:</strong> fragrance-free, minimal formulas.</li></ul>'
+		. '<h2>When to Add Actives</h2><p>Once your 3 basics are a habit, you can slowly add one active at a time, like a <a href="/search/label/Skin%20Care">vitamin C serum</a> in the morning or a gentle retinol at night. Add new products every 2–3 weeks.</p>'
+		. '<blockquote>Consistency beats complexity. A simple routine you do every day works better than a 10-step routine you quit in a week.</blockquote>'
+		. '<h2>Conclusion</h2><p>Cleanse, moisturise, protect. Master those three and your skin will already look and feel better within weeks.</p>'
+		. faq_block(array(
+			'What is the best skincare routine for beginners?' => 'A gentle cleanser, a moisturiser, and a broad-spectrum SPF 30+ in the morning. That simple 3-step routine covers the essentials.',
+			'How long until I see results?' => 'Hydration improves in days, while tone and texture take 6–12 weeks of consistent use.',
+			'Do beginners need a toner or serum?' => 'No. Toners and serums are optional. Start with the three basics and add more only when you are ready.',
+		)),
+);
+
+/* ---------- 8. Oily skin routine ---------- */
+$posts[] = array(
+	'type' => 'post', 'slug' => 'best-skincare-routine-oily-skin',
+	'title' => 'The Best Skincare Routine for Oily Skin (That Actually Controls Shine)',
+	'labels' => array('Skin Care', 'Beauty Tips'),
+	'author' => 'Maya Chen', 'date' => '2026-07-15',
+	'desc' => 'The best skincare routine for oily skin to control shine and prevent breakouts, using lightweight products that actually work.',
+	'html' => img($IMG.'post-skincare.jpg', 'Skincare products for oily skin')
+		. '<p>If your face is shiny by midday and you battle breakouts, you need a routine built for oily skin. The biggest mistake? Over-washing and stripping your skin, which only makes it produce <em>more</em> oil. Here is the balanced <strong>skincare routine for oily skin</strong> that actually works.</p>'
+		. '<h2>Morning Routine for Oily Skin</h2>'
+		. '<ol><li><strong>Gentle gel cleanser</strong> to remove overnight oil.</li><li><strong>Niacinamide serum</strong> to regulate oil and minimise pores.</li><li><strong>Oil-free gel moisturiser</strong> — yes, oily skin still needs it.</li><li><strong>Matte sunscreen SPF 50</strong> to protect without shine.</li></ol>'
+		. '<h2>Night Routine for Oily Skin</h2>'
+		. '<ul><li>Cleanse to remove sunscreen and grime.</li><li>Treat 2–3 nights a week with a gentle BHA (salicylic acid) to keep pores clear.</li><li>Lightweight moisturiser to finish.</li></ul>'
+		. '<h2>Ingredients That Help Oily Skin</h2>'
+		. '<ul><li><strong>Niacinamide</strong> — balances oil and calms redness.</li><li><strong>Salicylic acid (BHA)</strong> — unclogs pores.</li><li><strong>Zinc</strong> — helps control shine.</li></ul>'
+		. '<blockquote>Do not skip moisturiser. Dehydrated oily skin overcompensates by producing even more oil.</blockquote>'
+		. '<h2>Conclusion</h2><p>Keep it gentle, use lightweight oil-free formulas and do not over-cleanse. For more, read our <a href="/search/label/Skin%20Care">niacinamide guide</a>.</p>'
+		. faq_block(array(
+			'How can I stop my face being so oily?' => 'Use a gentle cleanser, a niacinamide serum, an oil-free moisturiser and a matte SPF. Avoid harsh scrubbing, which increases oil.',
+			'Should oily skin use moisturizer?' => 'Yes. Skipping moisturiser makes oily skin produce more oil. Choose a lightweight, oil-free gel formula.',
+		)),
+);
+
+/* ---------- 9. Clear skin naturally ---------- */
+$posts[] = array(
+	'type' => 'post', 'slug' => 'how-to-get-clear-skin-naturally',
+	'title' => 'How to Get Clear Skin Naturally at Home (9 Habits That Work)',
+	'labels' => array('Skin Care', 'Natural Remedies', 'Lifestyle'),
+	'author' => 'Olivia Reed', 'date' => '2026-07-15',
+	'desc' => 'Learn how to get clear skin naturally at home with 9 simple, science-friendly habits for a healthy, glowing complexion.',
+	'html' => img($IMG.'post-clear-skin.jpg', 'Clear glowing skin achieved naturally')
+		. '<p>Everyone wants to know <strong>how to get clear skin naturally</strong> — without spending a fortune. While genetics play a role, your daily habits matter more than you think. Here are nine gentle, natural habits that genuinely help clear and calm your skin.</p>'
+		. '<h2>9 Natural Habits for Clear Skin</h2>'
+		. '<ul><li><strong>Cleanse twice a day</strong> — but gently, never harshly.</li><li><strong>Never sleep in makeup.</strong></li><li><strong>Stay hydrated</strong> and eat plenty of colourful fruit and veg.</li><li><strong>Do not pick</strong> at spots — it causes scarring.</li><li><strong>Change your pillowcase</strong> twice a week.</li><li><strong>Manage stress</strong> — it triggers breakouts.</li><li><strong>Get enough sleep</strong> for overnight repair.</li><li><strong>Wear sunscreen</strong> daily to prevent marks.</li><li><strong>Be patient and consistent</strong> — skin renews over weeks.</li></ul>'
+		. img($IMG.'post-foods.jpg', 'Skin-friendly foods for a clear complexion')
+		. '<h2>Gentle Natural Helpers</h2><p>A little aloe vera soothes redness, green tea is a calming antioxidant, and a weekly honey mask hydrates. Always patch-test first.</p>'
+		. '<blockquote>Clear skin is built on gentle, consistent habits — not harsh scrubbing or expensive miracle products.</blockquote>'
+		. '<h2>When to See a Professional</h2><p>If you have painful or persistent acne, a dermatologist can help with tailored treatment. Natural habits support your skin but are not a cure for everything.</p>'
+		. '<h2>Conclusion</h2><p>Small daily habits add up. Give them 4–6 weeks and be kind to your skin. See our <a href="/search/label/Natural%20Remedies">natural remedies</a> for more.</p>'
+		. faq_block(array(
+			'How can I get clear skin naturally and fast?' => 'There is no overnight fix, but cleansing gently, not picking, sleeping well, staying hydrated and wearing SPF give the fastest natural improvement over a few weeks.',
+			'What foods cause acne?' => 'For some people, very sugary and highly processed foods may worsen breakouts. A balanced, colourful diet supports clearer skin.',
+		)),
+);
+
+/* ---------- 10. Order of skincare ---------- */
+$posts[] = array(
+	'type' => 'post', 'slug' => 'order-to-apply-skincare-products',
+	'title' => 'The Correct Order to Apply Your Skincare Products',
+	'labels' => array('Skin Care', 'Beauty Tips'),
+	'author' => 'Sophia Laurent', 'date' => '2026-07-14',
+	'desc' => 'The correct order to apply skincare products, morning and night, so every ingredient actually works. A simple, clear guide.',
+	'html' => img($IMG.'post-niacinamide.jpg', 'Skincare products in the correct order')
+		. '<p>Using the right products in the wrong order means they cannot do their job. The simple rule: apply from <strong>thinnest to thickest</strong> texture. Here is the correct <strong>order to apply skincare products</strong>, morning and night.</p>'
+		. '<h2>Morning Order</h2><ol><li>Cleanser</li><li>Toner (optional)</li><li>Vitamin C serum</li><li>Eye cream</li><li>Moisturiser</li><li>Sunscreen (always last)</li></ol>'
+		. '<h2>Night Order</h2><ol><li>Cleanser (double cleanse if you wore makeup)</li><li>Toner or essence (optional)</li><li>Treatment serum or retinol</li><li>Eye cream</li><li>Moisturiser</li><li>Face oil (optional, last)</li></ol>'
+		. '<h2>Quick Rules to Remember</h2><ul><li>Thinnest (water-based) to thickest (oils/creams).</li><li>Sunscreen is always the final morning step.</li><li>Wait a minute between strong actives if your skin is sensitive.</li></ul>'
+		. '<blockquote>If you only remember one thing: sunscreen goes on last in the morning, full stop.</blockquote>'
+		. '<h2>Conclusion</h2><p>Layer thin to thick and your products will finally perform. New to routines? Start with our <a href="/search/label/Skin%20Care">beginner routine guide</a>.</p>'
+		. faq_block(array(
+			'Do I apply moisturizer or serum first?' => 'Serum first, then moisturiser. Serums are thinner and need to reach the skin before you seal them in with cream.',
+			'Does sunscreen go on before or after moisturizer?' => 'After. Sunscreen is always the last step of your morning routine, on top of moisturiser.',
+		)),
+);
+
+/* ---------- 11. Everyday makeup ---------- */
+$posts[] = array(
+	'type' => 'post', 'slug' => 'everyday-makeup-routine-for-beginners',
+	'title' => 'Everyday Makeup Routine for Beginners (Under 10 Minutes)',
+	'labels' => array('Makeup', 'Beauty Tips'),
+	'author' => 'Maya Chen', 'date' => '2026-07-13',
+	'desc' => 'A quick everyday makeup routine for beginners in under 10 minutes for a fresh, natural, glowing look.',
+	'html' => img($IMG.'post-makeup.jpg', 'Everyday makeup products for beginners')
+		. '<p>You do not need a make-up artist kit to look polished. This <strong>everyday makeup routine for beginners</strong> takes under 10 minutes and gives you a fresh, natural glow you can wear anywhere.</p>'
+		. '<h2>What You Need</h2><ul><li>Tinted moisturiser or light foundation</li><li>Concealer</li><li>Cream blush</li><li>Brow gel</li><li>Mascara</li><li>Tinted lip balm</li></ul>'
+		. '<h2>The 10-Minute Steps</h2>'
+		. '<ol><li><strong>Prep:</strong> moisturise and apply SPF.</li><li><strong>Even out:</strong> light base where you need it.</li><li><strong>Conceal:</strong> tap under eyes and on blemishes.</li><li><strong>Add warmth:</strong> cream blush on the cheeks.</li><li><strong>Brows:</strong> brush up and fill gaps.</li><li><strong>Lashes &amp; lips:</strong> one coat of mascara + tinted balm.</li></ol>'
+		. '<h2>Beginner Tips for a Natural Look</h2><ul><li>Less is more — build up slowly.</li><li>Cream products look more natural than powders.</li><li>Match foundation to your neck, not your hand.</li></ul>'
+		. '<blockquote>Natural makeup is about enhancing your features, not covering them.</blockquote>'
+		. '<h2>Conclusion</h2><p>Practice this a few times and it becomes second nature. For more, browse our <a href="/search/label/Makeup">makeup guides</a>.</p>'
+		. faq_block(array(
+			'What makeup should a beginner start with?' => 'Start with tinted moisturiser, concealer, cream blush, brow gel, mascara and a tinted lip balm. That covers a complete natural look.',
+			'How do I make my makeup look natural?' => 'Use thin layers, choose cream formulas, blend well and match your base to your neck.',
+		)),
+);
+
+/* ---------- 12. Repair damaged hair ---------- */
+$posts[] = array(
+	'type' => 'post', 'slug' => 'how-to-repair-damaged-hair-at-home',
+	'title' => 'How to Repair Damaged Hair at Home (A Simple Recovery Plan)',
+	'labels' => array('Hair Care', 'Natural Remedies'),
+	'author' => 'Maya Chen', 'date' => '2026-07-12',
+	'desc' => 'How to repair damaged hair at home with a simple recovery plan to rebuild strength, shine and softness and stop breakage.',
+	'html' => img($IMG.'post-haircare.jpg', 'Healthy repaired hair')
+		. '<p>Heat, colour and rough handling leave hair dry, frizzy and prone to breakage. You cannot un-damage a strand, but you can dramatically improve how your hair looks and feels. Here is <strong>how to repair damaged hair at home</strong>.</p>'
+		. '<h2>Your At-Home Recovery Plan</h2>'
+		. '<h3>1. Balance protein and moisture</h3><p>Use a protein treatment to rebuild strength and a deep-conditioning mask for softness. Alternate based on whether hair feels mushy (needs protein) or brittle (needs moisture).</p>'
+		. '<h3>2. Turn down the heat</h3><p>Always use a heat protectant and keep tools below 180°C where possible.</p>'
+		. '<h3>3. Trim regularly</h3><p>Split ends travel up the strand — regular trims stop the damage spreading.</p>'
+		. '<h3>4. Be gentle when wet</h3><p>Detangle from the ends up with a wide-tooth comb and swap your cotton towel for a soft microfibre one.</p>'
+		. '<h2>Habits That Prevent Future Damage</h2><ul><li>Sleep on a silk or satin pillowcase.</li><li>Space out chemical treatments.</li><li>Protect hair from sun and chlorine.</li></ul>'
+		. '<blockquote>Gentle, consistent care beats any single "miracle" product. Give it a few weeks.</blockquote>'
+		. '<h2>Conclusion</h2><p>Repair is about patience and prevention. Pair this with our <a href="/search/label/Hair%20Care">best hair oils guide</a> for stronger, shinier hair.</p>'
+		. faq_block(array(
+			'Can damaged hair be repaired?' => 'Existing damage cannot be reversed, but its look and feel improve a lot with masks, less heat, trims and gentle handling — and new growth starts healthy.',
+			'How often should I use a hair mask?' => 'Once a week for most hair types; damaged hair can benefit from twice weekly.',
+		)),
+);
+
+/* ---------- 13. DIY face masks ---------- */
+$posts[] = array(
+	'type' => 'post', 'slug' => 'diy-face-masks-for-glowing-skin',
+	'title' => 'DIY Face Masks for Glowing Skin (5 Easy Recipes)',
+	'labels' => array('Natural Remedies', 'Skin Care'),
+	'author' => 'Olivia Reed', 'date' => '2026-07-11',
+	'desc' => 'Five easy DIY face masks for glowing skin using simple kitchen ingredients for every skin type. Gentle, natural and effective.',
+	'html' => img($IMG.'post-natural.jpg', 'DIY face mask ingredients')
+		. '<p>You do not need an expensive spa mask for a glow. These gentle <strong>DIY face masks for glowing skin</strong> use ingredients you already have. Always patch-test first and avoid lemon or undiluted essential oils, which can irritate.</p>'
+		. '<h2>5 Easy DIY Face Mask Recipes</h2>'
+		. '<h3>1. Honey + Yogurt (Glow)</h3><p>Lactic acid gently exfoliates while honey hydrates. Leave 10 minutes.</p>'
+		. '<h3>2. Oatmeal + Honey (Sensitive)</h3><p>Wonderfully calming for reactive, red skin.</p>'
+		. '<h3>3. Clay + Green Tea (Oily)</h3><p>Absorbs excess oil while green tea soothes. Rinse before it fully dries.</p>'
+		. '<h3>4. Avocado + Honey (Dry)</h3><p>Rich fats deeply nourish dry, tight skin.</p>'
+		. '<h3>5. Banana + Yogurt (Dull)</h3><p>A quick, softening pick-me-up for tired skin.</p>'
+		. '<h2>DIY Mask Safety Rules</h2><ul><li>Patch-test on your inner arm first.</li><li>Use fresh ingredients and clean hands.</li><li>Never leave a mask on longer than recommended.</li></ul>'
+		. '<blockquote>Natural masks are a lovely treat — but they complement, not replace, a solid daily routine.</blockquote>'
+		. '<h2>Conclusion</h2><p>Use one or two times a week for a natural glow. Learn the basics in our <a href="/search/label/Skin%20Care">beginner skincare routine</a>.</p>'
+		. faq_block(array(
+			'Which homemade face mask is best for glowing skin?' => 'A honey and yogurt mask is a great all-rounder — the lactic acid gently exfoliates while honey hydrates for an instant glow.',
+			'How often should I use a DIY face mask?' => 'One to two times a week is plenty for most skin types.',
+		)),
+);
+
+/* ---------- 14. Foods for glowing skin ---------- */
+$posts[] = array(
+	'type' => 'post', 'slug' => 'foods-for-glowing-skin',
+	'title' => '12 Foods for Glowing Skin (Eat Your Way to a Natural Glow)',
+	'labels' => array('Lifestyle', 'Natural Remedies'),
+	'author' => 'Olivia Reed', 'date' => '2026-07-10',
+	'desc' => 'Discover 12 foods for glowing skin. Eat your way to a clear, radiant complexion with these skin-friendly, science-backed foods.',
+	'html' => img($IMG.'post-foods.jpg', 'Foods that give you glowing skin')
+		. '<p>Great skin is not just about what you put on it — it is also about what you put in. These <strong>foods for glowing skin</strong> are packed with the antioxidants, healthy fats and vitamins your skin loves.</p>'
+		. '<h2>12 Best Foods for Glowing Skin</h2>'
+		. '<ul><li><strong>Berries</strong> — antioxidants that fight daily damage.</li><li><strong>Avocado</strong> — healthy fats for a supple barrier.</li><li><strong>Salmon</strong> — omega-3s that calm and hydrate.</li><li><strong>Nuts &amp; seeds</strong> — vitamin E and zinc.</li><li><strong>Leafy greens</strong> — vitamins A and C.</li><li><strong>Sweet potato</strong> — beta-carotene for a healthy glow.</li><li><strong>Tomatoes</strong> — lycopene for sun defence.</li><li><strong>Citrus fruits</strong> — vitamin C for collagen.</li><li><strong>Green tea</strong> — soothing antioxidants.</li><li><strong>Water-rich cucumber</strong> — hydration.</li><li><strong>Dark chocolate (70%+)</strong> — flavonoids, in moderation.</li><li><strong>Yogurt</strong> — gut-friendly probiotics.</li></ul>'
+		. '<h2>What to Enjoy in Moderation</h2><p>Highly processed, very sugary foods and excess alcohol can dull skin and, for some, trigger breakouts.</p>'
+		. '<blockquote>No single food is magic — a colourful, balanced diet is the real secret to a lasting glow.</blockquote>'
+		. '<h2>Conclusion</h2><p>Eat the rainbow, stay hydrated and pair good food with a solid routine. Read more on <a href="/search/label/Lifestyle">beauty and wellness</a>.</p>'
+		. faq_block(array(
+			'What foods make your skin glow?' => 'Berries, avocado, salmon, nuts, leafy greens and citrus are among the best — they provide antioxidants, healthy fats and vitamins for radiant skin.',
+			'How long does it take for diet to improve skin?' => 'Skin renews over several weeks, so give dietary changes about 4–6 weeks to show.',
+		)),
+);
+
+/* ---------- 15. Glass skin ---------- */
+$posts[] = array(
+	'type' => 'post', 'slug' => 'glass-skin-routine',
+	'title' => 'Glass Skin Routine: The Korean Beauty Secret to Dewy Skin',
+	'labels' => array('Beauty Trends', 'Skin Care'),
+	'author' => 'Sophia Laurent', 'date' => '2026-07-09',
+	'desc' => 'The glass skin routine explained: the step-by-step Korean beauty secret to luminous, dewy, poreless-looking skin.',
+	'html' => img($IMG.'post-glass-skin.jpg', 'Luminous glass skin')
+		. '<p><strong>Glass skin</strong> — that smooth, luminous, almost translucent look — is the Korean beauty goal everyone wants. The secret is not makeup; it is deep, layered hydration and consistency. Here is the glass skin routine step by step.</p>'
+		. '<h2>The Glass Skin Routine</h2>'
+		. '<ol><li><strong>Double cleanse</strong> for a truly clean base.</li><li><strong>Gentle exfoliation</strong> 1–2 times a week for smoothness.</li><li><strong>Hydrating toner or essence</strong> — pat in a few layers.</li><li><strong>Hydrating serum</strong> (hyaluronic acid) on damp skin.</li><li><strong>Moisturiser</strong> to seal it all in.</li><li><strong>Sunscreen</strong> every morning.</li></ol>'
+		. '<h2>The Core Principles</h2><ul><li>Layer lightweight hydration, do not pile on heavy products.</li><li>Apply serums to damp skin to lock in water.</li><li>Consistency over weeks is what creates the glow.</li></ul>'
+		. '<blockquote>Glass skin is a hydration marathon, not a one-night treatment.</blockquote>'
+		. '<h2>Conclusion</h2><p>Focus on hydration and sun protection and your skin will look dewy and healthy. Explore more <a href="/search/label/Beauty%20Trends">beauty trends</a>.</p>'
+		. faq_block(array(
+			'How do I get glass skin?' => 'Cleanse well, exfoliate gently, layer hydrating toner and serum on damp skin, seal with moisturiser and always wear SPF. Consistency is key.',
+			'Is glass skin possible for oily skin?' => 'Yes. Use lightweight, water-based hydrating layers and an oil-free moisturiser to get the glow without greasiness.',
+		)),
+);
+
+/* ---------- 16. Brittle nails ---------- */
+$posts[] = array(
+	'type' => 'post', 'slug' => 'how-to-strengthen-brittle-nails',
+	'title' => 'How to Strengthen Weak, Brittle Nails Naturally',
+	'labels' => array('Nail Care', 'Beauty Tips'),
+	'author' => 'Olivia Reed', 'date' => '2026-07-08',
+	'desc' => 'How to strengthen weak, brittle nails naturally with simple habits, nutrients and care that rebuild strong, healthy nails.',
+	'html' => img($IMG.'post-nails.jpg', 'Strong healthy nails')
+		. '<p>Peeling, splitting, bending nails are incredibly common — and very fixable. Here is <strong>how to strengthen brittle nails naturally</strong> with a few simple changes.</p>'
+		. '<h2>Daily Habits That Strengthen Nails</h2>'
+		. '<ul><li><strong>Moisturise</strong> nails and cuticles daily, especially after washing.</li><li><strong>Wear gloves</strong> for cleaning and dishwashing.</li><li><strong>Keep nails shorter</strong> while they recover.</li><li><strong>Avoid harsh removers</strong> — choose acetone-free where possible.</li><li><strong>Give polish a break</strong> so nails can breathe and recover.</li></ul>'
+		. '<h2>Nutrition for Strong Nails</h2><p>Nails are made of keratin, so protein matters. Biotin, iron and omega-3s also support healthy growth. A balanced diet usually beats supplements alone.</p>'
+		. '<blockquote>Nails grow slowly, so give any change a couple of months before judging results.</blockquote>'
+		. '<h2>Conclusion</h2><p>Gentle, consistent care and good nutrition are the real secret to strong nails. See more <a href="/search/label/Nail%20Care">nail care tips</a>.</p>'
+		. faq_block(array(
+			'How can I strengthen my nails naturally?' => 'Moisturise daily, wear gloves for chores, avoid harsh removers, take breaks from polish and eat enough protein, biotin and iron.',
+			'Why are my nails so weak and brittle?' => 'Common causes include frequent water exposure, harsh products, over-buffing, dry weather and nutrient gaps.',
 		)),
 );
 

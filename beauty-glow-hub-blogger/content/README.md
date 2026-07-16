@@ -1,7 +1,7 @@
 # Beauty Glow Hub — Content Pack + AdSense Setup Guide
 
 This pack gives you a **complete, ready-to-publish beauty blog**: 8 legal/trust
-pages and 6 human-written beauty-product articles (with images) — everything you
+pages and 16 human-written beauty articles (with images) — everything you
 need for Google AdSense approval.
 
 You have **two ways** to add it all. Method A is the fastest.
@@ -26,15 +26,27 @@ from `content/posts/` → copy everything → paste → add a **Title** and **La
 **Pages:** Blogger → **Pages → New page** → **HTML view** → paste a file from
 `content/pages/` → add the Title → **Publish**.
 
-### Titles & labels for each post
-| File | Title | Labels |
+### Titles, labels & search descriptions for each post
+When pasting a post, also copy its **Search Description** into Blogger's *Search Description* box (right sidebar of the post editor) for SEO.
+
+| Title | Labels | Search Description (paste into Blogger) |
 |---|---|---|
-| best-vitamin-c-serums | The 7 Best Vitamin C Serums for Brighter Skin | Skin Care, Product Reviews |
-| best-affordable-moisturizers | The Best Affordable Moisturizers That Actually Work | Skin Care, Product Reviews |
-| best-sunscreens-every-skin-type | The Best Sunscreens for Every Skin Type | Skin Care, Product Reviews, Anti Aging |
-| best-retinol-for-beginners | Retinol for Beginners (+ Best Products) | Anti Aging, Skin Care, Product Reviews |
-| best-hair-growth-oils | The Best Hair Growth Oils and How to Use Them | Hair Care, Product Reviews, Natural Remedies |
-| niacinamide-benefits-best-serums | Niacinamide 101: Benefits + Best Serums | Skin Care, Product Reviews |
+| The 7 Best Vitamin C Serums for Brighter Skin (Tested for 8 Weeks) | Skin Care, Product Reviews | The 7 best vitamin C serums for brighter skin, tested for 8 weeks. Reviews, how to use vitamin C, and the top picks for every budget. |
+| The Best Affordable Moisturizers That Actually Work (Every Skin Type) | Skin Care, Product Reviews | The best affordable moisturizers that actually work for dry, oily and sensitive skin. Honest, tested drugstore picks. |
+| The Best Sunscreens for Every Skin Type (No White Cast, No Grease) | Skin Care, Product Reviews, Anti Aging | The best sunscreens for every skin type with no white cast or grease. Tested SPF picks for oily, dry and sensitive skin. |
+| Retinol for Beginners: How to Start (Plus the Best Products to Try) | Anti Aging, Skin Care, Product Reviews | Retinol for beginners: how to start without irritation, plus the best beginner retinol products to try for smoother skin. |
+| The Best Hair Growth Oils and How to Actually Use Them | Hair Care, Product Reviews, Natural Remedies | The best hair growth oils and how to use them, including rosemary, argan and coconut oil for a healthy scalp and stronger hair. |
+| Niacinamide 101: Benefits, How to Use It, and the Best Serums | Skin Care, Product Reviews | Niacinamide benefits, how to use it, and the best niacinamide serums for oily, sensitive and blemish-prone skin. |
+| Skincare Routine for Beginners: The Simple 3-Step Guide | Skin Care, Beauty Tips | A simple 3-step skincare routine for beginners. Learn the easy morning and night routine that gives you clear, healthy, glowing skin. |
+| The Best Skincare Routine for Oily Skin (That Actually Controls Shine) | Skin Care, Beauty Tips | The best skincare routine for oily skin to control shine and prevent breakouts, using lightweight products that actually work. |
+| How to Get Clear Skin Naturally at Home (9 Habits That Work) | Skin Care, Natural Remedies, Lifestyle | Learn how to get clear skin naturally at home with 9 simple, science-friendly habits for a healthy, glowing complexion. |
+| The Correct Order to Apply Your Skincare Products | Skin Care, Beauty Tips | The correct order to apply skincare products, morning and night, so every ingredient actually works. A simple, clear guide. |
+| Everyday Makeup Routine for Beginners (Under 10 Minutes) | Makeup, Beauty Tips | A quick everyday makeup routine for beginners in under 10 minutes for a fresh, natural, glowing look. |
+| How to Repair Damaged Hair at Home (A Simple Recovery Plan) | Hair Care, Natural Remedies | How to repair damaged hair at home with a simple recovery plan to rebuild strength, shine and softness and stop breakage. |
+| DIY Face Masks for Glowing Skin (5 Easy Recipes) | Natural Remedies, Skin Care | Five easy DIY face masks for glowing skin using simple kitchen ingredients for every skin type. Gentle, natural and effective. |
+| 12 Foods for Glowing Skin (Eat Your Way to a Natural Glow) | Lifestyle, Natural Remedies | Discover 12 foods for glowing skin. Eat your way to a clear, radiant complexion with these skin-friendly, science-backed foods. |
+| Glass Skin Routine: The Korean Beauty Secret to Dewy Skin | Beauty Trends, Skin Care | The glass skin routine explained: the step-by-step Korean beauty secret to luminous, dewy, poreless-looking skin. |
+| How to Strengthen Weak, Brittle Nails Naturally | Nail Care, Beauty Tips | How to strengthen weak, brittle nails naturally with simple habits, nutrients and care that rebuild strong, healthy nails. |
 
 ---
 
@@ -64,7 +76,7 @@ in the `images/` folder.
 - [x] **About** page with a real description ✔ included
 - [x] **Contact** page with a real email/form ✔ included
 - [x] **Disclaimer**, **Terms**, **Affiliate Disclosure**, **Editorial Policy**, **DMCA** ✔ included
-- [x] **Original, useful content** — 6 in-depth articles ✔ included (aim for 15–20+ before applying)
+- [x] **Original, useful content** — 16 in-depth articles ✔ included (great for applying; keep adding more)
 - [x] **Clear navigation menu** and footer links
 - [x] **Fast, mobile-friendly, no broken links** ✔ (the theme handles this)
 - [ ] **Custom domain** (optional but helps): connect a `.com` in Settings
