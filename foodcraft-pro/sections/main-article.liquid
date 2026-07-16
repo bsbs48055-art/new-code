@@ -1,0 +1,168 @@
+{%- liquid
+  assign ingredients = article.metafields.recipe.ingredients.value
+  assign instructions = article.metafields.recipe.instructions.value
+  assign nutrition = article.metafields.recipe.nutrition.value
+  assign is_recipe = false
+  if ingredients.size > 0 or instructions.size > 0
+    assign is_recipe = true
+  endif
+-%}
+<article class="section-padding article">
+  <div class="page-width container-narrow">
+    {% render 'breadcrumbs', article: article, blog: blog %}
+
+    <header class="article__header">
+      {%- if is_recipe -%}
+        {% render 'recipe-meta', article: article %}
+      {%- endif -%}
+      <h1 class="article__title">{{ article.title }}</h1>
+      <div class="article__byline">
+        {%- if article.user.first_name -%}
+          <span>{{ 'blog.article.by_author' | t: author: article.author }}</span>
+        {%- endif -%}
+        <time datetime="{{ article.published_at | date: '%Y-%m-%d' }}">{{ article.published_at | date: format: 'month_day_year' }}</time>
+      </div>
+    </header>
+
+    {%- if article.image -%}
+      <div class="article__featured-image aspect-ratio aspect-ratio--wide rounded">
+        <img
+          src="{{ article.image | image_url: width: 1400 }}"
+          srcset="{{ article.image | image_url: width: 700 }} 700w, {{ article.image | image_url: width: 1400 }} 1400w"
+          sizes="100vw"
+          alt="{{ article.image.alt | default: article.title | escape }}"
+          width="{{ article.image.width }}"
+          height="{{ article.image.height }}"
+          loading="eager"
+          fetchpriority="high"
+        >
+      </div>
+    {%- endif -%}
+
+    <div class="article__actions">
+      <button type="button" class="icon-text-button" data-print-page>
+        {% render 'icon', name: 'share' %}
+        {{ 'blog.article.print_recipe' | t }}
+      </button>
+      {% render 'social-icons', class: 'social-icons--article' %}
+    </div>
+
+    <div class="article__layout">
+      <div class="article__content rte">
+        {{ article.content }}
+      </div>
+
+      {%- if is_recipe -%}
+        <aside class="article__recipe-card">
+          {%- if ingredients.size > 0 -%}
+            <div class="recipe-ingredients">
+              <h2>{{ 'blog.article.ingredients' | t }}</h2>
+              <ul class="recipe-ingredients__list">
+                {%- for ingredient in ingredients -%}
+                  <li>
+                    <label class="checkbox-field">
+                      <input type="checkbox">
+                      <span>{{ ingredient }}</span>
+                    </label>
+                  </li>
+                {%- endfor -%}
+              </ul>
+            </div>
+          {%- endif -%}
+
+          {%- if nutrition != blank -%}
+            <div class="recipe-nutrition">
+              <h2>{{ 'blog.article.nutrition' | t }}</h2>
+              <p>{{ nutrition }}</p>
+            </div>
+          {%- endif -%}
+        </aside>
+      {%- endif -%}
+    </div>
+
+    {%- if is_recipe and instructions.size > 0 -%}
+      <div class="recipe-instructions">
+        <h2>{{ 'blog.article.instructions' | t }}</h2>
+        <ol class="recipe-instructions__list">
+          {%- for step in instructions -%}
+            <li>
+              <span class="recipe-instructions__number">{{ forloop.index }}</span>
+              <span class="recipe-instructions__text">{{ step }}</span>
+            </li>
+          {%- endfor -%}
+        </ol>
+      </div>
+    {%- endif -%}
+
+    {%- if blog.comments_enabled? -%}
+      <div class="article__comments" id="Comments">
+        <h2>{{ 'blog.article.comments' | t: count: article.comments_count }}</h2>
+
+        {%- if article.comments_count > 0 -%}
+          <ul class="comment-list">
+            {%- for comment in article.comments -%}
+              <li class="comment-list__item">
+                <p class="comment-list__author">{{ comment.author }}</p>
+                <p class="comment-list__date">{{ comment.created_at | date: format: 'month_day_year' }}</p>
+                <div class="comment-list__content rte">{{ comment.content }}</div>
+              </li>
+            {%- endfor -%}
+          </ul>
+        {%- endif -%}
+
+        {%- form 'new_comment', article, class: 'comment-form' -%}
+          {%- if form.posted_successfully? -%}
+            <p class="form-message form-message--success" role="status">
+              {%- if blog.moderated? -%}
+                {{ 'blog.article.comment_moderated' | t }}
+              {%- else -%}
+                {{ 'blog.article.comment_success' | t }}
+              {%- endif -%}
+            </p>
+          {%- endif -%}
+          {%- if form.errors -%}
+            <p class="form-message form-message--error" role="alert">{{ form.errors | default_errors }}</p>
+          {%- endif -%}
+
+          <div class="form-row form-row--2-col">
+            <div class="field">
+              <label class="field__label field__label--required" for="CommentAuthor">{{ 'blog.article.comment_name' | t }}</label>
+              <input type="text" class="field__input" id="CommentAuthor" name="comment[author]" value="{{ form.author }}" required>
+            </div>
+            <div class="field">
+              <label class="field__label field__label--required" for="CommentEmail">{{ 'blog.article.comment_email' | t }}</label>
+              <input type="email" class="field__input" id="CommentEmail" name="comment[email]" value="{{ form.email }}" required>
+            </div>
+          </div>
+          <div class="field">
+            <label class="field__label field__label--required" for="CommentBody">{{ 'blog.article.comment_message' | t }}</label>
+            <textarea class="field__textarea" id="CommentBody" name="comment[body]" rows="5" required>{{ form.body }}</textarea>
+          </div>
+          <button type="submit" class="button button--primary">{{ 'blog.article.comment_submit' | t }}</button>
+        {%- endform -%}
+      </div>
+    {%- endif -%}
+
+    <nav class="article__pagination">
+      {%- if article.previous_article -%}
+        <a href="{{ article.previous_article.url }}" class="article__pagination-link article__pagination-link--prev">
+          {% render 'icon', name: 'arrow-left' %}
+          <span>{{ article.previous_article.title }}</span>
+        </a>
+      {%- endif -%}
+      {%- if article.next_article -%}
+        <a href="{{ article.next_article.url }}" class="article__pagination-link article__pagination-link--next">
+          <span>{{ article.next_article.title }}</span>
+          {% render 'icon', name: 'arrow-right' %}
+        </a>
+      {%- endif -%}
+    </nav>
+  </div>
+</article>
+
+{% schema %}
+{
+  "name": "t:sections.main_article.name",
+  "settings": []
+}
+{% endschema %}

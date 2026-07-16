@@ -1,0 +1,40 @@
+{%- comment -%}
+  Renders a price block with compare-at (strikethrough) price and sale badge.
+  Accepts:
+    price: {Number} required — price in cents
+    compare_at_price: {Number} optional — compare-at price in cents
+    compact: {Boolean} optional — smaller styling for cart rows
+    show_badge: {Boolean} optional — show a "Sale" / percentage-off badge
+    unit_price: {ProductVariant.unit_price} optional
+    available: {Boolean} optional
+{%- endcomment -%}
+{%- liquid
+  assign on_sale = false
+  if compare_at_price > price
+    assign on_sale = true
+  endif
+-%}
+<div class="price {% if compact %}price--compact{% endif %} {% if on_sale %}price--on-sale{% endif %}">
+  {%- if on_sale -%}
+    <span class="visually-hidden">{{ 'products.product.sale_price' | t }}</span>
+    <span class="price__sale">{{ price | money }}</span>
+    <span class="visually-hidden">{{ 'products.product.regular_price' | t }}</span>
+    <s class="price__compare">{{ compare_at_price | money }}</s>
+    {%- if show_badge -%}
+      {%- assign discount = compare_at_price | minus: price | times: 100 | divided_by: compare_at_price -%}
+      <span class="badge badge--sale">-{{ discount }}%</span>
+    {%- endif -%}
+  {%- else -%}
+    <span class="price__regular">{{ price | money }}</span>
+  {%- endif -%}
+
+  {%- if unit_price -%}
+    <span class="price__unit">
+      ({{ unit_price | money }}/{% if unit_price_measurement.reference_value != 1 %}{{ unit_price_measurement.reference_value }}{% endif %}{{ unit_price_measurement.reference_unit }})
+    </span>
+  {%- endif -%}
+
+  {%- if available == false -%}
+    <span class="badge badge--sold-out">{{ 'products.product.sold_out' | t }}</span>
+  {%- endif -%}
+</div>

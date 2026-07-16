@@ -1,0 +1,26 @@
+{%- comment -%}
+  Renders a single product review.
+  Accepts:
+    review: {Object} expects .author, .rating, .title, .body, .date, .verified
+{%- endcomment -%}
+<article class="review-card">
+  <div class="review-card__header">
+    {% render 'star-rating', rating: review.rating, show_count: false %}
+    {%- if review.verified -%}
+      <span class="badge review-card__verified">
+        {% render 'icon', name: 'check', class: 'icon--small' %}
+        {{ 'products.reviews.verified_buyer' | t }}
+      </span>
+    {%- endif -%}
+  </div>
+  {%- if review.title != blank -%}
+    <h4 class="review-card__title">{{ review.title }}</h4>
+  {%- endif -%}
+  <p class="review-card__body">{{ review.body }}</p>
+  <div class="review-card__meta">
+    <span class="review-card__author">{{ review.author }}</span>
+    {%- if review.date != blank -%}
+      <span class="review-card__date">{{ review.date }}</span>
+    {%- endif -%}
+  </div>
+</article>

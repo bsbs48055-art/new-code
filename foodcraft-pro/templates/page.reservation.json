@@ -1,0 +1,23 @@
+{
+  "sections": {
+    "reservation": {
+      "type": "reservation-form",
+      "settings": {
+        "eyebrow": "Dine With Us",
+        "heading": "Reserve a Table",
+        "text": "<p>Join us for a seasonal tasting menu at our flagship kitchen. Reservations are recommended, especially on weekends.</p>"
+      }
+    },
+    "map": {
+      "type": "google-map",
+      "settings": {
+        "heading": "Find Us",
+        "address": "148 Harvest Lane, Portland, OR 97201",
+        "phone": "+1 (503) 555-0142",
+        "hours": "Dinner Tue–Sun, 5pm–10pm",
+        "button_label": "Get Directions"
+      }
+    }
+  },
+  "order": ["reservation", "map"]
+}

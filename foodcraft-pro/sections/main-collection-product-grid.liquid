@@ -1,0 +1,89 @@
+{%- liquid
+  assign results = collection
+  assign per_row = section.settings.columns_desktop
+-%}
+<section class="section-padding collection-grid-section" id="CollectionGrid-{{ section.id }}">
+  <div class="page-width">
+    <div class="collection-grid__toolbar">
+      <button type="button" class="button--secondary collection-grid__filter-toggle" data-facets-toggle>
+        {% render 'icon', name: 'filter' %}
+        {{ 'sections.collection.filter_and_sort' | t }}
+      </button>
+
+      <p class="collection-grid__count" data-product-count>
+        {{ 'sections.collection.product_count' | t: count: results.products_count }}
+      </p>
+
+      <div class="collection-grid__view-toggle" role="group" aria-label="{{ 'sections.collection.view_as' | t }}">
+        <button type="button" class="collection-grid__view-button is-active" data-view-toggle="grid" aria-label="{{ 'sections.collection.view_grid' | t }}">
+          {% render 'icon', name: 'grid' %}
+        </button>
+        <button type="button" class="collection-grid__view-button" data-view-toggle="list" aria-label="{{ 'sections.collection.view_list' | t }}">
+          {% render 'icon', name: 'list' %}
+        </button>
+      </div>
+
+      {% render 'sort-by', results: results %}
+    </div>
+
+    {% render 'active-facets', results: results %}
+
+    <div class="collection-grid__layout">
+      <aside class="collection-grid__sidebar" data-facets-sidebar aria-hidden="true">
+        {% render 'facets', results: results %}
+      </aside>
+
+      <div class="collection-grid__main">
+        {%- paginate results.products by section.settings.products_per_page -%}
+          {%- if results.products.size > 0 -%}
+            <div class="grid grid--{{ per_row }}-col grid--mobile-1-col collection-grid__products" data-product-grid>
+              {%- for product in results.products -%}
+                <div data-animate="fade" data-animate-index="{{ forloop.index0 | modulo: 8 }}">
+                  {% render 'product-card', product: product %}
+                </div>
+              {%- endfor -%}
+            </div>
+            <div data-pagination>
+              {% render 'pagination', paginate: paginate %}
+            </div>
+          {%- else -%}
+            <div class="collection-grid__empty">
+              {% render 'icon', name: 'search' %}
+              <h2>{{ 'sections.collection.empty_title' | t }}</h2>
+              <p>{{ 'sections.collection.empty_description' | t }}</p>
+              <a href="{{ results.url }}" class="button button--primary">{{ 'sections.collection.clear_all' | t }}</a>
+            </div>
+          {%- endif -%}
+        {%- endpaginate -%}
+      </div>
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "t:sections.main_collection_product_grid.name",
+  "settings": [
+    {
+      "type": "range",
+      "id": "products_per_page",
+      "min": 8,
+      "max": 48,
+      "step": 4,
+      "label": "t:sections.main_collection_product_grid.settings.products_per_page.label",
+      "default": 16
+    },
+    {
+      "type": "select",
+      "id": "columns_desktop",
+      "label": "t:sections.main_collection_product_grid.settings.columns_desktop.label",
+      "options": [
+        { "value": "3", "label": "3" },
+        { "value": "4", "label": "4" },
+        { "value": "5", "label": "5" }
+      ],
+      "default": "4"
+    }
+  ]
+}
+{% endschema %}

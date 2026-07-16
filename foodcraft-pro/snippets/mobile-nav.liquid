@@ -1,0 +1,75 @@
+{%- comment -%}
+  Slide-in mobile navigation drawer with nested accordions.
+  Accepts:
+    menu: {Linklist}
+{%- endcomment -%}
+<mobile-nav id="MobileNav" class="mobile-nav" aria-hidden="true">
+  <div class="mobile-nav__overlay" data-mobile-nav-close></div>
+  <div class="mobile-nav__panel" role="dialog" aria-modal="true" aria-label="{{ 'general.accessibility.mobile_menu' | t }}">
+    <div class="mobile-nav__header">
+      <span class="mobile-nav__title">{{ 'general.accessibility.menu' | t }}</span>
+      <button type="button" class="button--icon" data-mobile-nav-close aria-label="{{ 'general.accessibility.close' | t }}">
+        {% render 'icon', name: 'close' %}
+      </button>
+    </div>
+    <nav class="mobile-nav__nav">
+      <ul class="mobile-nav__list">
+        {%- for link in menu.links -%}
+          <li class="mobile-nav__item">
+            {%- if link.links.size > 0 -%}
+              <accordion-disclosure>
+                <details>
+                  <summary class="mobile-nav__link mobile-nav__link--parent">
+                    <span>{{ link.title }}</span>
+                    {% render 'icon', name: 'chevron-down', class: 'icon--chevron' %}
+                  </summary>
+                  <ul class="mobile-nav__submenu">
+                    {%- for childlink in link.links -%}
+                      <li>
+                        {%- if childlink.links.size > 0 -%}
+                          <accordion-disclosure>
+                            <details>
+                              <summary class="mobile-nav__link mobile-nav__link--child">
+                                <span>{{ childlink.title }}</span>
+                                {% render 'icon', name: 'chevron-down', class: 'icon--chevron' %}
+                              </summary>
+                              <ul class="mobile-nav__submenu mobile-nav__submenu--nested">
+                                {%- for grandchildlink in childlink.links -%}
+                                  <li>
+                                    <a href="{{ grandchildlink.url }}" class="mobile-nav__link mobile-nav__link--grandchild">{{ grandchildlink.title }}</a>
+                                  </li>
+                                {%- endfor -%}
+                              </ul>
+                            </details>
+                          </accordion-disclosure>
+                        {%- else -%}
+                          <a href="{{ childlink.url }}" class="mobile-nav__link mobile-nav__link--child">{{ childlink.title }}</a>
+                        {%- endif -%}
+                      </li>
+                    {%- endfor -%}
+                  </ul>
+                </details>
+              </accordion-disclosure>
+            {%- else -%}
+              <a href="{{ link.url }}" class="mobile-nav__link" {% if link.current %}aria-current="page"{% endif %}>{{ link.title }}</a>
+            {%- endif -%}
+          </li>
+        {%- endfor -%}
+      </ul>
+    </nav>
+
+    <div class="mobile-nav__footer">
+      <a href="{{ routes.account_url }}" class="icon-text-button">
+        {% render 'icon', name: 'user' %}
+        {{ 'general.accessibility.account' | t }}
+      </a>
+      <a href="/pages/wishlist" class="icon-text-button">
+        {% render 'icon', name: 'heart' %}
+        {{ 'general.wishlist.title' | t }}
+      </a>
+      <div class="mobile-nav__social">
+        {% render 'social-icons' %}
+      </div>
+    </div>
+  </div>
+</mobile-nav>

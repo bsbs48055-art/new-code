@@ -1,0 +1,45 @@
+/*
+  Generated from theme settings. Loaded as assets/settings.css via {{ 'settings.css' | asset_url }}
+  This file uses the .css.liquid extension so Liquid variables can be compiled into static CSS.
+*/
+:root {
+  --color-primary: {{ settings.color_primary.red }}, {{ settings.color_primary.green }}, {{ settings.color_primary.blue }};
+  --color-primary-dark: {{ settings.color_primary_dark.red }}, {{ settings.color_primary_dark.green }}, {{ settings.color_primary_dark.blue }};
+  --color-secondary: {{ settings.color_secondary.red }}, {{ settings.color_secondary.green }}, {{ settings.color_secondary.blue }};
+  --color-accent: {{ settings.color_accent.red }}, {{ settings.color_accent.green }}, {{ settings.color_accent.blue }};
+
+  --color-background: {{ settings.color_background.red }}, {{ settings.color_background.green }}, {{ settings.color_background.blue }};
+  --color-background-secondary: {{ settings.color_background_secondary.red }}, {{ settings.color_background_secondary.green }}, {{ settings.color_background_secondary.blue }};
+  --color-text: {{ settings.color_text.red }}, {{ settings.color_text.green }}, {{ settings.color_text.blue }};
+  --color-text-light: {{ settings.color_text_light.red }}, {{ settings.color_text_light.green }}, {{ settings.color_text_light.blue }};
+  --color-border: {{ settings.color_border.red }}, {{ settings.color_border.green }}, {{ settings.color_border.blue }};
+
+  --color-dark-background: {{ settings.color_dark_background.red }}, {{ settings.color_dark_background.green }}, {{ settings.color_dark_background.blue }};
+  --color-dark-text: {{ settings.color_dark_text.red }}, {{ settings.color_dark_text.green }}, {{ settings.color_dark_text.blue }};
+
+  --color-success: {{ settings.color_success.red }}, {{ settings.color_success.green }}, {{ settings.color_success.blue }};
+  --color-error: {{ settings.color_error.red }}, {{ settings.color_error.green }}, {{ settings.color_error.blue }};
+  --color-sale: {{ settings.color_sale.red }}, {{ settings.color_sale.green }}, {{ settings.color_sale.blue }};
+
+  --font-heading-family: {{ settings.font_heading.family }}, {{ settings.font_heading.fallback_families }};
+  --font-heading-style: {{ settings.font_heading.style }};
+  --font-heading-weight: {{ settings.font_heading.weight }};
+  --font-heading-scale: {{ settings.font_heading_scale }};
+
+  --font-body-family: {{ settings.font_body.family }}, {{ settings.font_body.fallback_families }};
+  --font-body-style: {{ settings.font_body.style }};
+  --font-body-weight: {{ settings.font_body.weight }};
+  --font-body-scale: {{ settings.font_body_scale }};
+
+  --page-width: {{ settings.page_width }}px;
+  --corner-radius: {{ settings.corner_radius }}px;
+  --button-radius: {{ settings.button_radius }}px;
+  --spacing-sections: {{ settings.spacing_sections }}px;
+  --spacing-sections-mobile: {{ settings.spacing_sections | times: 0.6 | round }}px;
+}
+
+.button,
+.badge,
+.button--uppercase {
+  text-transform: {% if settings.button_uppercase %}uppercase{% else %}none{% endif %};
+}

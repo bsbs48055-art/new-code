@@ -1,0 +1,40 @@
+{%- comment -%}
+  Renders removable pills for each currently active filter.
+  Accepts:
+    results: {Collection|Search} required
+{%- endcomment -%}
+{%- assign has_active_filters = false -%}
+{%- for filter in results.filters -%}
+  {%- if filter.type == 'price_range' -%}
+    {%- if filter.min_value.value != blank or filter.max_value.value != blank -%}
+      {%- assign has_active_filters = true -%}
+    {%- endif -%}
+  {%- else -%}
+    {%- for value in filter.active_values -%}
+      {%- assign has_active_filters = true -%}
+    {%- endfor -%}
+  {%- endif -%}
+{%- endfor -%}
+
+{%- if has_active_filters -%}
+  <div class="active-facets" data-active-facets>
+    {%- for filter in results.filters -%}
+      {%- if filter.type == 'price_range' -%}
+        {%- if filter.min_value.value != blank or filter.max_value.value != blank -%}
+          <a href="{{ filter.url_to_remove }}" class="active-facets__pill" data-facet-remove>
+            {{ filter.min_value.value | default: filter.range_min | money }} – {{ filter.max_value.value | default: filter.range_max | money }}
+            {% render 'icon', name: 'close', class: 'icon--small' %}
+          </a>
+        {%- endif -%}
+      {%- else -%}
+        {%- for value in filter.active_values -%}
+          <a href="{{ value.url_to_remove }}" class="active-facets__pill" data-facet-remove>
+            {{ value.label }}
+            {% render 'icon', name: 'close', class: 'icon--small' %}
+          </a>
+        {%- endfor -%}
+      {%- endif -%}
+    {%- endfor -%}
+    <a href="{{ results.url }}" class="active-facets__clear">{{ 'sections.collection.clear_all' | t }}</a>
+  </div>
+{%- endif -%}

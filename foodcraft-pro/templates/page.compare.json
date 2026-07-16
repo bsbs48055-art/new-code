@@ -1,0 +1,12 @@
+{
+  "sections": {
+    "compare": {
+      "type": "compare-page",
+      "settings": {
+        "heading": "Compare Products",
+        "subheading": "Compare up to 4 products side by side."
+      }
+    }
+  },
+  "order": ["compare"]
+}

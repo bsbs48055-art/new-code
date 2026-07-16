@@ -1,0 +1,344 @@
+/* FoodCraft Pro — Cart drawer & cart page shared rows */
+
+.cart-drawer {
+  position: fixed;
+  inset: 0;
+  z-index: 80;
+  visibility: hidden;
+  pointer-events: none;
+}
+
+.cart-drawer.is-open {
+  visibility: visible;
+  pointer-events: auto;
+}
+
+.cart-drawer__overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(20, 14, 8, 0.5);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.cart-drawer.is-open .cart-drawer__overlay {
+  opacity: 1;
+}
+
+.cart-drawer__panel {
+  position: absolute;
+  top: 0;
+  right: 0;
+  height: 100%;
+  width: 92%;
+  max-width: 44rem;
+  background: rgb(var(--color-background));
+  display: flex;
+  flex-direction: column;
+  transform: translateX(100%);
+  transition: transform 0.35s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.cart-drawer.is-open .cart-drawer__panel {
+  transform: translateX(0);
+}
+
+.cart-drawer__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 2rem 2.4rem;
+  border-bottom: 1px solid rgb(var(--color-border));
+}
+
+.cart-drawer__title {
+  font-size: 1.9rem;
+  margin: 0;
+}
+
+.cart-drawer__shipping-bar {
+  padding: 1.6rem 2.4rem;
+  border-bottom: 1px solid rgb(var(--color-border));
+}
+
+.cart-drawer__shipping-message {
+  font-size: 1.3rem;
+  margin: 0 0 0.8rem;
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+}
+
+.cart-drawer__shipping-message--success {
+  color: rgb(var(--color-success));
+  font-weight: 600;
+}
+
+.cart-drawer__progress {
+  height: 0.6rem;
+  border-radius: 1rem;
+  background: rgb(var(--color-background-secondary));
+  overflow: hidden;
+}
+
+.cart-drawer__progress-bar {
+  height: 100%;
+  background: rgb(var(--color-secondary));
+  border-radius: 1rem;
+  transition: width 0.4s ease;
+}
+
+.cart-drawer__body {
+  flex: 1;
+  overflow-y: auto;
+  padding: 0.8rem 2.4rem;
+}
+
+.cart-drawer__empty {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 1.6rem;
+  padding: 6rem 1rem;
+  color: rgb(var(--color-text-light));
+}
+
+.cart-drawer__empty-icon {
+  width: 4.8rem;
+  height: 4.8rem;
+  opacity: 0.4;
+}
+
+.cart-drawer__items {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.cart-item {
+  border-bottom: 1px solid rgb(var(--color-border));
+}
+
+.cart-item td {
+  padding: 1.6rem 0;
+  vertical-align: top;
+}
+
+.cart-item__media {
+  width: 8rem;
+}
+
+.cart-item__image {
+  width: 8rem;
+  border-radius: calc(var(--corner-radius) * 0.5);
+  background: rgb(var(--color-background-secondary));
+}
+
+.cart-item__details {
+  padding-left: 1.4rem;
+  width: 100%;
+}
+
+.cart-item__title {
+  display: block;
+  font-weight: 600;
+  font-size: 1.4rem;
+  text-decoration: none;
+  color: rgb(var(--color-text));
+  margin-bottom: 0.3rem;
+}
+
+.cart-item__variant,
+.cart-item__selling-plan {
+  font-size: 1.25rem;
+  color: rgb(var(--color-text-light));
+  margin: 0 0 0.3rem;
+}
+
+.cart-item__properties {
+  font-size: 1.2rem;
+  color: rgb(var(--color-text-light));
+  margin: 0.3rem 0;
+}
+
+.cart-item__properties div {
+  display: flex;
+  gap: 0.4rem;
+}
+
+.cart-item__price-mobile {
+  display: block;
+  margin: 0.6rem 0;
+}
+
+.cart-item__price-desktop {
+  display: none;
+  text-align: right;
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+@media screen and (min-width: 990px) {
+  .cart-item__price-mobile {
+    display: none;
+  }
+  .cart-item__price-desktop {
+    display: table-cell;
+  }
+}
+
+.cart-item__quantity {
+  display: flex;
+  align-items: center;
+  gap: 1.2rem;
+  margin-top: 0.8rem;
+}
+
+.quantity-selector--small .quantity-selector__button {
+  width: 3.2rem;
+  height: 3.6rem;
+}
+
+.quantity-selector--small .quantity-selector__input {
+  width: 3.6rem;
+  height: 3.6rem;
+  font-size: 1.3rem;
+}
+
+.cart-item__remove {
+  background: none;
+  border: none;
+  color: rgb(var(--color-text-light));
+  padding: 0.4rem;
+}
+
+.cart-item__remove:hover {
+  color: rgb(var(--color-error));
+}
+
+.cart-item__remove svg {
+  width: 1.6rem;
+  height: 1.6rem;
+}
+
+.cart-item.is-loading {
+  opacity: 0.5;
+  pointer-events: none;
+}
+
+.cart-drawer__footer {
+  padding: 2rem 2.4rem;
+  border-top: 1px solid rgb(var(--color-border));
+}
+
+.cart-drawer__note-toggle {
+  margin-bottom: 1.6rem;
+}
+
+.cart-drawer__note-toggle summary {
+  font-size: 1.3rem;
+  font-weight: 600;
+  cursor: pointer;
+  margin-bottom: 0.8rem;
+}
+
+.cart-drawer__subtotal {
+  display: flex;
+  justify-content: space-between;
+  font-size: 1.7rem;
+  font-weight: 700;
+  margin-bottom: 0.4rem;
+}
+
+.cart-drawer__tax-note {
+  font-size: 1.2rem;
+  color: rgb(var(--color-text-light));
+  margin: 0 0 1.6rem;
+}
+
+.cart-drawer__footer .button {
+  margin-bottom: 1rem;
+}
+
+.cart-drawer__footer .button:last-child {
+  margin-bottom: 0;
+}
+
+.cart-drawer__recommendations {
+  margin-top: 2rem;
+  padding-top: 2rem;
+  border-top: 1px solid rgb(var(--color-border));
+}
+
+/* Standalone cart page (used when settings.cart_type is "page") */
+.cart-page__title {
+  margin-bottom: 3.2rem;
+}
+
+.cart-page__empty {
+  text-align: center;
+  padding: 6rem 2rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.6rem;
+  color: rgb(var(--color-text-light));
+}
+
+.cart-page__empty svg {
+  width: 4.8rem;
+  height: 4.8rem;
+  opacity: 0.4;
+}
+
+.cart-page__layout {
+  display: grid;
+  gap: 4rem;
+  grid-template-columns: 1fr;
+}
+
+@media screen and (min-width: 990px) {
+  .cart-page__layout {
+    grid-template-columns: 1fr 36rem;
+  }
+}
+
+.cart-page__table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.cart-page__table thead th {
+  text-align: left;
+  padding-bottom: 1.6rem;
+  border-bottom: 1px solid rgb(var(--color-border));
+  font-size: 1.3rem;
+  color: rgb(var(--color-text-light));
+  font-weight: 600;
+}
+
+.cart-page__summary {
+  background: rgb(var(--color-background-secondary));
+  border-radius: var(--corner-radius);
+  padding: 2.8rem;
+  align-self: start;
+}
+
+.cart-page__summary h2 {
+  font-size: 1.9rem;
+  margin-bottom: 1.6rem;
+}
+
+.cart-page__subtotal {
+  display: flex;
+  justify-content: space-between;
+  font-size: 1.9rem;
+  font-weight: 700;
+  margin: 1.6rem 0 0.4rem;
+}
+
+.cart-page__tax-note {
+  font-size: 1.25rem;
+  color: rgb(var(--color-text-light));
+  margin-bottom: 1.6rem;
+}

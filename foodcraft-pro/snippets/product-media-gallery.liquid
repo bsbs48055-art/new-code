@@ -1,0 +1,82 @@
+{%- comment -%}
+  Product media gallery: large image with thumbnail rail, supports images,
+  videos and external videos. First image loads eagerly; the rest are lazy.
+  Accepts:
+    product: {Product} required
+    section_id: {String} required
+{%- endcomment -%}
+<product-media-gallery class="product-gallery" data-section="{{ section_id }}">
+  <div class="product-gallery__main">
+    <slider-component>
+      <div class="slider__track product-gallery__track" data-slider-track role="list">
+        {%- for media in product.media -%}
+          <div
+            class="product-gallery__slide aspect-ratio aspect-ratio--square rounded"
+            role="listitem"
+            data-media-id="{{ media.id }}"
+          >
+            {%- case media.media_type -%}
+              {%- when 'image' -%}
+                <img
+                  src="{{ media.preview_image | image_url: width: 900 }}"
+                  srcset="
+                    {{ media.preview_image | image_url: width: 450 }} 450w,
+                    {{ media.preview_image | image_url: width: 700 }} 700w,
+                    {{ media.preview_image | image_url: width: 900 }} 900w,
+                    {{ media.preview_image | image_url: width: 1200 }} 1200w
+                  "
+                  sizes="(min-width: 990px) 45vw, 90vw"
+                  alt="{{ media.alt | escape }}"
+                  width="{{ media.preview_image.width }}"
+                  height="{{ media.preview_image.height }}"
+                  loading="{% if forloop.index == 1 %}eager{% else %}lazy{% endif %}"
+                  fetchpriority="{% if forloop.index == 1 %}high{% else %}auto{% endif %}"
+                  data-zoomable
+                >
+              {%- when 'video' -%}
+                {{ media | video_tag: controls: true, loop: true, muted: true, preload: 'metadata', class: 'product-gallery__video' }}
+              {%- when 'external_video' -%}
+                <div class="product-gallery__external-video">{{ media | external_video_tag }}</div>
+              {%- when 'model' -%}
+                {{ media | model_viewer_tag: reveal: 'interaction' }}
+              {%- else -%}
+                {{ media | media_tag }}
+            {%- endcase -%}
+          </div>
+        {%- else -%}
+          <div class="product-gallery__slide aspect-ratio aspect-ratio--square rounded" role="listitem">
+            {{ 'product-1' | placeholder_svg_tag: 'placeholder-svg' }}
+          </div>
+        {%- endfor -%}
+      </div>
+      {%- if product.media.size > 1 -%}
+        <button type="button" class="slider__nav slider__nav--prev" data-slider-prev aria-label="{{ 'general.slider.previous' | t }}">{% render 'icon', name: 'chevron-left' %}</button>
+        <button type="button" class="slider__nav slider__nav--next" data-slider-next aria-label="{{ 'general.slider.next' | t }}">{% render 'icon', name: 'chevron-right' %}</button>
+      {%- endif -%}
+    </slider-component>
+  </div>
+
+  {%- if product.media.size > 1 -%}
+    <div class="product-gallery__thumbnails" data-thumbnails>
+      {%- for media in product.media -%}
+        <button
+          type="button"
+          class="product-gallery__thumbnail{% if forloop.first %} is-active{% endif %}"
+          data-media-id="{{ media.id }}"
+          aria-label="{{ 'products.product.view_media' | t: index: forloop.index }}"
+        >
+          <img
+            src="{{ media.preview_image | image_url: width: 160 }}"
+            alt=""
+            width="80"
+            height="80"
+            loading="lazy"
+          >
+          {%- if media.media_type == 'video' or media.media_type == 'external_video' -%}
+            <span class="product-gallery__thumbnail-icon">{% render 'icon', name: 'play' %}</span>
+          {%- endif -%}
+        </button>
+      {%- endfor -%}
+    </div>
+  {%- endif -%}
+</product-media-gallery>

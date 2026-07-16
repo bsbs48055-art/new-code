@@ -1,0 +1,64 @@
+<section class="collection-banner{% if section.settings.image != blank %} collection-banner--with-image{% endif %}">
+  {%- if section.settings.image != blank -%}
+    <div class="collection-banner__media aspect-ratio aspect-ratio--wide">
+      <img
+        src="{{ section.settings.image | image_url: width: 1600 }}"
+        srcset="{{ section.settings.image | image_url: width: 800 }} 800w, {{ section.settings.image | image_url: width: 1600 }} 1600w"
+        sizes="100vw"
+        alt="{{ section.settings.image.alt | default: collection.title | escape }}"
+        width="{{ section.settings.image.width }}"
+        height="{{ section.settings.image.height }}"
+        loading="eager"
+        fetchpriority="high"
+      >
+      <div class="collection-banner__overlay"></div>
+    </div>
+  {%- elsif collection.image and section.settings.show_collection_image -%}
+    <div class="collection-banner__media aspect-ratio aspect-ratio--wide">
+      <img
+        src="{{ collection.image | image_url: width: 1600 }}"
+        alt="{{ collection.title | escape }}"
+        width="1600"
+        height="600"
+        loading="eager"
+      >
+      <div class="collection-banner__overlay"></div>
+    </div>
+  {%- endif -%}
+
+  <div class="page-width">
+    {% render 'breadcrumbs', collection: collection %}
+    <div class="collection-banner__content">
+      <h1 class="collection-banner__title">{{ collection.title }}</h1>
+      {%- if collection.description != blank and section.settings.show_description -%}
+        <div class="collection-banner__description rte">{{ collection.description }}</div>
+      {%- endif -%}
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "t:sections.main_collection_banner.name",
+  "settings": [
+    {
+      "type": "image_picker",
+      "id": "image",
+      "label": "t:sections.main_collection_banner.settings.image.label",
+      "info": "t:sections.main_collection_banner.settings.image.info"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_collection_image",
+      "label": "t:sections.main_collection_banner.settings.show_collection_image.label",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "show_description",
+      "label": "t:sections.main_collection_banner.settings.show_description.label",
+      "default": true
+    }
+  ]
+}
+{% endschema %}

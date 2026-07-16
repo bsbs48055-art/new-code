@@ -1,0 +1,14 @@
+{%- comment -%}
+  Header cart trigger button with a live item-count bubble.
+{%- endcomment -%}
+<button
+  type="button"
+  class="header__icon-button header__cart-toggle"
+  data-cart-toggle
+  aria-label="{{ 'sections.cart.title' | t }} ({{ cart.item_count }})"
+>
+  {% render 'icon', name: 'cart' %}
+  <span class="header__cart-count{% if cart.item_count == 0 %} is-hidden{% endif %}" data-cart-count>
+    {{ cart.item_count }}
+  </span>
+</button>

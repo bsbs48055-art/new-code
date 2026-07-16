@@ -1,0 +1,236 @@
+{
+  "general": {
+    "accessibility": {
+      "skip_to_content": "Skip to content",
+      "close": "Close",
+      "menu": "Menu",
+      "mobile_menu": "Mobile navigation",
+      "main_navigation": "Main navigation",
+      "account": "Account",
+      "breadcrumbs": "Breadcrumbs",
+      "back_to_top": "Back to top",
+      "loading": "Loading...",
+      "refresh_page": "This page has been updated."
+    },
+    "breadcrumbs": {
+      "home": "Home"
+    },
+    "meta": {
+      "tags": "Tagged \"{{ tags }}\"",
+      "page": "Page {{ page }}"
+    },
+    "pagination": {
+      "label": "Pagination",
+      "previous": "Previous page",
+      "next": "Next page",
+      "go_to_page": "Go to page {{ page }}"
+    },
+    "slider": {
+      "previous": "Previous slide",
+      "next": "Next slide"
+    },
+    "social": {
+      "instagram": "Instagram",
+      "facebook": "Facebook",
+      "pinterest": "Pinterest",
+      "youtube": "YouTube",
+      "tiktok": "TikTok",
+      "twitter": "X (Twitter)"
+    },
+    "search": {
+      "search": "Search",
+      "placeholder": "Search products, recipes, and more",
+      "clear": "Clear search",
+      "hint": "Start typing to search products, recipes, and pages.",
+      "no_results_html": "No results found for \"{{ terms }}\"",
+      "no_results_suggestion": "Try checking your spelling or using more general terms.",
+      "products": "Products",
+      "collections": "Collections",
+      "pages": "Pages",
+      "recipes_articles": "Recipes & Articles",
+      "all": "All",
+      "view_all_results_html": "View all results for \"{{ terms }}\""
+    },
+    "wishlist": {
+      "title": "Wishlist",
+      "add": "Add to wishlist",
+      "empty": "Your wishlist is empty. Tap the heart icon on any product to save it here.",
+      "continue_shopping": "Continue shopping"
+    },
+    "compare": {
+      "title": "Compare",
+      "add": "Add to compare",
+      "empty": "You haven't added any products to compare yet.",
+      "continue_shopping": "Continue shopping"
+    },
+    "countdown": {
+      "days": "Days",
+      "hours": "Hours",
+      "minutes": "Minutes",
+      "seconds": "Seconds",
+      "expired": "This offer has ended."
+    },
+    "password_page": {
+      "opening_soon": "Opening soon",
+      "login_form_password_label": "Password",
+      "login_form_password_placeholder": "Enter store password",
+      "login_form_submit": "Enter",
+      "login_form_password_incorrect": "Incorrect password. Please try again.",
+      "contact_admin_html": "Are you the store owner? <a href=\"/admin\">Log in here</a>"
+    },
+    "404": {
+      "title": "404 — Page not found",
+      "subtext": "The page you're looking for may have been moved or no longer exists.",
+      "link": "Back to homepage"
+    }
+  },
+  "onboarding": {
+    "product_title": "Example product title",
+    "blog_title": "Example recipe title"
+  },
+  "products": {
+    "product": {
+      "add_to_cart": "Add to cart",
+      "added_to_cart": "Added to cart",
+      "sold_out": "Sold out",
+      "quantity": "Quantity",
+      "decrease_quantity": "Decrease quantity",
+      "increase_quantity": "Increase quantity",
+      "quick_view": "Quick view",
+      "view_full_details": "View full details",
+      "view_media": "View media {{ index }}",
+      "share": "Share:",
+      "sale_price": "Sale price",
+      "regular_price": "Regular price",
+      "tax_included_shipping_note": "Tax included. Shipping calculated at checkout.",
+      "badge_new": "New",
+      "badge_best_seller": "Best seller",
+      "rating_label": "Rated {{ rating }} out of {{ max }} stars",
+      "wishlist_added": "Added to your wishlist",
+      "wishlist_removed": "Removed from your wishlist",
+      "compare_limit": "You can compare up to {{ count }} products at a time"
+    },
+    "reviews": {
+      "write_a_review": "Write a review",
+      "based_on_count": "Based on {{ count }} reviews",
+      "no_reviews_yet": "No reviews yet. Be the first to share your thoughts!",
+      "verified_buyer": "Verified buyer",
+      "your_rating": "Your rating",
+      "stars_label": "{{ count }} stars",
+      "your_name": "Your name",
+      "your_email": "Your email",
+      "review_title": "Review title",
+      "your_review": "Your review",
+      "submit_review": "Submit review",
+      "form_success": "Thank you! Your review has been submitted for moderation."
+    }
+  },
+  "sections": {
+    "cart": {
+      "title": "Cart",
+      "empty": "Your cart is empty.",
+      "continue_shopping": "Continue shopping",
+      "cart_error": "Something went wrong. Please try again.",
+      "add_note": "Add order note",
+      "note_placeholder": "Add special instructions for your order",
+      "subtotal": "Subtotal",
+      "taxes_shipping_note": "Taxes and shipping calculated at checkout.",
+      "view_cart": "View cart",
+      "checkout": "Checkout",
+      "remove_item": "Remove {{ title }}",
+      "free_shipping_achieved": "You've unlocked free shipping!",
+      "free_shipping_remaining_html": "You're {{ amount }} away from free shipping",
+      "product": "Product",
+      "price": "Price",
+      "order_summary": "Order summary"
+    },
+    "collection": {
+      "filter_and_sort": "Filter & sort",
+      "sort_by": "Sort by",
+      "view_as": "View as",
+      "view_grid": "Grid view",
+      "view_list": "List view",
+      "product_count": "{{ count }} products",
+      "price_min": "From",
+      "price_max": "To",
+      "clear_all": "Clear all",
+      "empty_title": "No products found",
+      "empty_description": "Try removing some filters or searching for something else."
+    },
+    "collection_list": {
+      "products_count": "{{ count }} products"
+    },
+    "list_collections": {
+      "title": "Shop by Category"
+    },
+    "newsletter": {
+      "email_label": "Email address",
+      "email_placeholder": "Your email address",
+      "submit": "Subscribe",
+      "success": "Thanks for subscribing! Look out for your discount code by email.",
+      "error": "Please enter a valid email address.",
+      "disclaimer": "By subscribing, you agree to receive marketing emails. Unsubscribe anytime."
+    },
+    "footer": {
+      "rights_reserved": "All rights reserved."
+    },
+    "google_map": {
+      "map_title": "Store location map",
+      "no_address": "Add an address in the theme editor to display a map."
+    },
+    "contact_form": {
+      "name_field": "Name",
+      "name": "Name",
+      "email": "Email",
+      "phone": "Phone",
+      "subject": "Subject",
+      "subject_general": "General question",
+      "subject_order": "Order support",
+      "subject_wholesale": "Wholesale inquiry",
+      "subject_press": "Press",
+      "message": "Message",
+      "submit": "Send message",
+      "success": "Thanks for reaching out! We'll get back to you within one business day."
+    },
+    "reservation": {
+      "name": "Full name",
+      "email": "Email",
+      "phone": "Phone",
+      "date": "Date",
+      "time": "Time",
+      "select_time": "Select a time",
+      "party_size": "Party size",
+      "guests": "{{ count }} guests",
+      "notes": "Special requests",
+      "notes_placeholder": "Allergies, celebrations, seating preferences...",
+      "submit": "Request reservation",
+      "success": "Thank you! Your reservation request has been sent — we'll confirm by email shortly."
+    },
+    "faq": {
+      "search_label": "Search FAQs",
+      "search_placeholder": "Search frequently asked questions",
+      "no_results": "No matching questions found. Try a different search term."
+    }
+  },
+  "blog": {
+    "all_tags": "All",
+    "empty_title": "No recipes published yet.",
+    "article": {
+      "by_author": "By {{ author }}",
+      "prep_time": "Prep",
+      "cook_time": "Cook",
+      "ingredients": "Ingredients",
+      "instructions": "Instructions",
+      "nutrition": "Nutrition",
+      "print_recipe": "Print recipe",
+      "view_recipe": "View recipe",
+      "comments": "{{ count }} comments",
+      "comment_name": "Name",
+      "comment_email": "Email",
+      "comment_message": "Comment",
+      "comment_submit": "Post comment",
+      "comment_success": "Your comment has been posted.",
+      "comment_moderated": "Your comment has been submitted and is awaiting approval."
+    }
+  }
+}

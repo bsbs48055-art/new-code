@@ -1,0 +1,139 @@
+<section class="section-padding contact-section">
+  <div class="page-width">
+    <div class="contact-section__grid">
+      <div class="contact-section__info" data-animate="fade">
+        {%- if section.settings.eyebrow != blank -%}
+          <span class="eyebrow">{{ section.settings.eyebrow }}</span>
+        {%- endif -%}
+        {%- if section.settings.heading != blank -%}
+          <h1>{{ section.settings.heading }}</h1>
+        {%- endif -%}
+        {%- if section.settings.text != blank -%}
+          <div class="contact-section__text rte">{{ section.settings.text }}</div>
+        {%- endif -%}
+
+        <ul class="contact-section__details">
+          {%- if section.settings.address != blank -%}
+            <li>
+              {% render 'icon', name: 'map-pin' %}
+              <span>{{ section.settings.address }}</span>
+            </li>
+          {%- endif -%}
+          {%- if section.settings.phone != blank -%}
+            <li>
+              {% render 'icon', name: 'phone' %}
+              <a href="tel:{{ section.settings.phone | remove: ' ' }}">{{ section.settings.phone }}</a>
+            </li>
+          {%- endif -%}
+          {%- if section.settings.email != blank -%}
+            <li>
+              {% render 'icon', name: 'mail' %}
+              <a href="mailto:{{ section.settings.email }}">{{ section.settings.email }}</a>
+            </li>
+          {%- endif -%}
+          {%- if section.settings.hours != blank -%}
+            <li>
+              {% render 'icon', name: 'clock' %}
+              <span>{{ section.settings.hours }}</span>
+            </li>
+          {%- endif -%}
+        </ul>
+
+        {% render 'social-icons', class: 'social-icons--contact' %}
+      </div>
+
+      <div class="contact-section__form-wrapper" data-animate="fade">
+        {%- form 'contact', class: 'contact-form' -%}
+          {%- if form.posted_successfully? -%}
+            <p class="form-message form-message--success" role="status">
+              {{ 'sections.contact_form.success' | t }}
+            </p>
+          {%- else -%}
+            {%- if form.errors -%}
+              <p class="form-message form-message--error" role="alert">{{ form.errors | default_errors }}</p>
+            {%- endif -%}
+
+            <div class="form-row form-row--2-col">
+              <div class="field">
+                <label class="field__label field__label--required" for="ContactFormName">{{ 'sections.contact_form.name' | t }}</label>
+                <input type="text" class="field__input" id="ContactFormName" name="contact[name]" value="{{ form.name }}" required>
+              </div>
+              <div class="field">
+                <label class="field__label field__label--required" for="ContactFormEmail">{{ 'sections.contact_form.email' | t }}</label>
+                <input type="email" class="field__input" id="ContactFormEmail" name="contact[email]" value="{{ form.email }}" required>
+              </div>
+            </div>
+            <div class="field">
+              <label class="field__label" for="ContactFormPhone">{{ 'sections.contact_form.phone' | t }}</label>
+              <input type="tel" class="field__input" id="ContactFormPhone" name="contact[phone]" value="{{ form.phone }}">
+            </div>
+            <div class="field">
+              <label class="field__label" for="ContactFormSubject">{{ 'sections.contact_form.subject' | t }}</label>
+              <select class="field__input" id="ContactFormSubject" name="contact[Subject]">
+                <option value="General question">{{ 'sections.contact_form.subject_general' | t }}</option>
+                <option value="Order support">{{ 'sections.contact_form.subject_order' | t }}</option>
+                <option value="Wholesale inquiry">{{ 'sections.contact_form.subject_wholesale' | t }}</option>
+                <option value="Press">{{ 'sections.contact_form.subject_press' | t }}</option>
+              </select>
+            </div>
+            <div class="field">
+              <label class="field__label field__label--required" for="ContactFormMessage">{{ 'sections.contact_form.message' | t }}</label>
+              <textarea class="field__textarea" id="ContactFormMessage" name="contact[body]" rows="6" required>{{ form.body }}</textarea>
+            </div>
+            <button type="submit" class="button button--primary button--full">{{ 'sections.contact_form.submit' | t }}</button>
+          {%- endif -%}
+        {%- endform -%}
+      </div>
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "t:sections.contact_form.name",
+  "settings": [
+    {
+      "type": "text",
+      "id": "eyebrow",
+      "label": "t:sections.contact_form.settings.eyebrow.label",
+      "default": "Get in Touch"
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "t:sections.contact_form.settings.heading.label",
+      "default": "We'd Love to Hear From You"
+    },
+    {
+      "type": "richtext",
+      "id": "text",
+      "label": "t:sections.contact_form.settings.text.label",
+      "default": "<p>Questions about an order, a recipe, or a wholesale partnership? Send us a message and our team will reply within one business day.</p>"
+    },
+    {
+      "type": "text",
+      "id": "address",
+      "label": "t:sections.contact_form.settings.address.label",
+      "default": "148 Harvest Lane, Portland, OR 97201"
+    },
+    {
+      "type": "text",
+      "id": "phone",
+      "label": "t:sections.contact_form.settings.phone.label",
+      "default": "+1 (503) 555-0142"
+    },
+    {
+      "type": "text",
+      "id": "email",
+      "label": "t:sections.contact_form.settings.email.label",
+      "default": "hello@foodcraftpro.com"
+    },
+    {
+      "type": "text",
+      "id": "hours",
+      "label": "t:sections.contact_form.settings.hours.label",
+      "default": "Mon–Sat, 9am–6pm"
+    }
+  ]
+}
+{% endschema %}

@@ -1,0 +1,15 @@
+{%- comment -%}
+  Renders the sort-by dropdown for collection/search results.
+  Accepts:
+    results: {Collection|Search} required
+{%- endcomment -%}
+<div class="sort-by">
+  <label class="visually-hidden" for="SortBy">{{ 'sections.collection.sort_by' | t }}</label>
+  <select name="sort_by" id="SortBy" class="field__input sort-by__select" data-sort-select>
+    {%- for option in results.sort_options -%}
+      <option value="{{ option.value }}" {% if option.value == results.sort_by %}selected{% endif %}>
+        {{ option.name }}
+      </option>
+    {%- endfor -%}
+  </select>
+</div>

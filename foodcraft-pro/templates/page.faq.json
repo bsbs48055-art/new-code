@@ -1,0 +1,63 @@
+{
+  "sections": {
+    "faq": {
+      "type": "faq",
+      "settings": {
+        "eyebrow": "Support",
+        "heading": "Frequently Asked Questions",
+        "subheading": "Everything you need to know about ordering, shipping, and our products.",
+        "enable_search": true,
+        "show_contact_cta": true,
+        "contact_cta_text": "Still have questions?",
+        "contact_cta_button_label": "Contact Us",
+        "contact_cta_link": "/pages/contact"
+      },
+      "blocks": {
+        "q1": {
+          "type": "question",
+          "settings": {
+            "question": "How long does shipping take?",
+            "answer": "<p>Orders ship within 1-2 business days and arrive within 3-7 business days depending on your location. You'll receive a tracking number by email as soon as your order ships.</p>"
+          }
+        },
+        "q2": {
+          "type": "question",
+          "settings": {
+            "question": "Do you ship internationally?",
+            "answer": "<p>We currently ship within the United States and Canada. We're working on expanding — sign up for our newsletter to be the first to know.</p>"
+          }
+        },
+        "q3": {
+          "type": "question",
+          "settings": {
+            "question": "What is your return policy?",
+            "answer": "<p>Because our products are food items, we can't accept returns, but if anything arrives damaged or isn't right, contact us within 14 days and we'll make it right.</p>"
+          }
+        },
+        "q4": {
+          "type": "question",
+          "settings": {
+            "question": "Are your products gluten-free?",
+            "answer": "<p>Many of our products are gluten-free — look for the label on each product page. Ingredients and allergen information are always listed under the \"Ingredients\" tab.</p>"
+          }
+        },
+        "q5": {
+          "type": "question",
+          "settings": {
+            "question": "Do you offer wholesale or bulk pricing?",
+            "answer": "<p>Yes! Reach out through our contact form and select \"Wholesale inquiry\" — our team will follow up with pricing tiers and minimum order quantities.</p>"
+          }
+        },
+        "q6": {
+          "type": "question",
+          "settings": {
+            "question": "How should I store my order after it arrives?",
+            "answer": "<p>Storage instructions vary by product and are listed on each product page. Most sauces and condiments should be refrigerated after opening.</p>"
+          }
+        }
+      },
+      "block_order": ["q1", "q2", "q3", "q4", "q5", "q6"]
+    }
+  },
+  "order": ["faq"]
+}

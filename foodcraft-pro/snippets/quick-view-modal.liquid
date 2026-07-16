@@ -1,0 +1,22 @@
+{%- comment -%}
+  Empty shell for the Quick View modal. Populated client-side by quick-view.js
+  which fetches `{product-url}?view=quick-view` (see templates/product.quick-view.json)
+  and injects the returned #QuickViewContent markup.
+{%- endcomment -%}
+<modal-dialog id="QuickViewModal" class="modal quick-view-modal" aria-hidden="true">
+  <div class="modal__content" data-modal-content>
+    <button type="button" class="button--icon modal__close" data-modal-close aria-label="{{ 'general.accessibility.close' | t }}">
+      {% render 'icon', name: 'close' %}
+    </button>
+    <div class="quick-view-modal__body" data-quick-view-body>
+      <div class="quick-view-modal__loading">
+        <span class="skeleton aspect-ratio aspect-ratio--square rounded"></span>
+        <div class="quick-view-modal__loading-lines">
+          <span class="skeleton rounded" style="width: 70%; height: 2.8rem;"></span>
+          <span class="skeleton rounded" style="width: 40%; height: 2rem;"></span>
+          <span class="skeleton rounded" style="width: 100%; height: 4.8rem;"></span>
+        </div>
+      </div>
+    </div>
+  </div>
+</modal-dialog>

@@ -1,0 +1,25 @@
+{%- comment -%}
+  Renders the shop's social profile links as an icon row.
+  Accepts:
+    class: {String} optional additional classes for the wrapping <ul>
+{%- endcomment -%}
+<ul class="social-icons {{ class }}">
+  {%- if settings.social_instagram_link != blank -%}
+    <li><a href="{{ settings.social_instagram_link }}" class="social-icons__link" aria-label="{{ 'general.social.instagram' | t }}" target="_blank" rel="noopener">{% render 'icon', name: 'instagram' %}</a></li>
+  {%- endif -%}
+  {%- if settings.social_facebook_link != blank -%}
+    <li><a href="{{ settings.social_facebook_link }}" class="social-icons__link" aria-label="{{ 'general.social.facebook' | t }}" target="_blank" rel="noopener">{% render 'icon', name: 'facebook' %}</a></li>
+  {%- endif -%}
+  {%- if settings.social_pinterest_link != blank -%}
+    <li><a href="{{ settings.social_pinterest_link }}" class="social-icons__link" aria-label="{{ 'general.social.pinterest' | t }}" target="_blank" rel="noopener">{% render 'icon', name: 'pinterest' %}</a></li>
+  {%- endif -%}
+  {%- if settings.social_youtube_link != blank -%}
+    <li><a href="{{ settings.social_youtube_link }}" class="social-icons__link" aria-label="{{ 'general.social.youtube' | t }}" target="_blank" rel="noopener">{% render 'icon', name: 'youtube' %}</a></li>
+  {%- endif -%}
+  {%- if settings.social_tiktok_link != blank -%}
+    <li><a href="{{ settings.social_tiktok_link }}" class="social-icons__link" aria-label="{{ 'general.social.tiktok' | t }}" target="_blank" rel="noopener">{% render 'icon', name: 'tiktok' %}</a></li>
+  {%- endif -%}
+  {%- if settings.social_twitter_link != blank -%}
+    <li><a href="{{ settings.social_twitter_link }}" class="social-icons__link" aria-label="{{ 'general.social.twitter' | t }}" target="_blank" rel="noopener">{% render 'icon', name: 'twitter' %}</a></li>
+  {%- endif -%}
+</ul>

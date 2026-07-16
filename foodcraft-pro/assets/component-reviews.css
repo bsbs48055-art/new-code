@@ -1,0 +1,135 @@
+/* FoodCraft Pro — Product reviews list & submission form */
+
+.product-reviews__header {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1.6rem;
+  margin-bottom: 3.2rem;
+}
+
+.product-reviews__header h2 {
+  margin: 0;
+  width: 100%;
+}
+
+.product-reviews__summary {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.product-reviews__summary-text {
+  font-size: 1.4rem;
+  color: rgb(var(--color-text-light));
+}
+
+.product-reviews__form {
+  max-width: 60rem;
+  margin: 0 auto 3.2rem;
+  background: rgb(var(--color-background));
+  border-radius: var(--corner-radius);
+  padding: 3.2rem;
+}
+
+.review-form__rating-field {
+  margin-bottom: 2rem;
+}
+
+.review-form__rating-input {
+  display: flex;
+  flex-direction: row-reverse;
+  gap: 0.4rem;
+  width: fit-content;
+}
+
+.review-form__rating-input input {
+  position: absolute;
+  opacity: 0;
+  width: 1px;
+  height: 1px;
+}
+
+.review-form__rating-input label {
+  cursor: pointer;
+  color: rgb(var(--color-border));
+}
+
+.review-form__rating-input label svg {
+  width: 2.8rem;
+  height: 2.8rem;
+}
+
+.review-form__rating-input input:checked ~ label,
+.review-form__rating-input label:hover,
+.review-form__rating-input label:hover ~ label {
+  color: rgb(var(--color-accent));
+}
+
+.product-reviews__list {
+  display: grid;
+  gap: 2rem;
+  grid-template-columns: 1fr;
+}
+
+@media screen and (min-width: 750px) {
+  .product-reviews__list {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+.review-card {
+  background: rgb(var(--color-background));
+  border-radius: var(--corner-radius);
+  padding: 2.4rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.8rem;
+}
+
+.review-card__header {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.review-card__verified {
+  background: rgba(var(--color-success), 0.12);
+  color: rgb(var(--color-success));
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+
+.review-card__title {
+  font-size: 1.6rem;
+  margin: 0;
+}
+
+.review-card__body {
+  color: rgb(var(--color-text-light));
+  font-size: 1.4rem;
+  margin: 0;
+}
+
+.review-card__meta {
+  display: flex;
+  justify-content: space-between;
+  font-size: 1.25rem;
+  color: rgb(var(--color-text-light));
+  margin-top: auto;
+  padding-top: 0.8rem;
+}
+
+.review-card__author {
+  font-weight: 600;
+}
+
+.product-reviews__empty {
+  grid-column: 1 / -1;
+  text-align: center;
+  color: rgb(var(--color-text-light));
+  padding: 2rem 0;
+}

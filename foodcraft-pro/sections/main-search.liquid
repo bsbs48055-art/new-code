@@ -1,0 +1,77 @@
+<section class="section-padding search-page">
+  <div class="page-width">
+    <div class="section-heading">
+      <h1>{{ 'general.search.search' | t }}</h1>
+    </div>
+
+    <form action="{{ routes.search_url }}" method="get" role="search" class="search-page__form">
+      {% render 'icon', name: 'search' %}
+      <input
+        type="search"
+        name="q"
+        class="search-page__input"
+        value="{{ search.terms | escape }}"
+        placeholder="{{ 'general.search.placeholder' | t }}"
+        aria-label="{{ 'general.search.search' | t }}"
+      >
+      <input type="hidden" name="type" value="{{ search.types | join: ',' | default: 'product,article,page' }}">
+    </form>
+
+    {%- if search.performed -%}
+      <div class="search-page__tabs">
+        <a href="?q={{ search.terms | url_encode }}&type=product,article,page" class="search-page__tab {% unless search.types.size == 1 %}is-active{% endunless %}">
+          {{ 'general.search.all' | t }} ({{ search.results_count }})
+        </a>
+        <a href="?q={{ search.terms | url_encode }}&type=product" class="search-page__tab {% if search.types == 'product' %}is-active{% endif %}">
+          {{ 'general.search.products' | t }}
+        </a>
+        <a href="?q={{ search.terms | url_encode }}&type=article" class="search-page__tab {% if search.types == 'article' %}is-active{% endif %}">
+          {{ 'general.search.recipes_articles' | t }}
+        </a>
+        <a href="?q={{ search.terms | url_encode }}&type=page" class="search-page__tab {% if search.types == 'page' %}is-active{% endif %}">
+          {{ 'general.search.pages' | t }}
+        </a>
+      </div>
+
+      {%- if search.results.size > 0 -%}
+        {%- paginate search.results by 24 -%}
+          <div class="grid grid--4-col grid--mobile-1-col">
+            {%- for item in search.results -%}
+              <div data-animate="fade" data-animate-index="{{ forloop.index0 | modulo: 8 }}">
+                {%- case item.object_type -%}
+                  {%- when 'product' -%}
+                    {% render 'product-card', product: item %}
+                  {%- when 'article' -%}
+                    {% render 'recipe-card', article: item %}
+                  {%- when 'page' -%}
+                    <a href="{{ item.url }}" class="search-page__page-result">
+                      <h3>{{ item.title }}</h3>
+                      <p>{{ item.content | strip_html | truncatewords: 20 }}</p>
+                    </a>
+                {%- endcase -%}
+              </div>
+            {%- endfor -%}
+          </div>
+          {% render 'pagination', paginate: paginate %}
+        {%- endpaginate -%}
+      {%- else -%}
+        <div class="collection-grid__empty">
+          {% render 'icon', name: 'search' %}
+          <h2>{{ 'general.search.no_results_html' | t: terms: search.terms }}</h2>
+          <p>{{ 'general.search.no_results_suggestion' | t }}</p>
+        </div>
+      {%- endif -%}
+    {%- else -%}
+      <div class="collection-grid__empty">
+        <p>{{ 'general.search.hint' | t }}</p>
+      </div>
+    {%- endif -%}
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "t:sections.main_search.name",
+  "settings": []
+}
+{% endschema %}

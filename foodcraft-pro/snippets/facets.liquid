@@ -1,0 +1,110 @@
+{%- comment -%}
+  Renders the filter sidebar (color, size, price range, availability, etc.)
+  using Shopify's native Storefront Filtering API (`collection.filters` /
+  `search.filters`). Works with either a collection or a search results
+  object depending on the current template.
+  Accepts:
+    results: {Collection|Search} required — must expose `.filters`
+    paginate: {Object} required — Liquid paginate object for the parts URL
+{%- endcomment -%}
+<div class="facets" data-facets>
+  <div class="facets__header">
+    <h2 class="facets__title">{{ 'sections.collection.filter_and_sort' | t }}</h2>
+    <button type="button" class="button--icon facets__mobile-close" data-facets-close aria-label="{{ 'general.accessibility.close' | t }}">
+      {% render 'icon', name: 'close' %}
+    </button>
+  </div>
+
+  <form id="FacetFiltersForm" data-facets-form>
+    {%- if results.sort_by != blank -%}
+      <input type="hidden" name="sort_by" value="{{ results.sort_by }}" data-sort-input>
+    {%- endif -%}
+
+    {%- for filter in results.filters -%}
+      <div class="facets__group">
+        <accordion-disclosure>
+          <details class="accordion__item" open>
+            <summary class="accordion__summary">
+              <span>{{ filter.label }}</span>
+              {% render 'icon', name: 'chevron-down', class: 'icon--chevron' %}
+            </summary>
+            <div class="accordion__content facets__group-content">
+              {%- case filter.type -%}
+                {%- when 'list' -%}
+                  <ul class="facets__option-list">
+                    {%- for value in filter.values -%}
+                      <li class="facets__option">
+                        <label class="checkbox-field">
+                          <input
+                            type="checkbox"
+                            name="{{ value.param_name }}"
+                            value="{{ value.value }}"
+                            {% if value.active %}checked{% endif %}
+                            {% if value.count == 0 and value.active == false %}disabled{% endif %}
+                            data-facet-input
+                          >
+                          <span>{{ value.label }} <span class="facets__option-count">({{ value.count }})</span></span>
+                        </label>
+                      </li>
+                    {%- endfor -%}
+                  </ul>
+
+                {%- when 'price_range' -%}
+                  <div class="facets__price-range">
+                    <div class="field">
+                      <label class="field__label" for="FilterPriceMin">{{ 'sections.collection.price_min' | t }}</label>
+                      <input
+                        type="number"
+                        class="field__input"
+                        id="FilterPriceMin"
+                        name="{{ filter.min_value.param_name }}"
+                        value="{{ filter.min_value.value }}"
+                        placeholder="{{ filter.range_min | money_without_currency }}"
+                        data-facet-input
+                        data-facet-price
+                      >
+                    </div>
+                    <div class="field">
+                      <label class="field__label" for="FilterPriceMax">{{ 'sections.collection.price_max' | t }}</label>
+                      <input
+                        type="number"
+                        class="field__input"
+                        id="FilterPriceMax"
+                        name="{{ filter.max_value.param_name }}"
+                        value="{{ filter.max_value.value }}"
+                        placeholder="{{ filter.range_max | money_without_currency }}"
+                        data-facet-input
+                        data-facet-price
+                      >
+                    </div>
+                  </div>
+
+                {%- when 'boolean' -%}
+                  <ul class="facets__option-list">
+                    {%- for value in filter.values -%}
+                      <li class="facets__option">
+                        <label class="checkbox-field">
+                          <input
+                            type="checkbox"
+                            name="{{ value.param_name }}"
+                            value="{{ value.value }}"
+                            {% if value.active %}checked{% endif %}
+                            data-facet-input
+                          >
+                          <span>{{ value.label }} <span class="facets__option-count">({{ value.count }})</span></span>
+                        </label>
+                      </li>
+                    {%- endfor -%}
+                  </ul>
+              {%- endcase -%}
+            </div>
+          </details>
+        </accordion-disclosure>
+      </div>
+    {%- endfor -%}
+
+    <button type="button" class="link facets__clear-all" data-facets-clear-all>
+      {{ 'sections.collection.clear_all' | t }}
+    </button>
+  </form>
+</div>

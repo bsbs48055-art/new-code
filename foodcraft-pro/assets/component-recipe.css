@@ -1,0 +1,95 @@
+/* FoodCraft Pro — Recipe cards & recipe metadata */
+
+.recipe-card {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.recipe-card__media {
+  position: relative;
+  display: block;
+  background: rgb(var(--color-background-secondary));
+  margin-bottom: 1.6rem;
+  overflow: hidden;
+}
+
+.recipe-card__media img {
+  transition: transform 0.5s ease;
+}
+
+.recipe-card:hover .recipe-card__media img {
+  transform: scale(1.05);
+}
+
+.recipe-card__tag {
+  position: absolute;
+  top: 1.2rem;
+  left: 1.2rem;
+  background: rgb(var(--color-background));
+  color: rgb(var(--color-text));
+  text-transform: capitalize;
+}
+
+.recipe-card__info {
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+  flex: 1;
+}
+
+.recipe-card__title {
+  font-size: 1.9rem;
+  margin: 0;
+}
+
+.recipe-card__title a {
+  text-decoration: none;
+  color: rgb(var(--color-text));
+}
+
+.recipe-card__title a:hover {
+  color: rgb(var(--color-primary));
+}
+
+.recipe-card__excerpt {
+  color: rgb(var(--color-text-light));
+  font-size: 1.4rem;
+  margin: 0;
+}
+
+.recipe-card__link {
+  margin-top: 0.4rem;
+  font-size: 1.35rem;
+}
+
+.recipe-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.2rem;
+  list-style: none;
+  margin: 0 0 0.4rem;
+  padding: 0;
+  color: rgb(var(--color-text-light));
+  font-size: 1.25rem;
+}
+
+.recipe-meta__item {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+
+.recipe-meta__item--difficulty {
+  color: rgb(var(--color-secondary));
+  font-weight: 600;
+}
+
+.recipe-meta--compact {
+  font-size: 1.15rem;
+}
+
+.icon--small {
+  width: 1.5rem;
+  height: 1.5rem;
+}

@@ -1,0 +1,56 @@
+<section class="section-padding cart-page">
+  <div class="page-width">
+    <h1 class="cart-page__title">{{ 'sections.cart.title' | t }}</h1>
+
+    {%- if cart.item_count == 0 -%}
+      <div class="cart-page__empty">
+        {% render 'icon', name: 'cart' %}
+        <p>{{ 'sections.cart.empty' | t }}</p>
+        <a href="{{ routes.all_products_collection_url }}" class="button button--primary">{{ 'sections.cart.continue_shopping' | t }}</a>
+      </div>
+    {%- else -%}
+      <div class="cart-page__layout">
+        <div class="cart-page__items">
+          <table class="cart-page__table">
+            <thead>
+              <tr>
+                <th colspan="2">{{ 'sections.cart.product' | t }}</th>
+                <th>{{ 'sections.cart.price' | t }}</th>
+              </tr>
+            </thead>
+            <tbody data-cart-items>
+              {%- for item in cart.items -%}
+                {% render 'cart-item', item: item, context: 'page' %}
+              {%- endfor -%}
+            </tbody>
+          </table>
+        </div>
+
+        <div class="cart-page__summary">
+          <h2>{{ 'sections.cart.order_summary' | t }}</h2>
+          {%- if settings.cart_show_note -%}
+            <div class="field">
+              <label class="field__label" for="CartNote">{{ 'sections.cart.add_note' | t }}</label>
+              <textarea class="field__textarea" id="CartNote" name="note" data-cart-note placeholder="{{ 'sections.cart.note_placeholder' | t }}">{{ cart.note }}</textarea>
+            </div>
+          {%- endif -%}
+          <div class="cart-page__subtotal">
+            <span>{{ 'sections.cart.subtotal' | t }}</span>
+            <span data-cart-subtotal>{{ cart.total_price | money }}</span>
+          </div>
+          <p class="cart-page__tax-note">{{ 'sections.cart.taxes_shipping_note' | t }}</p>
+          <a href="{{ routes.cart_url }}/checkout" class="button button--primary button--full button--large">
+            {{ 'sections.cart.checkout' | t }}
+          </a>
+        </div>
+      </div>
+    {%- endif -%}
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "t:sections.main_cart.name",
+  "settings": []
+}
+{% endschema %}

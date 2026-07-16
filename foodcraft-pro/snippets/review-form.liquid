@@ -1,0 +1,64 @@
+{%- comment -%}
+  Native review submission form. Since core Shopify has no built-in review
+  storage, this submits through the standard `contact` form so the review is
+  emailed to the store owner for moderation/publishing — no app required.
+  Merchants who install a dedicated reviews app can instead surface its
+  submission form through the "@app" block on the reviews section.
+  Accepts:
+    product: {Product} required
+{%- endcomment -%}
+<div class="review-form-wrapper">
+  {%- form 'contact', class: 'review-form' -%}
+    <input type="hidden" name="contact[tags]" value="product-review">
+    <input type="hidden" name="contact[body]" value="">
+    <input type="hidden" name="contact[Product]" value="{{ product.title | escape }}">
+    <input type="hidden" name="contact[Product URL]" value="{{ shop.url }}{{ product.url }}">
+
+    {%- if form.posted_successfully? -%}
+      <p class="form-message form-message--success" role="status">
+        {{ 'products.reviews.form_success' | t }}
+      </p>
+    {%- else -%}
+      {%- if form.errors -%}
+        <p class="form-message form-message--error" role="alert">
+          {{ form.errors | default_errors }}
+        </p>
+      {%- endif -%}
+
+      <fieldset class="field review-form__rating-field">
+        <legend class="field__label field__label--required">{{ 'products.reviews.your_rating' | t }}</legend>
+        <div class="review-form__rating-input" data-rating-input>
+          {%- for i in (1..5) -%}
+            {%- assign star_value = 6 | minus: i -%}
+            <input type="radio" name="contact[Rating]" id="Rating-{{ star_value }}" value="{{ star_value }}" {% if star_value == 5 %}required{% endif %}>
+            <label for="Rating-{{ star_value }}" aria-label="{{ 'products.reviews.stars_label' | t: count: star_value }}">
+              {% render 'icon', name: 'star-filled' %}
+            </label>
+          {%- endfor -%}
+        </div>
+      </fieldset>
+
+      <div class="field">
+        <label class="field__label field__label--required" for="ReviewAuthor">{{ 'products.reviews.your_name' | t }}</label>
+        <input type="text" class="field__input" id="ReviewAuthor" name="contact[name]" required>
+      </div>
+
+      <div class="field">
+        <label class="field__label field__label--required" for="ReviewEmail">{{ 'products.reviews.your_email' | t }}</label>
+        <input type="email" class="field__input" id="ReviewEmail" name="contact[email]" required>
+      </div>
+
+      <div class="field">
+        <label class="field__label" for="ReviewTitle">{{ 'products.reviews.review_title' | t }}</label>
+        <input type="text" class="field__input" id="ReviewTitle" name="contact[Review title]">
+      </div>
+
+      <div class="field">
+        <label class="field__label field__label--required" for="ReviewBody">{{ 'products.reviews.your_review' | t }}</label>
+        <textarea class="field__textarea" id="ReviewBody" name="contact[Review]" rows="5" required></textarea>
+      </div>
+
+      <button type="submit" class="button button--primary">{{ 'products.reviews.submit_review' | t }}</button>
+    {%- endif -%}
+  {%- endform -%}
+</div>

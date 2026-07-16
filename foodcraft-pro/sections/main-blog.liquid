@@ -1,0 +1,80 @@
+{%- liquid
+  assign per_row = section.settings.columns_desktop
+-%}
+<section class="section-padding blog-section">
+  <div class="page-width">
+    {% render 'breadcrumbs', blog: blog %}
+
+    <div class="blog-header">
+      <h1 class="blog-header__title">{{ blog.title }}</h1>
+      {%- if section.settings.show_tag_filter and blog.all_tags.size > 0 -%}
+        <ul class="blog-header__tags">
+          <li>
+            <a href="{{ blog.url }}" class="blog-header__tag {% unless current_tags %}is-active{% endunless %}">
+              {{ 'blog.all_tags' | t }}
+            </a>
+          </li>
+          {%- for tag in blog.all_tags -%}
+            <li>
+              <a href="{{ blog.url }}/tagged/{{ tag | handle }}" class="blog-header__tag {% if current_tags contains tag %}is-active{% endif %}">
+                {{ tag }}
+              </a>
+            </li>
+          {%- endfor -%}
+        </ul>
+      {%- endif -%}
+    </div>
+
+    {%- paginate blog.articles by section.settings.articles_per_page -%}
+      {%- if blog.articles.size > 0 -%}
+        <div class="grid grid--{{ per_row }}-col grid--mobile-1-col">
+          {%- for article in blog.articles -%}
+            <div data-animate="fade" data-animate-index="{{ forloop.index0 | modulo: 6 }}">
+              {% render 'recipe-card', article: article %}
+            </div>
+          {%- endfor -%}
+        </div>
+        {% render 'pagination', paginate: paginate %}
+      {%- else -%}
+        <div class="collection-grid__empty">
+          {% render 'icon', name: 'chef-hat' %}
+          <h2>{{ 'blog.empty_title' | t }}</h2>
+        </div>
+      {%- endif -%}
+    {%- endpaginate -%}
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "t:sections.main_blog.name",
+  "settings": [
+    {
+      "type": "select",
+      "id": "columns_desktop",
+      "label": "t:sections.main_blog.settings.columns_desktop.label",
+      "options": [
+        { "value": "2", "label": "2" },
+        { "value": "3", "label": "3" },
+        { "value": "4", "label": "4" }
+      ],
+      "default": "3"
+    },
+    {
+      "type": "range",
+      "id": "articles_per_page",
+      "min": 4,
+      "max": 24,
+      "step": 2,
+      "label": "t:sections.main_blog.settings.articles_per_page.label",
+      "default": 9
+    },
+    {
+      "type": "checkbox",
+      "id": "show_tag_filter",
+      "label": "t:sections.main_blog.settings.show_tag_filter.label",
+      "default": true
+    }
+  ]
+}
+{% endschema %}

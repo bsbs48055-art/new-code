@@ -1,0 +1,244 @@
+/* FoodCraft Pro — Generic carousel/slider used by hero, products, recipes, testimonials, instagram */
+
+slider-component {
+  display: block;
+  position: relative;
+}
+
+.slider {
+  display: grid;
+}
+
+.slider__track {
+  display: flex;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  scroll-behavior: smooth;
+  gap: var(--slider-gap, 2.4rem);
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+  padding-bottom: 0.4rem;
+}
+
+.slider__track::-webkit-scrollbar {
+  display: none;
+}
+
+.slider__track > * {
+  scroll-snap-align: start;
+  flex-shrink: 0;
+}
+
+.slider__nav {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 5;
+  width: 4.8rem;
+  height: 4.8rem;
+  border-radius: 50%;
+  background: rgb(var(--color-background));
+  border: 1px solid rgb(var(--color-border));
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 8px 20px rgba(20, 12, 4, 0.1);
+  transition: opacity 0.2s ease, transform 0.2s ease;
+}
+
+.slider__nav:hover {
+  background: rgb(var(--color-primary));
+  color: #fff;
+  border-color: rgb(var(--color-primary));
+}
+
+.slider__nav:disabled {
+  opacity: 0;
+  pointer-events: none;
+}
+
+.slider__nav--prev {
+  left: -2.4rem;
+}
+
+.slider__nav--next {
+  right: -2.4rem;
+}
+
+@media screen and (max-width: 989px) {
+  .slider__nav {
+    display: none;
+  }
+}
+
+.slider__dots {
+  display: flex;
+  justify-content: center;
+  gap: 0.8rem;
+  margin-top: 2rem;
+}
+
+.slider__dot {
+  width: 0.8rem;
+  height: 0.8rem;
+  border-radius: 50%;
+  background: rgb(var(--color-border));
+  border: none;
+  padding: 0;
+  transition: background-color 0.2s ease, transform 0.2s ease;
+}
+
+.slider__dot.is-active {
+  background: rgb(var(--color-primary));
+  transform: scale(1.3);
+}
+
+/* Hero slider */
+.hero-slider {
+  position: relative;
+  overflow: hidden;
+}
+
+.hero-slider .slider__track {
+  gap: 0;
+  scroll-snap-type: x mandatory;
+}
+
+.hero-slide {
+  position: relative;
+  width: 100%;
+  min-height: 52rem;
+  display: flex;
+  align-items: center;
+  color: #fff;
+  overflow: hidden;
+}
+
+@media screen and (min-width: 750px) {
+  .hero-slide {
+    min-height: 68rem;
+  }
+}
+
+.hero-slide__media {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+}
+
+.hero-slide__media img,
+.hero-slide__media video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.hero-slide__overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(90deg, rgba(15, 10, 6, 0.62) 0%, rgba(15, 10, 6, 0.25) 65%, rgba(15, 10, 6, 0.05) 100%);
+}
+
+.hero-slide__content {
+  position: relative;
+  z-index: 2;
+  max-width: 58rem;
+  padding: 4rem 0;
+}
+
+.hero-slide__eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.8rem;
+  font-size: 1.3rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: rgb(var(--color-accent));
+  margin-bottom: 1.6rem;
+}
+
+.hero-slide__heading {
+  font-size: clamp(3.2rem, 5.4vw, 6rem);
+  color: #fff;
+  margin-bottom: 1.6rem;
+  line-height: 1.08;
+}
+
+.hero-slide__subheading {
+  font-size: 1.8rem;
+  margin-bottom: 2.4rem;
+  color: rgba(255, 255, 255, 0.9);
+  max-width: 48rem;
+}
+
+.hero-slide__actions {
+  display: flex;
+  gap: 1.2rem;
+  flex-wrap: wrap;
+}
+
+.hero-slide__secondary-button {
+  color: #fff;
+  border-color: rgba(255, 255, 255, 0.6);
+  background: rgba(255, 255, 255, 0.08);
+}
+
+.hero-slide__secondary-button:hover {
+  background: #fff;
+  color: rgb(var(--color-text));
+  border-color: #fff;
+}
+
+.hero-slider__nav {
+  position: absolute;
+  bottom: 3.2rem;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 3;
+  display: flex;
+  gap: 0.8rem;
+}
+
+@media screen and (min-width: 750px) {
+  .hero-slider__nav {
+    left: 5rem;
+    transform: none;
+  }
+}
+
+.countdown-timer {
+  display: flex;
+  gap: 1.2rem;
+}
+
+.countdown-timer__unit {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-width: 6rem;
+  padding: 1rem 0.6rem;
+  background: rgba(255, 255, 255, 0.14);
+  border-radius: calc(var(--corner-radius) * 0.6);
+  backdrop-filter: blur(6px);
+}
+
+.countdown-timer__value {
+  font-size: 2.6rem;
+  font-weight: 700;
+  font-family: var(--font-heading-family);
+  line-height: 1;
+}
+
+.countdown-timer__label {
+  font-size: 1.1rem;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  opacity: 0.85;
+  margin-top: 0.4rem;
+}
+
+.countdown-timer--light .countdown-timer__unit {
+  background: rgb(var(--color-background-secondary));
+  color: rgb(var(--color-text));
+}

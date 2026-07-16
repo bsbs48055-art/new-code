@@ -1,0 +1,48 @@
+{%- comment -%}
+  Renders recipe metadata (prep time, cook time, servings, difficulty) sourced
+  from article metafields under the `recipe` namespace.
+  Metafield setup expected on the Article resource:
+    recipe.prep_time (single line text, e.g. "15 min")
+    recipe.cook_time (single line text, e.g. "30 min")
+    recipe.servings (single line text, e.g. "4 servings")
+    recipe.difficulty (single line text, e.g. "Easy")
+    recipe.ingredients (list of single line text)
+    recipe.instructions (list of single line text or rich text)
+  Accepts:
+    article: {Article} required
+    compact: {Boolean} optional — condensed inline layout for cards
+{%- endcomment -%}
+{%- liquid
+  assign prep_time = article.metafields.recipe.prep_time.value
+  assign cook_time = article.metafields.recipe.cook_time.value
+  assign servings = article.metafields.recipe.servings.value
+  assign difficulty = article.metafields.recipe.difficulty.value
+-%}
+{%- if prep_time or cook_time or servings or difficulty -%}
+  <ul class="recipe-meta {% if compact %}recipe-meta--compact{% endif %}">
+    {%- if prep_time != blank -%}
+      <li class="recipe-meta__item">
+        {% render 'icon', name: 'clock', class: 'icon--small' %}
+        <span>{{ 'blog.article.prep_time' | t }}: {{ prep_time }}</span>
+      </li>
+    {%- endif -%}
+    {%- if cook_time != blank -%}
+      <li class="recipe-meta__item">
+        {% render 'icon', name: 'chef-hat', class: 'icon--small' %}
+        <span>{{ 'blog.article.cook_time' | t }}: {{ cook_time }}</span>
+      </li>
+    {%- endif -%}
+    {%- if servings != blank -%}
+      <li class="recipe-meta__item">
+        {% render 'icon', name: 'user', class: 'icon--small' %}
+        <span>{{ servings }}</span>
+      </li>
+    {%- endif -%}
+    {%- if difficulty != blank -%}
+      <li class="recipe-meta__item recipe-meta__item--difficulty">
+        {% render 'icon', name: 'sparkle', class: 'icon--small' %}
+        <span>{{ difficulty }}</span>
+      </li>
+    {%- endif -%}
+  </ul>
+{%- endif -%}

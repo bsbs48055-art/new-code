@@ -1,0 +1,40 @@
+<section class="section-padding compare-page" data-compare-page>
+  <div class="page-width">
+    <div class="section-heading">
+      {%- if section.settings.heading != blank -%}
+        <h1>{{ section.settings.heading }}</h1>
+      {%- endif -%}
+      {%- if section.settings.subheading != blank -%}
+        <p class="section-heading__subtitle">{{ section.settings.subheading }}</p>
+      {%- endif -%}
+    </div>
+
+    <div class="compare-page__empty" data-compare-empty hidden>
+      {% render 'icon', name: 'compare' %}
+      <p>{{ 'general.compare.empty' | t }}</p>
+      <a href="{{ routes.all_products_collection_url }}" class="button button--primary">{{ 'general.compare.continue_shopping' | t }}</a>
+    </div>
+
+    <div class="compare-page__table-wrapper" data-compare-table hidden></div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "t:sections.compare_page.name",
+  "settings": [
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "t:sections.compare_page.settings.heading.label",
+      "default": "Compare Products"
+    },
+    {
+      "type": "textarea",
+      "id": "subheading",
+      "label": "t:sections.compare_page.settings.subheading.label",
+      "default": "Compare up to 4 products side by side."
+    }
+  ]
+}
+{% endschema %}

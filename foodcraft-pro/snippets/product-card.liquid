@@ -1,0 +1,154 @@
+{%- comment -%}
+  Renders a single product card used across the homepage, collection grids,
+  search results, and related-product rails.
+  Accepts:
+    product: {Product} required
+    image_ratio: {String} optional override — 'square' | 'portrait' | 'natural'
+    lazy: {Boolean} optional, defaults to true
+{%- endcomment -%}
+{%- liquid
+  assign image_ratio = image_ratio | default: settings.product_card_image_ratio
+  assign featured_image = product.featured_media.preview_image | default: product.featured_image
+  assign hover_image = null
+  if product.media[1].media_type == 'image'
+    assign hover_image = product.media[1].preview_image
+  endif
+
+  assign rating = product.metafields.reviews.rating.value
+  assign rating_count = product.metafields.reviews.rating_count.value
+
+  assign color_option_index = null
+  for option in product.options_with_values
+    if option.name == 'Color' or option.name == 'Colour'
+      assign color_option_index = forloop.index0
+    endif
+  endfor
+-%}
+<div class="product-card" data-product-card>
+  <div class="product-card__media-wrapper aspect-ratio aspect-ratio--{{ image_ratio }} rounded">
+    {%- if product.available == false -%}
+      <span class="badge badge--sold-out product-card__sold-out-badge">{{ 'products.product.sold_out' | t }}</span>
+    {%- endif -%}
+
+    <div class="product-badges">
+      {%- if product.compare_at_price > product.price -%}
+        {%- assign discount = product.compare_at_price | minus: product.price | times: 100 | divided_by: product.compare_at_price -%}
+        <span class="badge badge--sale">-{{ discount }}%</span>
+      {%- endif -%}
+      {%- if product.tags contains 'new' -%}
+        <span class="badge badge--new">{{ 'products.product.badge_new' | t }}</span>
+      {%- endif -%}
+      {%- if product.tags contains 'best-seller' -%}
+        <span class="badge badge--best-seller">{{ 'products.product.badge_best_seller' | t }}</span>
+      {%- endif -%}
+    </div>
+
+    <a href="{{ product.url }}" class="product-card__media-link" aria-label="{{ product.title | escape }}">
+      {%- if featured_image -%}
+        <img
+          class="product-card__image product-card__image--primary"
+          src="{{ featured_image | image_url: width: 600 }}"
+          srcset="{{ featured_image | image_url: width: 300 }} 300w, {{ featured_image | image_url: width: 600 }} 600w, {{ featured_image | image_url: width: 900 }} 900w"
+          sizes="(min-width: 990px) 25vw, 50vw"
+          alt="{{ featured_image.alt | escape }}"
+          width="{{ featured_image.width }}"
+          height="{{ featured_image.height }}"
+          loading="{% if lazy == false %}eager{% else %}lazy{% endif %}"
+        >
+        {%- if hover_image -%}
+          <img
+            class="product-card__image product-card__image--hover"
+            src="{{ hover_image | image_url: width: 600 }}"
+            srcset="{{ hover_image | image_url: width: 300 }} 300w, {{ hover_image | image_url: width: 600 }} 600w"
+            sizes="(min-width: 990px) 25vw, 50vw"
+            alt=""
+            width="{{ hover_image.width }}"
+            height="{{ hover_image.height }}"
+            loading="lazy"
+            aria-hidden="true"
+          >
+        {%- endif -%}
+      {%- else -%}
+        {{ 'product-1' | placeholder_svg_tag: 'placeholder-svg' }}
+      {%- endif -%}
+    </a>
+
+    <div class="product-card__quick-actions">
+      {%- if settings.show_quick_view -%}
+        <button
+          type="button"
+          class="button--icon product-card__quick-view"
+          data-quick-view-trigger
+          data-product-url="{{ product.url }}"
+          aria-label="{{ 'products.product.quick_view' | t }}"
+        >
+          {% render 'icon', name: 'eye' %}
+        </button>
+      {%- endif -%}
+      {%- if settings.show_wishlist -%}
+        <button
+          type="button"
+          class="button--icon product-card__wishlist"
+          data-wishlist-toggle
+          data-product-id="{{ product.id }}"
+          data-product-handle="{{ product.handle }}"
+          data-product-title="{{ product.title | escape }}"
+          data-product-image="{{ featured_image | image_url: width: 400 }}"
+          data-product-price="{{ product.price | money }}"
+          data-product-url="{{ product.url }}"
+          aria-label="{{ 'general.wishlist.add' | t }}"
+          aria-pressed="false"
+        >
+          {% render 'icon', name: 'heart' %}
+        </button>
+      {%- endif -%}
+      {%- if settings.show_compare -%}
+        <button
+          type="button"
+          class="button--icon product-card__compare"
+          data-compare-toggle
+          data-product-id="{{ product.id }}"
+          data-product-handle="{{ product.handle }}"
+          data-product-title="{{ product.title | escape }}"
+          data-product-image="{{ featured_image | image_url: width: 400 }}"
+          data-product-price="{{ product.price | money }}"
+          data-product-url="{{ product.url }}"
+          aria-label="{{ 'general.compare.add' | t }}"
+          aria-pressed="false"
+        >
+          {% render 'icon', name: 'compare' %}
+        </button>
+      {%- endif -%}
+    </div>
+  </div>
+
+  <div class="product-card__info">
+    {%- if settings.show_vendor and product.vendor != blank -%}
+      <p class="product-card__vendor">{{ product.vendor }}</p>
+    {%- endif -%}
+
+    <h3 class="product-card__title">
+      <a href="{{ product.url }}">{{ product.title }}</a>
+    </h3>
+
+    {%- if settings.show_rating and rating -%}
+      {% render 'star-rating', rating: rating.rating, count: rating_count %}
+    {%- endif -%}
+
+    {% render 'product-price', price: product.price_min, compare_at_price: product.compare_at_price_max, show_badge: false, available: product.available %}
+
+    {%- if settings.show_color_swatches and color_option_index != null and product.options_with_values[color_option_index].values.size > 1 -%}
+      <ul class="swatch-list swatch-list--small product-card__swatches">
+        {%- for value in product.options_with_values[color_option_index].values limit: 5 -%}
+          <li class="swatch swatch--color">
+            <span
+              class="swatch__color"
+              style="background-color: {{ value | handle | replace: '-', '' | default: '#ccc' }}; background-image: url({{ product.images | where: 'alt', value | first | image_url: width: 80 }});"
+              title="{{ value }}"
+            ></span>
+          </li>
+        {%- endfor -%}
+      </ul>
+    {%- endif -%}
+  </div>
+</div>

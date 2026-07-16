@@ -1,0 +1,124 @@
+<section class="section-padding rich-text" style="background-color: {{ section.settings.background_color }};">
+  <div class="page-width">
+    <div class="rich-text__inner rich-text__inner--{{ section.settings.alignment }}" data-animate="fade">
+      {%- for block in section.blocks -%}
+        <div class="rich-text__block" {{ block.shopify_attributes }}>
+          {%- case block.type -%}
+            {%- when 'eyebrow' -%}
+              <span class="eyebrow">{{ block.settings.text }}</span>
+            {%- when 'heading' -%}
+              <h2 class="rich-text__heading">{{ block.settings.heading }}</h2>
+            {%- when 'text' -%}
+              <div class="rich-text__text rte">{{ block.settings.text }}</div>
+            {%- when 'buttons' -%}
+              <div class="rich-text__buttons">
+                {%- if block.settings.button_label_1 != blank -%}
+                  <a href="{{ block.settings.button_link_1 | default: '#' }}" class="button button--primary">{{ block.settings.button_label_1 }}</a>
+                {%- endif -%}
+                {%- if block.settings.button_label_2 != blank -%}
+                  <a href="{{ block.settings.button_link_2 | default: '#' }}" class="button button--secondary">{{ block.settings.button_label_2 }}</a>
+                {%- endif -%}
+              </div>
+          {%- endcase -%}
+        </div>
+      {%- endfor -%}
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "t:sections.rich_text.name",
+  "settings": [
+    {
+      "type": "select",
+      "id": "alignment",
+      "label": "t:sections.rich_text.settings.alignment.label",
+      "options": [
+        { "value": "left", "label": "t:sections.rich_text.settings.alignment.options.left" },
+        { "value": "center", "label": "t:sections.rich_text.settings.alignment.options.center" }
+      ],
+      "default": "center"
+    },
+    {
+      "type": "color",
+      "id": "background_color",
+      "label": "t:sections.rich_text.settings.background_color.label"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "eyebrow",
+      "name": "t:sections.rich_text.blocks.eyebrow.name",
+      "limit": 1,
+      "settings": [
+        {
+          "type": "text",
+          "id": "text",
+          "label": "t:sections.rich_text.blocks.eyebrow.settings.text.label",
+          "default": "Our Story"
+        }
+      ]
+    },
+    {
+      "type": "heading",
+      "name": "t:sections.rich_text.blocks.heading.name",
+      "limit": 1,
+      "settings": [
+        {
+          "type": "text",
+          "id": "heading",
+          "label": "t:sections.rich_text.blocks.heading.settings.heading.label",
+          "default": "Made By Hand, Made to Share"
+        }
+      ]
+    },
+    {
+      "type": "text",
+      "name": "t:sections.rich_text.blocks.text.name",
+      "settings": [
+        {
+          "type": "richtext",
+          "id": "text",
+          "label": "t:sections.rich_text.blocks.text.settings.text.label",
+          "default": "<p>We started in a rented commercial kitchen with three sauces and a mission: make pantry staples that taste like they came from a chef's home, not a factory.</p>"
+        }
+      ]
+    },
+    {
+      "type": "buttons",
+      "name": "t:sections.rich_text.blocks.buttons.name",
+      "limit": 1,
+      "settings": [
+        {
+          "type": "text",
+          "id": "button_label_1",
+          "label": "t:sections.rich_text.blocks.buttons.settings.button_label_1.label",
+          "default": "Shop Now"
+        },
+        {
+          "type": "url",
+          "id": "button_link_1",
+          "label": "t:sections.rich_text.blocks.buttons.settings.button_link_1.label"
+        },
+        {
+          "type": "text",
+          "id": "button_label_2",
+          "label": "t:sections.rich_text.blocks.buttons.settings.button_label_2.label"
+        },
+        {
+          "type": "url",
+          "id": "button_link_2",
+          "label": "t:sections.rich_text.blocks.buttons.settings.button_link_2.label"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "t:sections.rich_text.presets.name",
+      "blocks": [{ "type": "eyebrow" }, { "type": "heading" }, { "type": "text" }, { "type": "buttons" }]
+    }
+  ]
+}
+{% endschema %}

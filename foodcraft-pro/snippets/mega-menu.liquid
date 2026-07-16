@@ -1,0 +1,86 @@
+{%- comment -%}
+  Renders a single top-level navigation item, expanding into a mega menu
+  (multi-column dropdown with an optional promo tile) when it has nested links.
+  Accepts:
+    link: {Link} the top-level linklist link
+    section: {Section} the parent header section (for promo blocks)
+{%- endcomment -%}
+{%- liquid
+  assign has_children = false
+  if link.links.size > 0
+    assign has_children = true
+  endif
+
+  assign promo_block = null
+  for block in section.blocks
+    if block.type == 'menu_promotion' and block.settings.menu_handle_match == link.title
+      assign promo_block = block
+    endif
+  endfor
+-%}
+
+{%- if has_children -%}
+  <details-disclosure class="header__menu-item-wrapper">
+    <details id="MegaMenu-{{ link.handle }}-{{ forloop.index }}">
+      <summary class="header__menu-item" aria-expanded="false">
+        <span>{{ link.title }}</span>
+        {% render 'icon', name: 'chevron-down', class: 'icon--chevron' %}
+      </summary>
+      <div class="mega-menu">
+        <div class="mega-menu__inner page-width">
+          <div class="mega-menu__columns">
+            {%- for childlink in link.links -%}
+              <div class="mega-menu__column">
+                <a href="{{ childlink.url }}" class="mega-menu__column-title" {% if childlink.current %}aria-current="page"{% endif %}>
+                  {{ childlink.title }}
+                </a>
+                {%- if childlink.links.size > 0 -%}
+                  <ul class="mega-menu__list">
+                    {%- for grandchildlink in childlink.links -%}
+                      <li>
+                        <a href="{{ grandchildlink.url }}" class="mega-menu__link" {% if grandchildlink.current %}aria-current="page"{% endif %}>
+                          {{ grandchildlink.title }}
+                        </a>
+                      </li>
+                    {%- endfor -%}
+                  </ul>
+                {%- endif -%}
+              </div>
+            {%- endfor -%}
+          </div>
+
+          {%- if promo_block -%}
+            <div class="mega-menu__promo">
+              {%- if promo_block.settings.image != blank -%}
+                <a href="{{ promo_block.settings.link | default: '#' }}" class="mega-menu__promo-image aspect-ratio aspect-ratio--portrait">
+                  <img
+                    src="{{ promo_block.settings.image | image_url: width: 600 }}"
+                    srcset="{{ promo_block.settings.image | image_url: width: 300 }} 300w, {{ promo_block.settings.image | image_url: width: 600 }} 600w"
+                    sizes="280px"
+                    alt="{{ promo_block.settings.image.alt | default: promo_block.settings.heading | escape }}"
+                    width="{{ promo_block.settings.image.width }}"
+                    height="{{ promo_block.settings.image.height }}"
+                    loading="lazy"
+                  >
+                </a>
+              {%- endif -%}
+              {%- if promo_block.settings.heading != blank -%}
+                <h3 class="mega-menu__promo-heading">{{ promo_block.settings.heading }}</h3>
+              {%- endif -%}
+              {%- if promo_block.settings.subheading != blank -%}
+                <p class="mega-menu__promo-subheading">{{ promo_block.settings.subheading }}</p>
+              {%- endif -%}
+              {%- if promo_block.settings.link != blank and promo_block.settings.link_label != blank -%}
+                <a href="{{ promo_block.settings.link }}" class="link">{{ promo_block.settings.link_label }} {% render 'icon', name: 'arrow-right' %}</a>
+              {%- endif -%}
+            </div>
+          {%- endif -%}
+        </div>
+      </div>
+    </details>
+  </details-disclosure>
+{%- else -%}
+  <a href="{{ link.url }}" class="header__menu-item" {% if link.current %}aria-current="page"{% endif %}>
+    {{ link.title }}
+  </a>
+{%- endif -%}

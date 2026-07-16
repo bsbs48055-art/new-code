@@ -1,0 +1,76 @@
+{%- comment -%}
+  Rendered exclusively via the Predictive Search API:
+  {{ routes.predictive_search_url }}?q=QUERY&resources[type]=product,collection,page,article&section_id=predictive-search
+  Never included directly in a template — fetched and injected by predictive-search.js.
+{%- endcomment -%}
+<div id="PredictiveSearchResults">
+  {%- if predictive_search.resources.results.products.size == 0
+    and predictive_search.resources.results.collections.size == 0
+    and predictive_search.resources.results.pages.size == 0
+    and predictive_search.resources.results.articles.size == 0
+  -%}
+    <p class="search-drawer__no-results">{{ 'general.search.no_results_html' | t: terms: predictive_search.terms }}</p>
+  {%- else -%}
+    {%- if predictive_search.resources.results.products.size > 0 -%}
+      <p class="search-drawer__section-title">{{ 'general.search.products' | t }}</p>
+      <div class="search-drawer__products">
+        {%- for product in predictive_search.resources.results.products -%}
+          <a href="{{ product.url }}" class="search-drawer__result-item">
+            <span class="search-drawer__result-image aspect-ratio aspect-ratio--square">
+              {%- if product.featured_media -%}
+                <img
+                  src="{{ product.featured_media | image_url: width: 300 }}"
+                  alt="{{ product.featured_media.alt | escape }}"
+                  width="150"
+                  height="150"
+                  loading="lazy"
+                >
+              {%- endif -%}
+            </span>
+            <span class="search-drawer__result-title">{{ product.title }}</span>
+            {% render 'product-price', price: product.price_min, compare_at_price: product.compare_at_price_max, compact: true %}
+          </a>
+        {%- endfor -%}
+      </div>
+    {%- endif -%}
+
+    {%- if predictive_search.resources.results.collections.size > 0 -%}
+      <p class="search-drawer__section-title">{{ 'general.search.collections' | t }}</p>
+      <ul class="search-drawer__pages-list">
+        {%- for collection in predictive_search.resources.results.collections -%}
+          <li><a href="{{ collection.url }}">{{ collection.title }}</a></li>
+        {%- endfor -%}
+      </ul>
+    {%- endif -%}
+
+    {%- if predictive_search.resources.results.articles.size > 0 -%}
+      <p class="search-drawer__section-title">{{ 'general.search.recipes_articles' | t }}</p>
+      <ul class="search-drawer__articles-list">
+        {%- for article in predictive_search.resources.results.articles -%}
+          <li><a href="{{ article.url }}">{{ article.title }}</a></li>
+        {%- endfor -%}
+      </ul>
+    {%- endif -%}
+
+    {%- if predictive_search.resources.results.pages.size > 0 -%}
+      <p class="search-drawer__section-title">{{ 'general.search.pages' | t }}</p>
+      <ul class="search-drawer__pages-list">
+        {%- for page in predictive_search.resources.results.pages -%}
+          <li><a href="{{ page.url }}">{{ page.title }}</a></li>
+        {%- endfor -%}
+      </ul>
+    {%- endif -%}
+
+    <a href="{{ routes.search_url }}?q={{ predictive_search.terms | url_encode }}" class="link search-drawer__view-all">
+      {{ 'general.search.view_all_results_html' | t: terms: predictive_search.terms }}
+      {% render 'icon', name: 'arrow-right' %}
+    </a>
+  {%- endif -%}
+</div>
+
+{% schema %}
+{
+  "name": "Predictive search results",
+  "settings": []
+}
+{% endschema %}
