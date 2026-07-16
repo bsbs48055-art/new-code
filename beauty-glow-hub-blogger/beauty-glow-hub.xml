@@ -29,6 +29,23 @@
 </b:if>
 <meta content='summary_large_image' name='twitter:card'/>
 
+<!-- SEO: index rules (block thin/duplicate search, label &amp; archive pages) -->
+<b:if cond='data:blog.searchLabel'>
+  <meta content='noindex,follow' name='robots'/>
+<b:elseif cond='data:blog.searchQuery'/>
+  <meta content='noindex,follow' name='robots'/>
+<b:elseif cond='data:blog.pageType == &quot;archive&quot;'/>
+  <meta content='noindex,follow' name='robots'/>
+<b:else/>
+  <meta content='index,follow,max-image-preview:large,max-snippet:-1,max-video-preview:-1' name='robots'/>
+</b:if>
+
+<!-- SEO: social share image -->
+<b:if cond='data:blog.postImageUrl'>
+  <meta expr:content='data:blog.postImageUrl' property='og:image'/>
+  <meta expr:content='data:blog.postImageUrl' name='twitter:image'/>
+</b:if>
+
 <!-- Fonts -->
 <link href='https://fonts.googleapis.com' rel='preconnect'/>
 <link crossorigin='anonymous' href='https://fonts.gstatic.com' rel='preconnect'/>
@@ -506,6 +523,19 @@ body{opacity:0;animation:bghFade .6s ease forwards}
 
             <!-- Single post / page -->
             <b:includable id='postItem' var='post'>
+              <b:if cond='data:blog.pageType == &quot;item&quot;'>
+                <script type='application/ld+json'>{
+"@context":"https://schema.org",
+"@type":"BlogPosting",
+"mainEntityOfPage":{"@type":"WebPage","@id":"<data:post.url/>"},
+"headline":"<data:post.title/>",
+<b:if cond='data:blog.postImageUrl'>"image":["<data:blog.postImageUrl/>"],</b:if>
+"datePublished":"<data:post.timestampISO8601/>",
+"dateModified":"<data:post.timestampISO8601/>",
+"author":{"@type":"Person","name":"<data:post.author.name/>"},
+"publisher":{"@type":"Organization","name":"<data:blog.title/>","logo":{"@type":"ImageObject","url":"<data:blog.homepageUrl/>"}}
+}</script>
+              </b:if>
               <article class='bgh-single'>
                 <b:if cond='data:blog.pageType != &quot;static_page&quot;'>
                   <nav class='bgh-breadcrumbs'>
