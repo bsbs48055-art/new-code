@@ -58,28 +58,26 @@ function bgh_home_category_icon( $slug ) {
 						if ( 0 === $bgh_i ) :
 							?>
 							<div class="bgh-hero__main">
-								<a class="bgh-feature-card" href="<?php the_permalink(); ?>">
-									<?php bgh_post_thumbnail( 'bgh-hero' ); ?>
+								<div class="bgh-feature-card">
+									<?php bgh_post_thumbnail( 'bgh-hero', true ); ?>
 									<span class="bgh-feature-card__overlay">
 										<?php bgh_entry_categories(); ?>
-										<h2 class="bgh-feature-card__title"><?php the_title(); ?></h2>
+										<h2 class="bgh-feature-card__title"><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></h2>
 										<span class="bgh-feature-card__meta"><?php echo esc_html( get_the_date() ); ?> &middot; <?php echo esc_html( bgh_get_reading_time() ); ?></span>
 									</span>
-								</a>
+								</div>
 							</div>
 							<div class="bgh-hero__side">
 							<?php
 							$bgh_side_open = true;
 						else :
 							?>
-							<article>
-								<a class="bgh-feature-card" href="<?php the_permalink(); ?>">
-									<?php bgh_post_thumbnail( 'bgh-card' ); ?>
-									<span class="bgh-feature-card__overlay">
-										<?php bgh_entry_categories( 'bgh-chip--light' ); ?>
-										<h3 class="bgh-feature-card__title"><?php the_title(); ?></h3>
-									</span>
-								</a>
+							<article class="bgh-feature-card">
+								<?php bgh_post_thumbnail( 'bgh-card' ); ?>
+								<span class="bgh-feature-card__overlay">
+									<?php bgh_entry_categories( 'bgh-chip--light' ); ?>
+									<h3 class="bgh-feature-card__title"><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></h3>
+								</span>
 							</article>
 							<?php
 						endif;

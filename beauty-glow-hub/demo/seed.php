@@ -24,6 +24,17 @@ require_once ABSPATH . 'wp-admin/includes/media.php';
 $theme_dir = get_template_directory();
 $img_dir   = $theme_dir . '/demo/images/';
 
+WP_CLI::line( '==> Removing default sample content...' );
+// Remove the default "Hello world!" post, "Sample Page" and default comment.
+$hello = get_page_by_path( 'hello-world', OBJECT, 'post' );
+if ( $hello ) {
+	wp_delete_post( $hello->ID, true );
+}
+$sample = get_page_by_path( 'sample-page', OBJECT, 'page' );
+if ( $sample ) {
+	wp_delete_post( $sample->ID, true );
+}
+
 WP_CLI::line( '==> Configuring site settings...' );
 update_option( 'permalink_structure', '/%postname%/' );
 update_option( 'blogdescription', 'Beauty, Skincare & Wellness Magazine' );

@@ -9,10 +9,11 @@
 
 $root = '/home/ubuntu/wp-test';
 $uri  = urldecode( parse_url( $_SERVER['REQUEST_URI'], PHP_URL_PATH ) );
-$file = realpath( $root . $uri );
+$path = $root . $uri;
 
-// Serve real static files (assets, uploads, images, etc.).
-if ( $file && is_file( $file ) && strpos( $file, $root ) === 0 ) {
+// Serve real static files (assets, uploads, images, etc.). is_file() follows
+// symlinks, so a symlinked theme directory still serves its CSS/JS/images.
+if ( '/' !== $uri && is_file( $path ) ) {
 	return false;
 }
 

@@ -91,19 +91,22 @@ if ( ! function_exists( 'bgh_post_thumbnail' ) ) {
 	 *
 	 * @param string $size WordPress image size.
 	 */
-	function bgh_post_thumbnail( $size = 'bgh-card' ) {
+	function bgh_post_thumbnail( $size = 'bgh-card', $priority = false ) {
 		if ( post_password_required() || is_attachment() ) {
 			return;
 		}
 		if ( has_post_thumbnail() ) {
-			the_post_thumbnail(
-				$size,
-				array(
-					'loading'  => 'lazy',
-					'decoding' => 'async',
-					'alt'      => the_title_attribute( array( 'echo' => false ) ),
-				)
+			$attr = array(
+				'decoding' => 'async',
+				'alt'      => the_title_attribute( array( 'echo' => false ) ),
 			);
+			if ( $priority ) {
+				$attr['loading']       = 'eager';
+				$attr['fetchpriority'] = 'high';
+			} else {
+				$attr['loading'] = 'lazy';
+			}
+			the_post_thumbnail( $size, $attr );
 		} else {
 			bgh_placeholder_image( get_the_ID() );
 		}
@@ -157,10 +160,10 @@ if ( ! function_exists( 'bgh_card' ) ) {
 	function bgh_card( $chip_class = '' ) {
 		?>
 		<article <?php post_class( 'bgh-card' ); ?>>
-			<a class="bgh-card__thumb" href="<?php the_permalink(); ?>" aria-hidden="true" tabindex="-1">
+			<div class="bgh-card__thumb">
 				<?php bgh_post_thumbnail( 'bgh-card' ); ?>
 				<?php bgh_entry_categories( $chip_class ); ?>
-			</a>
+			</div>
 			<div class="bgh-card__body">
 				<h3 class="bgh-card__title"><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></h3>
 				<p class="bgh-card__excerpt"><?php echo esc_html( wp_trim_words( get_the_excerpt(), 20 ) ); ?></p>

@@ -271,13 +271,19 @@ th { background: var(--bgh-bg-light); font-weight: 600; }
 	position: relative; display: block; border-radius: var(--bgh-radius);
 	overflow: hidden; background: #201a1d; min-height: 240px;
 }
+/* Stretched link: title covers the whole card without nesting anchors */
+.bgh-feature-card__title a { color: inherit; }
+.bgh-feature-card__title a::after {
+	content: ""; position: absolute; inset: 0; z-index: 1;
+}
+.bgh-feature-card .bgh-chip { position: relative; z-index: 2; }
 .bgh-feature-card img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.4s ease; }
 .bgh-feature-card:hover img { transform: scale(1.04); }
 .bgh-hero__main .bgh-feature-card { min-height: 460px; }
 .bgh-feature-card__overlay {
 	position: absolute; inset: 0;
 	background: linear-gradient(180deg, rgba(32,26,29,0) 30%, rgba(32,26,29,0.85) 100%);
-	display: flex; flex-direction: column; justify-content: flex-end; padding: 1.6rem;
+	display: flex; flex-direction: column; align-items: flex-start; justify-content: flex-end; padding: 1.6rem;
 }
 .bgh-feature-card__title { color: #fff; margin: 0.4rem 0 0.3rem; }
 .bgh-hero__main .bgh-feature-card__title { font-size: clamp(1.6rem, 2.6vw, 2.3rem); }
@@ -303,10 +309,15 @@ th { background: var(--bgh-bg-light); font-weight: 600; }
 .bgh-grid--2 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
 
 .bgh-card {
+	position: relative;
 	background: #fff; border: 1px solid var(--bgh-border); border-radius: var(--bgh-radius);
 	overflow: hidden; display: flex; flex-direction: column; height: 100%;
 	transition: transform var(--bgh-transition), box-shadow var(--bgh-transition), border-color var(--bgh-transition);
 }
+/* Stretched link makes the whole card clickable via the title link */
+.bgh-card__title a::after { content: ""; position: absolute; inset: 0; z-index: 1; }
+.bgh-card__thumb .bgh-chip { z-index: 2; }
+.bgh-card__body .bgh-card__meta { position: relative; z-index: 2; }
 .bgh-card:hover { transform: translateY(-4px); box-shadow: var(--bgh-shadow-hover); border-color: var(--bgh-secondary); }
 .bgh-card__thumb { position: relative; aspect-ratio: 16 / 10; overflow: hidden; background: var(--bgh-bg-light); }
 .bgh-card__thumb img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.4s ease; }
