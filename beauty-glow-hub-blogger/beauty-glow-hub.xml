@@ -442,17 +442,11 @@ img.b-lazy{opacity:1}
                     </div>
                   </div>
 
-                  <!-- In-article ad -->
-                  <b:section class='ad-inarticle' id='ad-inarticle' showaddelement='yes'>
-                    <b:widget id='HTML91' locked='false' title='' type='HTML' version='2'>
-                      <b:includable id='main'>
-                        <div class='bgh-ad bgh-ad--in-article'>
-                          <span class='bgh-ad__label'>Advertisement</span>
-                          <b:if cond='data:content != &quot;&quot;'><div><data:content/></div><b:else/><div class='bgh-ad__slot'>In-article ad (add code in Layout)</div></b:if>
-                        </div>
-                      </b:includable>
-                    </b:widget>
-                  </b:section>
+                  <!-- In-article ad. Paste your AdSense code inside the .bgh-ad__slot div below (Theme -> Edit HTML). -->
+                  <div class='bgh-ad bgh-ad--in-article'>
+                    <span class='bgh-ad__label'>Advertisement</span>
+                    <div class='bgh-ad__slot'>In-article ad &#8212; paste your ad code here</div>
+                  </div>
 
                   <section class='bgh-related'>
                     <div class='bgh-section-head'><h2 class='bgh-section-title'>You May Also Like</h2></div>
