@@ -1,0 +1,36 @@
+/**
+ * Block editor styles to mirror the front-end reading experience.
+ */
+:root {
+	--bgh-primary: #E91E63;
+	--bgh-text: #333333;
+}
+
+.editor-styles-wrapper {
+	font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+	color: var(--bgh-text);
+	font-size: 18px;
+	line-height: 1.75;
+}
+
+.editor-styles-wrapper h1,
+.editor-styles-wrapper h2,
+.editor-styles-wrapper h3,
+.editor-styles-wrapper h4 {
+	font-family: "Playfair Display", Georgia, serif;
+	color: #201a1d;
+	line-height: 1.25;
+}
+
+.editor-styles-wrapper a { color: var(--bgh-primary); }
+
+.editor-styles-wrapper blockquote {
+	border-left: 4px solid var(--bgh-primary);
+	background: #FFF8FB;
+	padding: 1rem 1.5rem;
+	font-style: italic;
+}
+
+.editor-styles-wrapper ul li::marker { color: var(--bgh-primary); }
+
+.editor-styles-wrapper .wp-block-image img { border-radius: 8px; }

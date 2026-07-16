@@ -1,0 +1,37 @@
+/*
+Theme Name: Beauty Glow Hub
+Theme URI: https://beautyglowhub.example.com/
+Author: Beauty Glow Hub Editorial Team
+Author URI: https://beautyglowhub.example.com/about-us/
+Description: Beauty Glow Hub is a premium, magazine-style WordPress blog theme built for beauty, skincare, hair care, makeup and wellness publishers. It is content-first, fast, accessible and engineered for Google AdSense approval with clean semantic markup, Schema.org structured data, natural ad placements and an elegant, readable, luxury-yet-simple design.
+Version: 1.0.0
+Requires at least: 6.0
+Tested up to: 6.5
+Requires PHP: 7.4
+License: GNU General Public License v2 or later
+License URI: http://www.gnu.org/licenses/gpl-2.0.html
+Text Domain: beauty-glow-hub
+Tags: blog, magazine, one-column, two-columns, right-sidebar, custom-menu, custom-logo, featured-images, translation-ready, block-styles, wide-blocks, accessibility-ready, news
+*/
+
+/*
+ * The full production stylesheet lives in assets/css/main.css and is enqueued
+ * from functions.php for performance and cache-busting. This file contains the
+ * required WordPress theme header above and a few base fallbacks below.
+ */
+
+:root {
+	--bgh-primary: #E91E63;
+	--bgh-secondary: #F8BBD0;
+	--bgh-bg: #FFFFFF;
+	--bgh-bg-light: #FFF8FB;
+	--bgh-text: #333333;
+	--bgh-accent: #D4AF37;
+}
+
+body {
+	margin: 0;
+	font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+	color: var(--bgh-text);
+	background: var(--bgh-bg);
+}
