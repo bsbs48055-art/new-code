@@ -15,7 +15,7 @@ import { notifyScheduleReminder } from '@background/notifications/NotificationSe
 export const schedulerService = {
   /** Promotes any due scheduled tasks to the live queue and kicks the queue. */
   async processDueTasks(): Promise<void> {
-    const due = await uploadRepository.dueScheduledTasks(Date.now());
+    const due = (await uploadRepository.dueScheduledTasks(Date.now())).filter((t) => !t.isDemo);
     for (const task of due) {
       await uploadRepository.update(task.id, { status: 'queued' });
       await notifyScheduleReminder(task);

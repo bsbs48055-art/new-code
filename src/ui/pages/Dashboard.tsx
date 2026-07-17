@@ -1,5 +1,5 @@
 import { useLiveQuery } from 'dexie-react-hooks';
-import { UploadCloud, CheckCircle2, XCircle, Clock } from 'lucide-react';
+import { UploadCloud, CheckCircle2, XCircle, Clock, Sparkles, Trash2 } from 'lucide-react';
 import { db } from '@shared/db/db';
 import { PLATFORM_LABELS, type PlatformId } from '@shared/types/index';
 import { StatCard } from '@ui/components/StatCard';
@@ -7,6 +7,8 @@ import { ActivityLogPanel } from '@ui/components/ActivityLogPanel';
 import { TaskQueueTable } from '@ui/components/TaskQueueTable';
 import { useAuthStates } from '@ui/hooks/useAuthStates';
 import { Link } from 'react-router-dom';
+import { clearDemoData, loadDemoData } from '@shared/utils/demoData';
+import { useToastStore } from '@ui/state/toastStore';
 
 function isToday(timestamp: number): boolean {
   const d = new Date(timestamp);
@@ -18,14 +20,52 @@ function isToday(timestamp: number): boolean {
 export function Dashboard() {
   const tasks = useLiveQuery(() => db.uploadTasks.toArray(), []) ?? [];
   const authStates = useAuthStates();
+  const push = useToastStore((s) => s.push);
 
   const active = tasks.filter((t) => ['uploading', 'queued', 'paused', 'mapping', 'processing'].includes(t.status));
   const completedToday = tasks.filter((t) => t.status === 'completed' && t.completedAt && isToday(t.completedAt));
   const failed = tasks.filter((t) => t.status === 'failed');
   const scheduled = tasks.filter((t) => t.status === 'scheduled');
+  const hasAnyData = tasks.length > 0;
+  const hasDemo = tasks.some((t) => t.isDemo);
+
+  const handleLoadDemo = async () => {
+    await loadDemoData();
+    push('Sample data loaded — explore the Queue, History, and Analytics pages. This is not real content and nothing was uploaded anywhere.', 'success');
+  };
+
+  const handleClearDemo = async () => {
+    await clearDemoData();
+    push('Sample data cleared.', 'info');
+  };
 
   return (
     <div className="flex flex-col gap-4">
+      {!hasAnyData && (
+        <div className="card flex items-center justify-between" style={{ padding: 16, background: 'var(--color-surface-alt)' }}>
+          <div>
+            <div style={{ fontWeight: 700, fontSize: 13 }}>New here?</div>
+            <div className="text-muted" style={{ fontSize: 12 }}>
+              Load clearly-labeled sample data to see how the queue, history, and analytics pages work — no real account
+              connection needed. It never uploads anything anywhere.
+            </div>
+          </div>
+          <button className="btn btn-primary" onClick={handleLoadDemo}>
+            <Sparkles size={14} /> Load sample data
+          </button>
+        </div>
+      )}
+      {hasDemo && (
+        <div className="card flex items-center justify-between" style={{ padding: '10px 16px' }}>
+          <span className="text-muted" style={{ fontSize: 12 }}>
+            You're viewing sample data ([Demo] items). Real uploads will appear alongside it once you connect a platform.
+          </span>
+          <button className="btn btn-ghost" onClick={handleClearDemo}>
+            <Trash2 size={13} /> Clear sample data
+          </button>
+        </div>
+      )}
+
       <div className="flex gap-3" style={{ flexWrap: 'wrap' }}>
         <StatCard label="Active in queue" value={active.length} icon={<UploadCloud size={16} />} accentColor="var(--color-primary)" />
         <StatCard label="Completed today" value={completedToday.length} icon={<CheckCircle2 size={16} />} accentColor="var(--color-success)" />
