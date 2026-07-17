@@ -464,6 +464,212 @@ $posts[] = array(
 		)),
 );
 
+/* ---------- 17. HA vs Niacinamide ---------- */
+$posts[] = array(
+	'type' => 'post', 'slug' => 'hyaluronic-acid-vs-niacinamide',
+	'title' => 'Hyaluronic Acid vs Niacinamide: Which One Does Your Skin Need?',
+	'labels' => array('Skin Care', 'Beauty Tips'),
+	'author' => 'Sophia Laurent', 'date' => '2026-07-03',
+	'desc' => 'Hyaluronic acid vs niacinamide: what each does, who they suit and exactly how to layer them together for the best results.',
+	'html' => img($IMG.'post-niacinamide.jpg', 'Hyaluronic acid and niacinamide serums')
+		. '<p>Two ingredients show up on almost every skincare shelf: hyaluronic acid and niacinamide. But they do very different jobs. Here is the simple breakdown of <strong>hyaluronic acid vs niacinamide</strong> so you know which one your skin actually needs — or whether to use both.</p>'
+		. '<h2>What Is Hyaluronic Acid?</h2><p>Hyaluronic acid (HA) is a humectant — a moisture magnet that plumps skin, softens fine lines and gives an instant dewy glow. Best for dry, dehydrated or tight-feeling skin.</p>'
+		. '<h2>What Is Niacinamide?</h2><p>Niacinamide (vitamin B3) is a multitasker: it regulates oil, strengthens the skin barrier, calms redness and evens tone. Best for oily, blemish-prone or uneven skin.</p>'
+		. '<h2>Can You Use Them Together?</h2><p>Absolutely — they complement each other beautifully. Niacinamide supports the barrier while HA delivers hydration.</p>'
+		. '<h3>How to Layer Them</h3><ol><li>Cleanse.</li><li>Apply niacinamide serum to slightly damp skin.</li><li>Follow with hyaluronic acid.</li><li>Seal with moisturiser (and SPF in the morning).</li></ol>'
+		. '<blockquote>Tip: apply HA to damp skin, then seal it — in dry air it can otherwise pull moisture from your skin.</blockquote>'
+		. '<h2>Conclusion</h2><p>Choose HA for hydration and niacinamide for barrier support and tone. Together they are a gentle, beginner-friendly duo. New to routines? See our <a href="/search/label/Skin%20Care">beginner skincare guide</a>.</p>'
+		. faq_block(array(
+			'Which goes on first, hyaluronic acid or niacinamide?' => 'Apply niacinamide first, then hyaluronic acid, then moisturiser. Thinner, water-based serums go before thicker ones.',
+			'Can I use hyaluronic acid and niacinamide every day?' => 'Yes, both are gentle enough for daily morning and night use for most people.',
+		)),
+);
+
+/* ---------- 18. Anti-aging routine by age ---------- */
+$posts[] = array(
+	'type' => 'post', 'slug' => 'best-anti-aging-skincare-routine',
+	'title' => 'The Best Anti-Aging Skincare Routine by Age (20s, 30s, 40s+)',
+	'labels' => array('Anti Aging', 'Skin Care'),
+	'author' => 'Sophia Laurent', 'date' => '2026-07-02',
+	'desc' => 'The best anti-aging skincare routine by age. Simple, science-backed steps for your 20s, 30s and 40s+ to keep skin firm and glowing.',
+	'html' => img($IMG.'post-retinol.jpg', 'Anti-aging skincare products')
+		. '<p>The best time to start an anti-ageing routine is now — but the right steps change as you get older. Here is a simple <strong>anti-aging skincare routine by age</strong>, built around ingredients that actually have science behind them.</p>'
+		. '<h2>In Your 20s: Prevention</h2><ul><li>Daily sunscreen (the #1 anti-ageing step).</li><li>A gentle cleanser and moisturiser.</li><li>Vitamin C in the morning for antioxidant protection.</li></ul>'
+		. '<h2>In Your 30s: Protect + Repair</h2><ul><li>Everything above, plus a gentle retinol at night.</li><li>Add an eye cream if you notice fine lines.</li><li>Stay consistent with SPF.</li></ul>'
+		. '<h2>In Your 40s and Beyond: Nourish</h2><ul><li>Richer moisturisers with ceramides and peptides.</li><li>Continue retinol (as tolerated) and vitamin C.</li><li>Focus on hydration and barrier support.</li></ul>'
+		. '<h2>The Ingredients That Matter Most</h2><p>Sunscreen, retinoids, vitamin C, niacinamide and peptides are the proven players. You do not need dozens of products — just the right few, used consistently.</p>'
+		. '<blockquote>Sunscreen every day does more for ageing skin than any expensive cream.</blockquote>'
+		. '<h2>Conclusion</h2><p>Match your routine to your stage of life and stay consistent. New to actives? Start with our <a href="/search/label/Anti%20Aging">retinol for beginners</a> guide.</p>'
+		. faq_block(array(
+			'When should I start an anti-aging routine?' => 'Prevention in your 20s is ideal — mainly daily sunscreen and antioxidants. But it is never too late to start protecting and repairing your skin.',
+			'What is the best anti-aging ingredient?' => 'Sunscreen for prevention and retinoids for repair are the two most proven. Vitamin C, niacinamide and peptides are strong supporting players.',
+		)),
+);
+
+/* ---------- 19. Eye creams ---------- */
+$posts[] = array(
+	'type' => 'post', 'slug' => 'best-eye-creams-dark-circles',
+	'title' => 'The Best Eye Creams for Dark Circles and Fine Lines',
+	'labels' => array('Anti Aging', 'Product Reviews', 'Skin Care'),
+	'author' => 'Maya Chen', 'date' => '2026-07-01',
+	'desc' => 'The best eye creams for dark circles and fine lines, plus how to choose and apply eye cream that actually delivers results.',
+	'html' => img($IMG.'post-moisturizer.jpg', 'Eye cream for dark circles and fine lines')
+		. '<p>The delicate skin around your eyes shows tiredness and age first. The right eye cream — used correctly — can genuinely help. Here are the best picks for each concern and how to apply them. <em>May contain affiliate links.</em></p>'
+		. '<h2>Match the Ingredient to Your Concern</h2>'
+		. '<ul><li><strong>Dark circles:</strong> vitamin C and caffeine to brighten and de-puff.</li><li><strong>Fine lines:</strong> peptides and gentle retinol.</li><li><strong>Puffiness:</strong> caffeine and cool application.</li><li><strong>Dryness:</strong> hyaluronic acid and ceramides.</li></ul>'
+		. '<h2>Our Top Eye Cream Picks</h2>'
+		. '<h3>Best for Dark Circles: A Caffeine + Vitamin C Eye Serum</h3><p>Lightweight, brightening and great under makeup.</p>'
+		. '<h3>Best for Fine Lines: A Peptide Eye Cream</h3><p>Hydrating and smoothing with consistent use.</p>'
+		. '<h3>Best Budget: A Hydrating Hyaluronic Eye Gel</h3><p>Simple hydration that instantly makes eyes look fresher.</p>'
+		. '<h2>How to Apply Eye Cream</h2><p>Use a rice-grain amount and tap gently with your ring finger — never rub or drag the delicate skin.</p>'
+		. '<blockquote>Manage expectations: eye creams help, but sleep, hydration and SPF matter just as much.</blockquote>'
+		. '<h2>Conclusion</h2><p>Pick a formula that targets your main concern and be consistent. See more <a href="/search/label/Anti%20Aging">anti-aging tips</a>.</p>'
+		. faq_block(array(
+			'Do eye creams really work for dark circles?' => 'They help, especially caffeine and vitamin C formulas, but results depend on the cause. Sleep and hydration make a big difference too.',
+			'When should I apply eye cream?' => 'Morning and night, before your moisturiser, tapping gently with your ring finger.',
+		)),
+);
+
+/* ---------- 20. Foundation shade ---------- */
+$posts[] = array(
+	'type' => 'post', 'slug' => 'find-your-foundation-shade',
+	'title' => 'How to Find Your Perfect Foundation Shade (Online or In-Store)',
+	'labels' => array('Makeup', 'Beauty Tips'),
+	'author' => 'Maya Chen', 'date' => '2026-06-30',
+	'desc' => 'How to find your perfect foundation shade by matching your undertone and depth, so your base never looks too pink or orange.',
+	'html' => img($IMG.'post-makeup.jpg', 'Foundation shades')
+		. '<p>Nothing ruins a look faster than the wrong foundation shade. The trick is understanding two things: your <strong>undertone</strong> and your <strong>depth</strong>. Here is how to find your perfect foundation shade every time.</p>'
+		. '<h2>Step 1: Find Your Undertone</h2><ul><li><strong>Cool:</strong> veins look blue; silver jewellery flatters.</li><li><strong>Warm:</strong> veins look green; gold jewellery flatters.</li><li><strong>Neutral:</strong> a mix of both.</li></ul>'
+		. '<h2>Step 2: Find Your Depth</h2><p>Match foundation to your jaw or neck, not your hand — your hand is often a different tone. The right shade should almost disappear.</p>'
+		. '<h2>Step 3: Buying Online</h2><p>Use brand shade-finder tools and cross-check against a foundation you already love. Read reviews from people with your skin tone.</p>'
+		. '<blockquote>Undertone first, depth second. Get those right and your base will look seamless.</blockquote>'
+		. '<h2>Conclusion</h2><p>Test in daylight and give it a few minutes to settle before deciding. For more, see our <a href="/search/label/Makeup">makeup guides</a>.</p>'
+		. faq_block(array(
+			'How do I know my foundation undertone?' => 'Check your veins (blue = cool, green = warm), and which jewellery suits you (silver = cool, gold = warm).',
+			'Where should I test foundation?' => 'On your jaw or neck in natural daylight — never on your hand, which is usually a different tone.',
+		)),
+);
+
+/* ---------- 21. Makeup last all day ---------- */
+$posts[] = array(
+	'type' => 'post', 'slug' => 'how-to-make-makeup-last-all-day',
+	'title' => 'How to Make Your Makeup Last All Day (Pro Tips That Work)',
+	'labels' => array('Makeup', 'Beauty Tips'),
+	'author' => 'Maya Chen', 'date' => '2026-06-29',
+	'desc' => 'How to make your makeup last all day with simple prep, setting and touch-up tips so your look survives from morning to night.',
+	'html' => img($IMG.'post-makeup.jpg', 'Long-lasting makeup products')
+		. '<p>There is nothing worse than makeup that slides off by lunchtime. With a few pro habits, you can make your makeup last all day. Here is exactly how.</p>'
+		. '<h2>Prep Is Everything</h2><p>Start with moisturised, balanced skin and a primer suited to your skin type — mattifying for oily, hydrating for dry.</p>'
+		. '<h2>Build in Thin Layers</h2><p>Thin, well-blended layers last far longer than one thick coat that creases and slides.</p>'
+		. '<h2>Set It Strategically</h2><ul><li>Lightly powder only where you get oily.</li><li>Finish with a setting spray to meld everything together.</li><li>Carry blotting papers for touch-ups instead of piling on more powder.</li></ul>'
+		. '<blockquote>Great longevity is 80% skin prep and 20% product.</blockquote>'
+		. '<h2>Conclusion</h2><p>Prep, thin layers and smart setting are the secret. For a quick base, try our <a href="/search/label/Makeup">everyday makeup routine</a>.</p>'
+		. faq_block(array(
+			'How do I stop my makeup sliding off?' => 'Prep with the right primer, apply thin layers, set oily areas with powder and finish with a setting spray.',
+			'Does setting spray really work?' => 'Yes — a good setting spray melds layers together and noticeably extends wear, especially in heat.',
+		)),
+);
+
+/* ---------- 22. Rosemary oil ---------- */
+$posts[] = array(
+	'type' => 'post', 'slug' => 'rosemary-oil-for-hair-growth',
+	'title' => 'Rosemary Oil for Hair Growth: Does It Really Work?',
+	'labels' => array('Hair Care', 'Natural Remedies'),
+	'author' => 'Olivia Reed', 'date' => '2026-06-28',
+	'desc' => 'Rosemary oil for hair growth: what the science says, real benefits, and exactly how to use it safely for thicker, healthier hair.',
+	'html' => img($IMG.'post-hair-oil.jpg', 'Rosemary oil for hair growth')
+		. '<p>Rosemary oil is all over the internet as a natural hair-growth remedy — and unlike many trends, there is some real research behind it. Here is what <strong>rosemary oil for hair growth</strong> can (and cannot) do, and how to use it properly.</p>'
+		. '<h2>Does Rosemary Oil Work?</h2><p>Small studies suggest rosemary oil may support hair growth comparably to some conventional treatments, likely by improving scalp circulation. It is not a miracle, but it is a promising, gentle option.</p>'
+		. '<h2>How to Use Rosemary Oil</h2><ol><li><strong>Dilute</strong> a few drops in a carrier oil (like jojoba or coconut).</li><li>Massage into the scalp for 3–5 minutes.</li><li>Leave 30 minutes to overnight, then shampoo out.</li><li>Use 2–3 times a week and be patient — give it 3–6 months.</li></ol>'
+		. '<h2>Safety Tips</h2><ul><li>Always dilute — never apply neat essential oil to the scalp.</li><li>Patch-test first.</li><li>Stop if you notice irritation.</li></ul>'
+		. '<blockquote>Consistency and a gentle scalp massage matter as much as the oil itself.</blockquote>'
+		. '<h2>Conclusion</h2><p>Rosemary oil is a low-risk, affordable option worth trying for a few months. Pair it with our <a href="/search/label/Hair%20Care">scalp care routine</a>.</p>'
+		. faq_block(array(
+			'How long does rosemary oil take to grow hair?' => 'Most people need to use it consistently for 3–6 months before judging results. Hair grows slowly.',
+			'Can I leave rosemary oil in my hair overnight?' => 'Yes, if diluted in a carrier oil. Otherwise 30–60 minutes before washing gives most of the benefit.',
+		)),
+);
+
+/* ---------- 23. Scalp care ---------- */
+$posts[] = array(
+	'type' => 'post', 'slug' => 'scalp-care-routine',
+	'title' => 'Scalp Care Routine: The Foundation of Healthy Hair Growth',
+	'labels' => array('Hair Care', 'Beauty Tips'),
+	'author' => 'Maya Chen', 'date' => '2026-06-27',
+	'desc' => 'A simple scalp care routine for healthy hair growth. Why the scalp matters and the easy steps for stronger, shinier hair.',
+	'html' => img($IMG.'post-haircare.jpg', 'Healthy scalp and hair')
+		. '<p>Great hair starts at the roots. A healthy scalp creates the ideal environment for strong, shiny growth, yet it is the step most people skip. Here is a simple <strong>scalp care routine</strong> that makes a real difference.</p>'
+		. '<h2>Why Your Scalp Matters</h2><p>The scalp is skin — and like facial skin it can get dry, oily, flaky or congested. Buildup and imbalance can weaken the hair follicle over time.</p>'
+		. '<h2>A Simple Scalp Routine</h2><ul><li><strong>Cleanse regularly</strong> to remove oil and product buildup.</li><li><strong>Exfoliate gently</strong> once a week if you are prone to flaking.</li><li><strong>Massage</strong> for a few minutes to boost circulation.</li><li><strong>Protect</strong> from sunburn and over-styling.</li></ul>'
+		. '<h2>Habits That Help</h2><p>Avoid very hot water, do not overload the roots with heavy products, and eat a balanced diet for healthy growth.</p>'
+		. '<blockquote>Treat your scalp with the same care as your face and your hair will reward you.</blockquote>'
+		. '<h2>Conclusion</h2><p>A healthy scalp is the foundation of healthy hair. Pair this with our <a href="/search/label/Hair%20Care">damaged hair repair plan</a>.</p>'
+		. faq_block(array(
+			'How do I keep my scalp healthy?' => 'Cleanse regularly, exfoliate gently once a week, massage to boost circulation, and avoid heavy buildup and very hot water.',
+			'Does scalp massage help hair growth?' => 'Regular gentle massage can improve circulation and is a low-risk, relaxing habit that may support healthier growth.',
+		)),
+);
+
+/* ---------- 24. Aloe vera ---------- */
+$posts[] = array(
+	'type' => 'post', 'slug' => 'aloe-vera-benefits-skin-hair',
+	'title' => 'Aloe Vera Benefits for Skin and Hair (and How to Use It)',
+	'labels' => array('Natural Remedies', 'Skin Care', 'Hair Care'),
+	'author' => 'Olivia Reed', 'date' => '2026-06-26',
+	'desc' => 'Aloe vera benefits for skin and hair, plus how to use it safely for hydration, soothing sunburn and a healthier scalp.',
+	'html' => img($IMG.'post-natural.jpg', 'Aloe vera for skin and hair')
+		. '<p>Aloe vera has been used for centuries for good reason. This humble plant is a gentle multitasker for both skin and hair. Here are the real <strong>aloe vera benefits</strong> and how to use it.</p>'
+		. '<h2>Benefits for Skin</h2><ul><li>Soothes sunburn and irritation.</li><li>Lightweight hydration, great for oily skin.</li><li>Calms redness after shaving or exfoliating.</li></ul>'
+		. '<h2>Benefits for Hair</h2><p>Aloe can hydrate the scalp and add slip for easier detangling. Apply pure gel, leave briefly, then rinse.</p>'
+		. '<h2>How to Use Aloe Vera</h2><ol><li>Choose pure aloe gel without added alcohol or fragrance.</li><li>Patch-test before first use.</li><li>Use as a light moisturiser, soothing mask, or scalp treatment.</li></ol>'
+		. '<blockquote>Look for the shortest ingredient list — the closer to pure aloe, the better.</blockquote>'
+		. '<h2>Conclusion</h2><p>Aloe vera is a cheap, gentle addition to your natural routine. Explore more <a href="/search/label/Natural%20Remedies">natural remedies</a>.</p>'
+		. faq_block(array(
+			'Can I leave aloe vera on my face overnight?' => 'Yes, pure aloe gel can be left on as a light overnight treatment for most skin types. Patch-test first.',
+			'Is aloe vera good for oily skin?' => 'Yes — it hydrates without heaviness, making it a great lightweight option for oily and combination skin.',
+		)),
+);
+
+/* ---------- 25. Home remedies for acne ---------- */
+$posts[] = array(
+	'type' => 'post', 'slug' => 'home-remedies-for-acne',
+	'title' => 'Home Remedies for Acne That Actually Work (Gentle & Natural)',
+	'labels' => array('Natural Remedies', 'Skin Care'),
+	'author' => 'Olivia Reed', 'date' => '2026-06-25',
+	'desc' => 'Gentle home remedies for acne that actually work, plus the everyday habits that help calm breakouts naturally.',
+	'html' => img($IMG.'post-clear-skin.jpg', 'Clear skin after treating acne naturally')
+		. '<p>Breakouts are frustrating, but you do not always need harsh products. These gentle <strong>home remedies for acne</strong> — plus a few smart habits — can help calm your skin naturally. (For severe or painful acne, please see a dermatologist.)</p>'
+		. '<h2>Gentle Habits That Help</h2><ul><li>Cleanse twice a day, but never scrub harshly.</li><li>Do not pick or pop — it causes scarring.</li><li>Change pillowcases twice a week.</li><li>Keep hands and phone screens clean.</li></ul>'
+		. '<h2>Natural Helpers</h2><ul><li><strong>Green tea</strong> compress to calm inflammation.</li><li><strong>Aloe vera</strong> to soothe redness.</li><li><strong>Honey</strong> spot treatment for its gentle antibacterial properties.</li><li><strong>Niacinamide</strong> serum to regulate oil.</li></ul>'
+		. '<h2>What to Avoid</h2><p>Skip lemon juice, toothpaste and baking soda — these popular "hacks" often irritate and worsen skin.</p>'
+		. '<blockquote>Gentle and consistent beats harsh and aggressive every time.</blockquote>'
+		. '<h2>Conclusion</h2><p>Calm, consistent care helps most mild breakouts. For persistent acne, a dermatologist can help. See our <a href="/search/label/Skin%20Care">clear skin guide</a> for more.</p>'
+		. faq_block(array(
+			'What is the fastest home remedy for acne?' => 'A green tea or honey spot treatment plus not picking will calm a spot fastest. Avoid harsh "hacks" like toothpaste or lemon.',
+			'Do home remedies cure acne?' => 'They can help mild breakouts, but persistent or severe acne usually needs proven treatments and a dermatologist.',
+		)),
+);
+
+/* ---------- 26. Skin cycling ---------- */
+$posts[] = array(
+	'type' => 'post', 'slug' => 'skin-cycling-routine',
+	'title' => 'Skin Cycling: The Dermatologist-Approved Routine Explained',
+	'labels' => array('Beauty Trends', 'Skin Care', 'Anti Aging'),
+	'author' => 'Sophia Laurent', 'date' => '2026-06-24',
+	'desc' => 'Skin cycling explained: the dermatologist-approved 4-night routine that gets results from actives with less irritation.',
+	'html' => img($IMG.'post-glass-skin.jpg', 'Glowing skin from skin cycling')
+		. '<p>Unlike most viral trends, <strong>skin cycling</strong> has genuine dermatological backing. It is a simple, structured way to use active ingredients without overwhelming your skin. Here is how it works.</p>'
+		. '<h2>What Is Skin Cycling?</h2><p>Skin cycling is a four-night routine that rotates actives with recovery nights, so you get results while protecting your skin barrier.</p>'
+		. '<h2>The 4-Night Schedule</h2><ol><li><strong>Night 1 — Exfoliation:</strong> a chemical exfoliant (AHA/BHA).</li><li><strong>Night 2 — Retinoid:</strong> your retinol or retinoid.</li><li><strong>Nights 3 &amp; 4 — Recovery:</strong> hydration and barrier repair only.</li></ol>'
+		. '<h2>Why It Works</h2><ul><li>Reduces irritation from overusing actives.</li><li>Builds tolerance gradually.</li><li>Simple and easy to remember.</li></ul>'
+		. '<blockquote>Skin cycling proves that with actives, less really can be more.</blockquote>'
+		. '<h2>Conclusion</h2><p>If actives have irritated you before, skin cycling is a gentle way back in. New to retinol? Read our <a href="/search/label/Anti%20Aging">retinol beginner guide</a> first.</p>'
+		. faq_block(array(
+			'Is skin cycling good for beginners?' => 'Yes — it is one of the best ways for beginners to introduce exfoliation and retinol with minimal irritation.',
+			'Can I still use vitamin C while skin cycling?' => 'Yes. Vitamin C is a morning step and fits alongside skin cycling, which is done at night.',
+		)),
+);
+
 /* ============================================================= PAGES */
 $pages = array();
 

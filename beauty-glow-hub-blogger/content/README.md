@@ -1,7 +1,7 @@
 # Beauty Glow Hub — Content Pack + AdSense Setup Guide
 
 This pack gives you a **complete, ready-to-publish beauty blog**: 8 legal/trust
-pages and 16 human-written beauty articles (with images) — everything you
+pages and 26 human-written beauty articles (with images) — everything you
 need for Google AdSense approval.
 
 You have **two ways** to add it all. Method A is the fastest.
@@ -47,6 +47,16 @@ When pasting a post, also copy its **Search Description** into Blogger's *Search
 | 12 Foods for Glowing Skin (Eat Your Way to a Natural Glow) | Lifestyle, Natural Remedies | Discover 12 foods for glowing skin. Eat your way to a clear, radiant complexion with these skin-friendly, science-backed foods. |
 | Glass Skin Routine: The Korean Beauty Secret to Dewy Skin | Beauty Trends, Skin Care | The glass skin routine explained: the step-by-step Korean beauty secret to luminous, dewy, poreless-looking skin. |
 | How to Strengthen Weak, Brittle Nails Naturally | Nail Care, Beauty Tips | How to strengthen weak, brittle nails naturally with simple habits, nutrients and care that rebuild strong, healthy nails. |
+| Hyaluronic Acid vs Niacinamide: Which One Does Your Skin Need? | Skin Care, Beauty Tips | Hyaluronic acid vs niacinamide: what each does, who they suit and exactly how to layer them together for the best results. |
+| The Best Anti-Aging Skincare Routine by Age (20s, 30s, 40s+) | Anti Aging, Skin Care | The best anti-aging skincare routine by age. Simple, science-backed steps for your 20s, 30s and 40s+ to keep skin firm and glowing. |
+| The Best Eye Creams for Dark Circles and Fine Lines | Anti Aging, Product Reviews, Skin Care | The best eye creams for dark circles and fine lines, plus how to choose and apply eye cream that actually delivers results. |
+| How to Find Your Perfect Foundation Shade (Online or In-Store) | Makeup, Beauty Tips | How to find your perfect foundation shade by matching your undertone and depth, so your base never looks too pink or orange. |
+| How to Make Your Makeup Last All Day (Pro Tips That Work) | Makeup, Beauty Tips | How to make your makeup last all day with simple prep, setting and touch-up tips so your look survives from morning to night. |
+| Rosemary Oil for Hair Growth: Does It Really Work? | Hair Care, Natural Remedies | Rosemary oil for hair growth: what the science says, real benefits, and exactly how to use it safely for thicker, healthier hair. |
+| Scalp Care Routine: The Foundation of Healthy Hair Growth | Hair Care, Beauty Tips | A simple scalp care routine for healthy hair growth. Why the scalp matters and the easy steps for stronger, shinier hair. |
+| Aloe Vera Benefits for Skin and Hair (and How to Use It) | Natural Remedies, Skin Care, Hair Care | Aloe vera benefits for skin and hair, plus how to use it safely for hydration, soothing sunburn and a healthier scalp. |
+| Home Remedies for Acne That Actually Work (Gentle & Natural) | Natural Remedies, Skin Care | Gentle home remedies for acne that actually work, plus the everyday habits that help calm breakouts naturally. |
+| Skin Cycling: The Dermatologist-Approved Routine Explained | Beauty Trends, Skin Care, Anti Aging | Skin cycling explained: the dermatologist-approved 4-night routine that gets results from actives with less irritation. |
 
 ---
 
@@ -76,7 +86,7 @@ in the `images/` folder.
 - [x] **About** page with a real description ✔ included
 - [x] **Contact** page with a real email/form ✔ included
 - [x] **Disclaimer**, **Terms**, **Affiliate Disclosure**, **Editorial Policy**, **DMCA** ✔ included
-- [x] **Original, useful content** — 16 in-depth articles ✔ included (great for applying; keep adding more)
+- [x] **Original, useful content** — 26 in-depth articles ✔ included (great for applying; keep adding more)
 - [x] **Clear navigation menu** and footer links
 - [x] **Fast, mobile-friendly, no broken links** ✔ (the theme handles this)
 - [ ] **Custom domain** (optional but helps): connect a `.com` in Settings
