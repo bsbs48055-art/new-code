@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 64" width="320" height="64" role="img" aria-label="Beauty Glow Hub">
+  <defs>
+    <linearGradient id="bghGrad" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#E91E63"/>
+      <stop offset="1" stop-color="#D4AF37"/>
+    </linearGradient>
+  </defs>
+  <g transform="translate(6 8)">
+    <circle cx="24" cy="24" r="23" fill="#FFF8FB" stroke="#F8BBD0" stroke-width="2"/>
+    <path d="M24 39s-11-6.8-14-13.2C8 20.5 11.7 15.5 17 16.2c3.1.4 5.4 3 7 5.4 1.6-2.4 3.9-5 7-5.4 5.3-.7 9 4.3 7 9.6C35 32.2 24 39 24 39Z" fill="url(#bghGrad)"/>
+    <circle cx="24" cy="24" r="3.4" fill="#FFFFFF" opacity="0.85"/>
+  </g>
+  <text x="62" y="30" font-family="'Playfair Display', Georgia, serif" font-size="24" font-weight="700" fill="#201a1d">Beauty <tspan fill="#E91E63">Glow</tspan></text>
+  <text x="62" y="50" font-family="'Inter', Arial, sans-serif" font-size="12" letter-spacing="3" fill="#8a8a8a">HUB &#183; BEAUTY MAGAZINE</text>
+</svg>
