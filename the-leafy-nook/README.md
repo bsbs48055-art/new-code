@@ -1,0 +1,112 @@
+# The Leafy Nook
+
+A complete, ready-to-deploy static blog built for **Google AdSense approval**: a micro-niche site about indoor plant care for small spaces (apartments, dorms, low-light rooms), with 22 original, in-depth, human-written articles, full branding/logo, and every page Google expects a legitimate publisher site to have (About, Contact, Privacy Policy, Terms of Service, Disclaimer, Cookie Policy).
+
+It's built as a static site generator: you write content in plain Markdown files, run one command, and get a finished, fast, SEO-ready website in `site/` that you can upload anywhere.
+
+## What's included
+
+- **22 long-form, original blog articles** (700–1,600 words each) across 5 categories: Plant Care Basics, Plant Guides, Small-Space Living, Problem Solving, and Tools & Gear. Every article links naturally to related articles for internal linking/topical authority.
+- **Full branding**: a generated logo, favicon set (all standard sizes + `favicon.ico`), Open Graph/social share banner, and 5 custom category header illustrations.
+- **All AdSense/legal essentials**: About, Contact (with a form), Privacy Policy (with an AdSense/cookies section), Terms of Service, Disclaimer, Cookie Policy, and an Editorial Policy page.
+- **SEO fundamentals baked in**: unique title/meta description per page, canonical URLs, Open Graph + Twitter Card tags, JSON-LD structured data (Organization, WebSite, BlogPosting, BreadcrumbList), `sitemap.xml`, `robots.txt`, semantic HTML, fast static pages with no heavy JS.
+- **Clearly marked ad placeholder slots** (leaderboard, in-article, rectangle) ready for you to drop in real AdSense code once you're approved — see below.
+- **Fully responsive, modern design** — no framework, just clean hand-written CSS, so it loads fast and is easy to customize.
+- **A tiny static-site generator** (plain Node.js, no heavy framework) so you — or anyone — can add new blog posts by dropping in a Markdown file.
+
+## Quick start
+
+```bash
+npm install
+npm run build      # generates the finished site into site/
+npm run serve      # preview it locally at http://localhost:8080
+```
+
+The `site/` folder is the entire, ready-to-deploy website. You can drag-and-drop it into Netlify, Vercel, GitHub Pages, Cloudflare Pages, or any static host / cPanel `public_html` folder.
+
+## Deploying (three ways, easiest first)
+
+### Option A: GitHub Pages (already wired up, zero config)
+This repo includes a ready-to-go GitHub Actions workflow at `.github/workflows/deploy-leafy-nook.yml`. Once this branch is merged into `main`:
+1. In the repo, go to **Settings → Pages**.
+2. Under "Build and deployment", set **Source** to **GitHub Actions**.
+3. Push any change under `the-leafy-nook/` to `main` (or manually run the "Deploy The Leafy Nook to GitHub Pages" workflow from the **Actions** tab) — it builds the site and publishes it automatically.
+4. Your live URL will appear in the workflow run summary and under **Settings → Pages** (typically `https://<your-username>.github.io/<repo-name>/`). For a real custom domain, add it under **Settings → Pages → Custom domain** and update `siteUrl` in `src/config.mjs` to match, then rebuild.
+
+### Option B: Netlify (one click, best for a custom domain)
+A `netlify.toml` is already included at the repo root, pre-configured with `base = "the-leafy-nook"`, `command = "npm run build"`, `publish = "site"`. Just:
+1. Go to [app.netlify.com](https://app.netlify.com) → "Add new site" → "Import an existing project" → connect this GitHub repo.
+2. Netlify will detect `netlify.toml` automatically — no manual build settings needed.
+3. Deploy, then connect your own domain under **Site settings → Domain management**.
+
+### Option C: Vercel / Cloudflare Pages / any static host
+Set the **root directory** to `the-leafy-nook`, **build command** to `npm run build`, and **output directory** to `site`. Or just run `npm run build` locally/in CI and upload the resulting `the-leafy-nook/site` folder anywhere that serves static files.
+
+## Before you go live — checklist
+
+1. **Buy a real domain** and point it at your hosting. AdSense requires the site to live on your own domain, not a subdomain of a free host in most cases, and content should be publicly accessible without login.
+2. **Update `src/config.mjs`** with your real domain (`siteUrl`), contact email, and social handles, then re-run `npm run build`.
+3. **Connect the contact form.** It currently points to a placeholder Formspree-style endpoint in `src/build.mjs` (`buildContactPage` function, look for `https://formspree.io/f/your-form-id`). Sign up for a free form backend (Formspree, Getform, Web3Forms) or wire up your own, and update that URL.
+4. **Update the legal pages** (`content/pages/privacy-policy.md`, `terms-of-service.md`) with your actual business name/jurisdiction if different from a generic personal blog, and adjust the "Last updated" dates when you make changes.
+5. **Set up Google Analytics (optional but recommended).** There's a spot ready for it in `src/templates/layout.mjs` near the AdSense comment.
+6. **Apply for Google AdSense** once your site has been live for a little while with real traffic and the content above. When approved, Google gives you:
+   - A **publisher ID** (`ca-pub-XXXXXXXXXXXXXXXX`) — add the AdSense script tag to the `<head>` in `src/templates/layout.mjs` (commented block already there) and rebuild.
+   - Individual **ad unit codes** — paste each one into the commented placeholder inside the `adSlot()` function in `src/templates/layout.mjs`, or directly into the `.ad-placeholder` divs after building, depending on your workflow.
+   - An **ads.txt line** — it's generated by the `buildAdsTxt()` function in `src/build.mjs` (output as `site/ads.txt`) — update that function with your real line and rebuild.
+7. **Re-run `npm run build`** any time you change content or config, then re-deploy the `site/` folder.
+
+## Adding a new blog post
+
+1. Create a new Markdown file in `content/posts/`, named after the URL slug you want, e.g. `content/posts/aloe-vera-care-guide.md`.
+2. Add front matter at the top:
+
+   ```markdown
+   ---
+   title: "Aloe Vera Care Guide: Light, Watering, and Common Problems"
+   description: "A one-sentence summary shown in search results and on article cards."
+   date: "2026-07-01"
+   category: "plant-guides"
+   tags: ["aloe vera", "succulents"]
+   image: "/images/cat-guides.jpg"
+   imageAlt: "A healthy aloe vera plant in a terracotta pot"
+   featured: false
+   ---
+   ```
+
+   Valid `category` values are defined in `src/config.mjs`: `plant-care-basics`, `plant-guides`, `small-space-living`, `plant-problem-solving`, `tools-and-gear`. Set `featured: true` to have it eligible for the homepage's Featured Guides section.
+
+3. Write the article body in Markdown below the front matter.
+4. Run `npm run build`. The new post automatically appears in the blog index, its category page, the sitemap, and gets its own SEO-tagged page at `/blog/<slug>/`.
+
+## Adding a new static page
+
+Add a Markdown file to `content/pages/`, then add a corresponding `buildStaticPage("your-slug", "your-slug")` call in `src/build.mjs`'s `main()` function.
+
+## Project structure
+
+```
+the-leafy-nook/
+├── content/
+│   ├── posts/          # One Markdown file per blog article
+│   └── pages/           # Markdown for About/Privacy/Terms/etc.
+├── public/              # Static assets copied as-is into site/ (CSS, JS, images, favicons)
+├── src/
+│   ├── config.mjs       # Site name, domain, categories, nav — edit this first
+│   ├── utils.mjs         # Date formatting, reading time, etc.
+│   ├── build.mjs         # The generator — reads content/, writes site/
+│   └── templates/        # Layout, header/footer, cards, ad slots
+└── site/                 # Generated output — this is what you deploy
+```
+
+## Design/branding notes
+
+- Colors, fonts, and all styling live in `public/css/style.css` — it's plain CSS with CSS variables at the top (`:root`), so recoloring the whole site means changing a handful of `--green-*` / `--terracotta*` values.
+- The logo and favicons are in `public/images/` (`logo.png`, `favicon.ico`, and the various platform-specific sizes). Swap these out with your own artwork any time — just keep the same filenames, or update the references in `src/config.mjs` and `src/templates/layout.mjs`.
+
+## A note on Google AdSense approval
+
+Having a complete, original, policy-compliant site is necessary but does not guarantee approval — Google also reviews things outside this codebase, such as how long the site has been live, whether it has any real visitors, and whether the domain/hosting looks legitimate. Before applying:
+
+- Give the site some time live on a real domain with a bit of organic or referral traffic rather than applying the same day you deploy it.
+- Make sure every internal link works (run through the site after building) and there's no "lorem ipsum" or placeholder content left anywhere.
+- Read Google's [AdSense Program Policies](https://support.google.com/adsense/answer/48182) directly, since policy details can change.
