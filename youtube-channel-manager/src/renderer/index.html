@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' data: file:;" />
+  <title>YouTube Channel Manager</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <div class="app">
+    <aside class="sidebar">
+      <div class="brand">
+        <div class="brand-mark">YT</div>
+        <div>
+          <div class="brand-title">Channel Manager</div>
+          <div class="brand-subtitle">Multi-profile uploader</div>
+        </div>
+      </div>
+
+      <div class="channel-list" id="channelList"></div>
+
+      <div class="sidebar-actions">
+        <button class="btn btn-primary btn-block" id="addChannelBtn">+ Add Channel</button>
+        <button class="btn btn-ghost btn-block" id="settingsBtn">Settings</button>
+      </div>
+    </aside>
+
+    <main class="main">
+      <div id="emptyState" class="empty-state">
+        <h1>Manage every YouTube channel from its own Chrome profile</h1>
+        <p>
+          Add a channel, link it to the Chrome profile that's already logged in to that
+          channel's Google account, point it at a folder of videos, and hit Run.
+        </p>
+        <button class="btn btn-primary" id="emptyAddChannelBtn">+ Add your first channel</button>
+      </div>
+
+      <div id="channelView" class="channel-view hidden">
+        <header class="channel-header">
+          <div class="channel-header-info">
+            <h1 id="channelName">Channel</h1>
+            <div class="channel-meta">
+              <span id="channelProfileBadge" class="badge">No profile linked</span>
+              <span id="channelStatusBadge" class="badge status-idle">Idle</span>
+            </div>
+          </div>
+          <div class="channel-header-actions">
+            <button class="btn btn-ghost" id="editChannelBtn">Edit</button>
+            <button class="btn btn-danger-ghost" id="deleteChannelBtn">Delete</button>
+          </div>
+        </header>
+
+        <section class="panel folder-panel">
+          <div class="folder-row">
+            <div>
+              <div class="panel-label">Content folder</div>
+              <div class="folder-path" id="folderPath">No folder selected</div>
+            </div>
+            <div class="folder-actions">
+              <button class="btn btn-ghost" id="openFolderBtn">Open</button>
+              <button class="btn btn-secondary" id="changeFolderBtn">Change Folder</button>
+              <button class="btn btn-secondary" id="rescanBtn">Rescan</button>
+            </div>
+          </div>
+        </section>
+
+        <section class="panel run-panel">
+          <div class="run-row">
+            <label class="checkbox-label">
+              <input type="checkbox" id="includeUploadedCheckbox" />
+              Re-upload videos already marked as uploaded
+            </label>
+            <div class="run-actions">
+              <button class="btn btn-ghost" id="loginBtn">Test / Log in</button>
+              <button class="btn btn-danger" id="stopBtn" style="display:none;">Stop</button>
+              <button class="btn btn-primary" id="runBtn">Run Upload</button>
+            </div>
+          </div>
+        </section>
+
+        <section class="panel queue-panel">
+          <div class="panel-label">Video queue</div>
+          <div class="table-wrap">
+            <table class="video-table">
+              <thead>
+                <tr>
+                  <th>File</th>
+                  <th>Title</th>
+                  <th>Privacy</th>
+                  <th>Status</th>
+                </tr>
+              </thead>
+              <tbody id="videoTableBody"></tbody>
+            </table>
+          </div>
+        </section>
+
+        <section class="panel log-panel">
+          <div class="panel-label">Activity log</div>
+          <div class="log-console" id="logConsole"></div>
+        </section>
+      </div>
+    </main>
+  </div>
+
+  <div class="modal-backdrop hidden" id="channelModalBackdrop">
+    <div class="modal">
+      <h2 id="channelModalTitle">Add Channel</h2>
+
+      <label class="field">
+        <span>Channel name</span>
+        <input type="text" id="channelNameInput" placeholder="e.g. My Gaming Channel" />
+      </label>
+
+      <label class="field">
+        <span>Linked Chrome profile</span>
+        <div class="field-row">
+          <select id="profileSelect"></select>
+          <button class="btn btn-ghost" id="refreshProfilesBtn" title="Rescan Chrome profiles">Refresh</button>
+        </div>
+        <small class="hint">
+          Pick the Chrome profile that's already signed in to this channel's Google account. Choose
+          "No linked profile" to log in manually inside a dedicated automation window instead.
+        </small>
+      </label>
+
+      <label class="field">
+        <span>Content folder</span>
+        <div class="field-row">
+          <input type="text" id="channelFolderInput" placeholder="No folder selected" readonly />
+          <button class="btn btn-ghost" id="pickFolderBtn">Browse</button>
+        </div>
+        <small class="hint">
+          Put your videos here. Add an optional <code>&lt;video&gt;.json</code> next to a video for
+          custom title/description/tags, or a folder-wide <code>channel.json</code> for defaults.
+        </small>
+      </label>
+
+      <div class="field-grid">
+        <label class="field">
+          <span>Default privacy</span>
+          <select id="channelPrivacySelect">
+            <option value="private">Private</option>
+            <option value="unlisted">Unlisted</option>
+            <option value="public">Public</option>
+          </select>
+        </label>
+
+        <label class="field checkbox-field">
+          <input type="checkbox" id="channelMadeForKidsInput" />
+          <span>Made for kids by default</span>
+        </label>
+      </div>
+
+      <div class="modal-actions">
+        <button class="btn btn-ghost" id="cancelChannelModalBtn">Cancel</button>
+        <button class="btn btn-primary" id="saveChannelModalBtn">Save Channel</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal-backdrop hidden" id="settingsModalBackdrop">
+    <div class="modal">
+      <h2>Settings</h2>
+
+      <label class="field checkbox-field">
+        <input type="checkbox" id="headlessInput" />
+        <span>Run browser windows hidden (headless)</span>
+      </label>
+      <small class="hint">Keep this off at first so you can see uploads happen and catch any UI changes.</small>
+
+      <label class="field">
+        <span>Channels running at the same time</span>
+        <input type="number" id="concurrencyInput" min="1" max="6" />
+      </label>
+
+      <label class="field">
+        <span>Pause between uploads (seconds)</span>
+        <input type="number" id="pauseInput" min="5" max="600" />
+      </label>
+
+      <label class="field">
+        <span>Custom Chrome executable path (optional)</span>
+        <input type="text" id="chromePathInput" placeholder="Leave blank to auto-detect" />
+      </label>
+
+      <div class="modal-actions">
+        <button class="btn btn-ghost" id="closeSettingsBtn">Close</button>
+        <button class="btn btn-primary" id="saveSettingsBtn">Save</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="renderer.js"></script>
+</body>
+</html>
