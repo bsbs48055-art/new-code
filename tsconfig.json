@@ -19,10 +19,7 @@
     "esModuleInterop": true,
     "baseUrl": ".",
     "paths": {
-      "@/*": ["src/*"],
-      "@shared/*": ["src/shared/*"],
-      "@ui/*": ["src/ui/*"],
-      "@background/*": ["src/background/*"]
+      "@/*": ["src/*"]
     },
     "types": ["chrome", "vite/client"]
   },

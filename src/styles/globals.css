@@ -1,0 +1,119 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --background: 210 20% 98%;
+  --foreground: 220 25% 10%;
+  --card: 0 0% 100%;
+  --card-foreground: 220 25% 10%;
+  --primary: 211 100% 50%;
+  --primary-foreground: 0 0% 100%;
+  --secondary: 210 16% 93%;
+  --secondary-foreground: 220 20% 20%;
+  --muted: 210 16% 94%;
+  --muted-foreground: 215 12% 45%;
+  --accent: 199 89% 48%;
+  --accent-foreground: 0 0% 100%;
+  --destructive: 0 72% 51%;
+  --destructive-foreground: 0 0% 100%;
+  --border: 214 20% 88%;
+  --input: 214 20% 88%;
+  --ring: 211 100% 50%;
+  --radius: 0.875rem;
+  --glass: 0 0% 100% / 0.72;
+  --glass-border: 214 20% 88% / 0.65;
+  --app-gradient: linear-gradient(145deg, #f5f7fb 0%, #e8f1ff 42%, #f0f9ff 100%);
+}
+
+.dark {
+  --background: 222 28% 8%;
+  --foreground: 210 20% 96%;
+  --card: 222 24% 11%;
+  --card-foreground: 210 20% 96%;
+  --primary: 211 100% 58%;
+  --primary-foreground: 0 0% 100%;
+  --secondary: 217 20% 16%;
+  --secondary-foreground: 210 20% 92%;
+  --muted: 217 18% 15%;
+  --muted-foreground: 215 12% 62%;
+  --accent: 199 89% 52%;
+  --accent-foreground: 0 0% 100%;
+  --destructive: 0 62% 45%;
+  --destructive-foreground: 0 0% 100%;
+  --border: 217 18% 20%;
+  --input: 217 18% 20%;
+  --ring: 211 100% 58%;
+  --glass: 222 24% 12% / 0.72;
+  --glass-border: 217 18% 28% / 0.55;
+  --app-gradient: linear-gradient(145deg, #0b1220 0%, #101a2e 45%, #0d1828 100%);
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  html,
+  body,
+  #root {
+    height: 100%;
+  }
+
+  body {
+    @apply bg-background text-foreground font-sans antialiased;
+    background-image: var(--app-gradient);
+    background-attachment: fixed;
+    margin: 0;
+  }
+
+  ::selection {
+    @apply bg-primary/25;
+  }
+}
+
+@layer components {
+  .glass-panel {
+    @apply rounded-2xl border shadow-glass backdrop-blur-glass;
+    background: hsl(var(--glass));
+    border-color: hsl(var(--glass-border));
+  }
+
+  .page-shell {
+    @apply mx-auto w-full max-w-7xl px-4 py-6 sm:px-6 lg:px-8;
+  }
+
+  .section-title {
+    @apply text-2xl font-semibold tracking-tight text-foreground;
+  }
+
+  .section-subtitle {
+    @apply mt-1 text-sm text-muted-foreground;
+  }
+
+  .skeleton {
+    @apply animate-shimmer rounded-xl bg-gradient-to-r from-muted via-secondary to-muted;
+    background-size: 200% 100%;
+  }
+}
+
+/* Popup-specific sizing */
+.popup-root {
+  width: 380px;
+  min-height: 520px;
+  max-height: 600px;
+  overflow: hidden;
+}
+
+/* Scrollbar polish */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+::-webkit-scrollbar-thumb {
+  background: hsl(var(--muted-foreground) / 0.35);
+  border-radius: 999px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}

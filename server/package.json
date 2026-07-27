@@ -1,10 +1,9 @@
 {
-  "name": "sms-pro-helper-server",
+  "name": "content-hunter-ai-pro-server",
   "version": "1.0.0",
-  "description": "Optional local helper server for Social Media Studio Pro. Performs the single OAuth steps (TikTok code→token exchange, Facebook long-lived token exchange) that require a confidential client secret, so that secret never has to live inside the Chrome extension bundle.",
   "private": true,
   "type": "module",
-  "main": "src/index.js",
+  "description": "Secure API proxy for Content Hunter AI Pro — holds API keys server-side.",
   "scripts": {
     "start": "node src/index.js",
     "dev": "node --watch src/index.js"
@@ -12,7 +11,14 @@
   "dependencies": {
     "cors": "^2.8.5",
     "dotenv": "^16.4.7",
-    "express": "^4.21.2"
+    "express": "^4.21.2",
+    "express-rate-limit": "^7.5.0",
+    "google-trends-api": "^4.9.2",
+    "helmet": "^8.0.0",
+    "morgan": "^1.10.0",
+    "node-fetch": "^3.3.2",
+    "rss-parser": "^3.13.0",
+    "zod": "^3.24.1"
   },
   "engines": {
     "node": ">=18.0.0"
