@@ -1,88 +1,100 @@
-import { useLiveQuery } from 'dexie-react-hooks';
-import { PanelRightOpen, UploadCloud, CheckCircle2, XCircle } from 'lucide-react';
-import { db } from '@shared/db/db';
-import { APP_NAME } from '@shared/constants';
-import { PLATFORM_LABELS } from '@shared/types/index';
-import { StatusBadge } from '@ui/components/Badge';
-import { ProgressBar } from '@ui/components/ProgressBar';
-import { ThemeToggle } from '@ui/components/ThemeToggle';
-import { useTheme } from '@ui/hooks/useTheme';
+import { useEffect, useState } from 'react';
+import { motion } from 'framer-motion';
+import { Search, LayoutDashboard, TrendingUp, Sparkles, Settings } from 'lucide-react';
+import { Button } from '@/components/ui/button';
+import { Input } from '@/components/ui/input';
+import { useAppBootstrap } from '@/hooks/useAppBootstrap';
+import { useTheme } from '@/hooks/useTheme';
+import { useSettingsStore } from '@/store';
+import { APP_NAME } from '@/utils/constants';
+import { ThemeToggle } from '@/components/layout/ThemeToggle';
+import { listIdeas } from '@/services/ideas';
 
-async function openSidePanel(): Promise<void> {
-  const currentWindow = await chrome.windows.getCurrent();
-  if (currentWindow.id !== undefined) {
-    await chrome.sidePanel.open({ windowId: currentWindow.id });
+async function openDashboard(path = '/') {
+  if (typeof chrome !== 'undefined' && chrome.sidePanel?.open && chrome.tabs) {
+    const [tab] = await chrome.tabs.query({ active: true, currentWindow: true });
+    if (tab?.windowId != null) {
+      await chrome.sidePanel.open({ windowId: tab.windowId });
+      await chrome.storage.session.set({ ch_initial_route: path });
+      return;
+    }
   }
-  window.close();
+  // Fallback: open sidepanel HTML in a new tab during local testing
+  window.open(`/sidepanel.html#${path}`, '_blank');
 }
 
-function openOptionsPage(): void {
-  chrome.runtime.openOptionsPage();
-  window.close();
-}
-
-/** Compact popup: quick status snapshot plus a shortcut into the full side panel dashboard. */
 export function PopupApp() {
+  useAppBootstrap();
   useTheme();
-  const tasks = useLiveQuery(() => db.uploadTasks.orderBy('updatedAt').reverse().limit(5).toArray(), []) ?? [];
-  const activeCount = useLiveQuery(
-    () => db.uploadTasks.where('status').anyOf(['uploading', 'queued', 'paused']).count(),
-    [],
-  ) ?? 0;
-  const completedCount = useLiveQuery(() => db.uploadTasks.where('status').equals('completed').count(), []) ?? 0;
-  const failedCount = useLiveQuery(() => db.uploadTasks.where('status').equals('failed').count(), []) ?? 0;
+  const settings = useSettingsStore((s) => s.settings);
+  const [keyword, setKeyword] = useState('');
+  const [savedCount, setSavedCount] = useState(0);
+
+  useEffect(() => {
+    void listIdeas().then((ideas) => setSavedCount(ideas.length));
+  }, []);
 
   return (
-    <div style={{ width: 340, padding: 14 }}>
-      <div className="flex items-center justify-between" style={{ marginBottom: 12 }}>
-        <span style={{ fontWeight: 800, fontSize: 14 }}>{APP_NAME}</span>
+    <div className="popup-root flex flex-col bg-transparent">
+      <div className="flex items-center justify-between border-b border-border/50 px-4 py-3">
+        <div>
+          <motion.h1
+            initial={{ opacity: 0, y: 4 }}
+            animate={{ opacity: 1, y: 0 }}
+            className="text-sm font-semibold tracking-tight"
+          >
+            {APP_NAME}
+          </motion.h1>
+          <p className="text-[11px] text-muted-foreground">
+            {settings.defaultCountry} · {settings.defaultPlatform}
+          </p>
+        </div>
         <ThemeToggle />
       </div>
 
-      <div className="flex gap-2" style={{ marginBottom: 14 }}>
-        <div className="card flex flex-col items-center" style={{ flex: 1, padding: 10 }}>
-          <UploadCloud size={15} color="var(--color-primary)" />
-          <strong style={{ fontSize: 16 }}>{activeCount}</strong>
-          <span className="text-muted" style={{ fontSize: 10 }}>Active</span>
-        </div>
-        <div className="card flex flex-col items-center" style={{ flex: 1, padding: 10 }}>
-          <CheckCircle2 size={15} color="var(--color-success)" />
-          <strong style={{ fontSize: 16 }}>{completedCount}</strong>
-          <span className="text-muted" style={{ fontSize: 10 }}>Done</span>
-        </div>
-        <div className="card flex flex-col items-center" style={{ flex: 1, padding: 10 }}>
-          <XCircle size={15} color="var(--color-danger)" />
-          <strong style={{ fontSize: 16 }}>{failedCount}</strong>
-          <span className="text-muted" style={{ fontSize: 10 }}>Failed</span>
-        </div>
-      </div>
+      <div className="flex flex-1 flex-col gap-3 p-4">
+        <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.1 }} className="space-y-2">
+          <Input
+            placeholder="Quick keyword hunt…"
+            value={keyword}
+            onChange={(e) => setKeyword(e.target.value)}
+            onKeyDown={(e) => {
+              if (e.key === 'Enter' && keyword.trim()) {
+                void chrome.storage?.session?.set({ ch_quick_keyword: keyword.trim() });
+                void openDashboard('/search');
+              }
+            }}
+          />
+          <Button
+            className="w-full"
+            onClick={() => {
+              if (keyword.trim()) void chrome.storage?.session?.set({ ch_quick_keyword: keyword.trim() });
+              void openDashboard('/search');
+            }}
+          >
+            <Search className="h-4 w-4" /> Search
+          </Button>
+        </motion.div>
 
-      <div className="flex flex-col gap-2" style={{ marginBottom: 14, maxHeight: 220, overflowY: 'auto' }}>
-        {tasks.length === 0 ? (
-          <p className="text-muted" style={{ fontSize: 12, textAlign: 'center' }}>No uploads yet.</p>
-        ) : (
-          tasks.map((task) => (
-            <div key={task.id} className="card" style={{ padding: 10 }}>
-              <div className="flex items-center justify-between" style={{ marginBottom: 4 }}>
-                <span style={{ fontSize: 12, fontWeight: 600, overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap', maxWidth: 180 }}>
-                  {task.metadata.title || task.file.name}
-                </span>
-                <StatusBadge status={task.status} />
-              </div>
-              <div className="text-muted" style={{ fontSize: 10, marginBottom: 4 }}>{PLATFORM_LABELS[task.platform]}</div>
-              <ProgressBar value={task.progress} />
-            </div>
-          ))
-        )}
-      </div>
+        <div className="grid grid-cols-2 gap-2">
+          <Button variant="secondary" onClick={() => void openDashboard('/')}>
+            <LayoutDashboard className="h-4 w-4" /> Dashboard
+          </Button>
+          <Button variant="secondary" onClick={() => void openDashboard('/trending')}>
+            <TrendingUp className="h-4 w-4" /> Trending
+          </Button>
+          <Button variant="secondary" onClick={() => void openDashboard('/ai')}>
+            <Sparkles className="h-4 w-4" /> AI
+          </Button>
+          <Button variant="secondary" onClick={() => void openDashboard('/settings')}>
+            <Settings className="h-4 w-4" /> Settings
+          </Button>
+        </div>
 
-      <div className="flex gap-2">
-        <button className="btn btn-primary" style={{ flex: 1 }} onClick={openSidePanel}>
-          <PanelRightOpen size={14} /> Open Dashboard
-        </button>
-        <button className="btn btn-secondary" onClick={openOptionsPage}>
-          Settings
-        </button>
+        <div className="mt-auto rounded-xl border border-border/60 bg-muted/40 p-3 text-xs text-muted-foreground">
+          <p className="font-medium text-foreground">{savedCount} saved ideas</p>
+          <p className="mt-1">Official APIs only. No scraping bypasses. Configure keys on the backend.</p>
+        </div>
       </div>
     </div>
   );

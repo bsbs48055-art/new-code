@@ -1,10 +1,9 @@
 {
   "manifest_version": 3,
-  "name": "__MSG_appName__",
-  "short_name": "SMS Pro",
+  "name": "Content Hunter AI Pro",
+  "short_name": "Content Hunter",
   "version": "1.0.0",
-  "description": "__MSG_appDescription__",
-  "default_locale": "en",
+  "description": "AI-powered content research for creators — trending topics, keywords, hashtags, and opportunities via official APIs.",
   "icons": {
     "16": "icons/icon16.png",
     "32": "icons/icon32.png",
@@ -13,6 +12,7 @@
   },
   "action": {
     "default_popup": "popup.html",
+    "default_title": "Content Hunter AI Pro",
     "default_icon": {
       "16": "icons/icon16.png",
       "32": "icons/icon32.png",
@@ -23,50 +23,24 @@
   "side_panel": {
     "default_path": "sidepanel.html"
   },
-  "options_page": "options.html",
   "background": {
     "service_worker": "background/index.js",
     "type": "module"
   },
-  "content_scripts": [
-    {
-      "matches": [
-        "*://*.facebook.com/*",
-        "*://*.youtube.com/*",
-        "*://*.tiktok.com/*"
-      ],
-      "js": ["content-scripts/accountDetector.js"],
-      "run_at": "document_idle",
-      "all_frames": false
-    }
-  ],
   "permissions": [
     "storage",
     "unlimitedStorage",
-    "identity",
-    "tabs",
-    "notifications",
     "alarms",
-    "downloads",
+    "notifications",
     "sidePanel",
-    "scripting"
+    "identity"
   ],
   "host_permissions": [
-    "https://www.googleapis.com/*",
-    "https://youtube.googleapis.com/*",
-    "https://accounts.google.com/*",
-    "https://graph.facebook.com/*",
-    "https://*.facebook.com/*",
-    "https://open.tiktokapis.com/*",
-    "https://*.tiktok.com/*"
+    "http://localhost:8787/*",
+    "https://*/*"
   ],
-  "oauth2": {
-    "client_id": "YOUR_GOOGLE_OAUTH_CLIENT_ID.apps.googleusercontent.com",
-    "scopes": [
-      "https://www.googleapis.com/auth/youtube.upload",
-      "https://www.googleapis.com/auth/youtube.readonly",
-      "https://www.googleapis.com/auth/yt-analytics.readonly"
-    ]
+  "content_security_policy": {
+    "extension_pages": "script-src 'self'; object-src 'self'; connect-src 'self' http://localhost:8787 https://* data: blob:;"
   },
   "minimum_chrome_version": "116"
 }
