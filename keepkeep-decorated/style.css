@@ -1,0 +1,77 @@
+/*
+Theme Name: KeepKeep Decorated
+Theme URI: https://keepkeepdecorated.com/
+Author: KeepKeep Decorated
+Author URI: https://keepkeepdecorated.com/
+Description: A premium editorial WordPress theme for home decor, interior design, DIY, home organization, furniture and lifestyle publishers. Warm neutral magazine design, semantic HTML5, structured-data ready, accessible, fast, and built to stay out of the way of SEO and ad plugins.
+Requires at least: 6.2
+Tested up to: 6.8
+Requires PHP: 7.4
+Version: 1.0.0
+License: GNU General Public License v2 or later
+License URI: https://www.gnu.org/licenses/gpl-2.0.html
+Text Domain: keepkeep-decorated
+Tags: blog, news, editorial, one-column, two-columns, right-sidebar, custom-logo, custom-menu, featured-images, threaded-comments, translation-ready, block-styles, wide-blocks, accessibility-ready
+
+KeepKeep Decorated is distributed under the terms of the GNU GPL v2 or later.
+
+The main stylesheet lives in assets/css/main.css and is enqueued after this
+file. This file holds the theme header plus the small set of resets that must
+apply even if the main stylesheet fails to load.
+*/
+
+/* -------------------------------------------------------------------------
+   Minimal safety net (see assets/css/main.css for the full design system)
+   ---------------------------------------------------------------------- */
+
+html {
+	-webkit-text-size-adjust: 100%;
+	text-size-adjust: 100%;
+}
+
+body {
+	margin: 0;
+	background-color: #fdfbf7;
+	color: #23211e;
+	font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+	line-height: 1.7;
+}
+
+img,
+svg,
+video,
+iframe {
+	max-width: 100%;
+	height: auto;
+}
+
+/* Accessible text that is visually hidden but readable by screen readers. */
+.screen-reader-text {
+	border: 0;
+	clip: rect(1px, 1px, 1px, 1px);
+	clip-path: inset(50%);
+	height: 1px;
+	margin: -1px;
+	overflow: hidden;
+	padding: 0;
+	position: absolute !important;
+	width: 1px;
+	word-wrap: normal !important;
+}
+
+.screen-reader-text:focus {
+	background-color: #fdfbf7;
+	clip: auto !important;
+	clip-path: none;
+	color: #23211e;
+	display: block;
+	font-size: 0.9rem;
+	height: auto;
+	left: 1rem;
+	line-height: normal;
+	padding: 0.85rem 1.25rem;
+	text-decoration: none;
+	top: 1rem;
+	width: auto;
+	z-index: 100000;
+}
